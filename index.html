@@ -23,7 +23,7 @@
             background-color: var(--beige);
             color: var(--dark-blue);
             overflow-x: hidden;
-            cursor: none; /* Ocultar cursor por defecto */
+            cursor: none;
         }
 
         /* ── CURSOR PERSONALIZADO ── */
@@ -36,7 +36,6 @@
             z-index: 9999;
             transform: translate(-50%, -50%);
         }
-
         .cursor-ring {
             width: 36px; height: 36px;
             border: 1px solid rgba(47, 65, 83, 0.35);
@@ -47,8 +46,6 @@
             transform: translate(-50%, -50%);
             transition: width 0.2s, height 0.2s;
         }
-
-        /* En móvil ocultar cursor personalizado */
         @media (max-width: 768px) {
             body { cursor: auto; }
             .cursor, .cursor-ring { display: none; }
@@ -63,7 +60,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%;
-            padding: 20px 40px;
+            padding: 24px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -71,21 +68,22 @@
             background: transparent;
             transition: background 0.3s ease;
         }
-
         .header.scrolled {
             background: rgba(221, 216, 212, 0.95);
             backdrop-filter: blur(10px);
         }
-
         .header-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
         }
-
+        /* LOGO HEADER MÁS GRANDE */
         .logo-svg {
-            height: 35px;
+            height: 50px;
             width: auto;
+        }
+        @media (max-width: 768px) {
+            .logo-svg { height: 40px; }
         }
 
         .header-right {
@@ -100,11 +98,10 @@
             align-items: center;
             gap: 8px;
             font-family: 'Lora', serif;
-            font-size: 13px;
+            font-size: 14px;
             color: var(--dark-blue);
             cursor: none;
         }
-
         .lang-toggle span { opacity: 0.5; transition: opacity 0.3s; }
         .lang-toggle span.active { opacity: 1; font-weight: 700; }
         .lang-divider { width: 1px; height: 16px; background: var(--dark-blue); opacity: 0.3; }
@@ -118,9 +115,8 @@
             justify-content: space-between;
             cursor: none;
             z-index: 102;
-            padding: 4px;
+            padding: 2px;
         }
-
         .menu-btn span {
             display: block;
             width: 100%;
@@ -129,7 +125,6 @@
             border-radius: 2px;
             transition: all 0.3s ease;
         }
-
         .menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .menu-btn.active span:nth-child(2) { opacity: 0; }
         .menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
@@ -148,9 +143,7 @@
             pointer-events: none;
             transition: opacity 0.5s ease;
         }
-
         .menu-overlay.active { opacity: 1; pointer-events: all; }
-
         .menu-nav { text-align: center; }
         .menu-nav a {
             display: block;
@@ -164,7 +157,6 @@
             transition: all 0.5s ease;
             cursor: none;
         }
-
         .menu-overlay.active .menu-nav a { opacity: 1; transform: translateY(0); }
         .menu-overlay.active .menu-nav a:nth-child(1) { transition-delay: 0.1s; }
         .menu-overlay.active .menu-nav a:nth-child(2) { transition-delay: 0.2s; }
@@ -178,7 +170,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 120px 40px 60px;
+            padding: 140px 40px 80px;
             position: relative;
             overflow: hidden;
         }
@@ -186,58 +178,75 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 600px;
+            max-width: 55%;
+        }
+        @media (max-width: 768px) {
+            .hero-content { max-width: 100%; }
         }
 
+        /* LOGO HERO MÁS GRANDE Y BIEN PROPORCIONADO */
         .logo-hero {
-            height: 60px;
+            height: 90px;
             width: auto;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .logo-hero { height: 60px; }
         }
 
-        /* Formas decorativas SVG */
+        /* FORMAS DECORATIVAS CORREGIDAS */
         .shapes-container {
             position: absolute;
             top: 0;
             right: 0;
-            width: 45%;
+            width: 50%;
             height: 100%;
-            overflow: hidden;
+            overflow: visible;
             z-index: 0;
+            pointer-events: none;
         }
 
         .shapes-container svg {
             position: absolute;
-            right: -10%;
+            right: -5%;
             top: 50%;
             transform: translateY(-50%);
-            height: 90vh;
+            height: 110%;
             width: auto;
             max-width: none;
+        }
+        @media (max-width: 768px) {
+            .shapes-container {
+                width: 70%;
+                right: -15%;
+                opacity: 0.6;
+            }
+            .shapes-container svg {
+                height: 100%;
+                right: -10%;
+            }
         }
 
         /* Texto rotativo */
         .rotating-text {
             font-family: 'Lora', serif;
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
             color: var(--dark-blue);
             min-height: 2em;
             position: relative;
-            margin-top: 10px;
+            margin-top: 16px;
+            letter-spacing: 0.02em;
         }
-
         .rotating-text span {
             position: absolute;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.6s ease;
         }
-
         .rotating-text span.active { opacity: 1; transform: translateY(0); }
 
         /* Portfolio Section con Scroll */
         .portfolio-section { position: relative; height: 300vh; }
-
         .portfolio-sticky {
             position: sticky;
             top: 0;
@@ -248,7 +257,6 @@
             background: var(--steel-blue);
             overflow: hidden;
         }
-
         .portfolio-card {
             width: 80%;
             max-width: 900px;
@@ -259,7 +267,6 @@
             position: relative;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
-
         .portfolio-slide {
             position: absolute;
             top: 0; left: 0;
@@ -269,10 +276,8 @@
             display: flex;
             flex-direction: column;
         }
-
         .portfolio-slide.active { opacity: 1; }
         .portfolio-slide img { width: 100%; height: 75%; object-fit: cover; }
-
         .portfolio-info { padding: 20px 30px; background: var(--beige); }
         .portfolio-info h3 {
             font-family: 'Alice', serif;
@@ -285,7 +290,6 @@
             font-size: 0.9rem;
             color: var(--steel-blue);
         }
-
         .portfolio-dots {
             position: absolute;
             bottom: 30px;
@@ -295,7 +299,6 @@
             gap: 10px;
             z-index: 10;
         }
-
         .dot {
             width: 10px; height: 10px;
             border-radius: 50%;
@@ -304,7 +307,6 @@
             transition: all 0.3s;
         }
         .dot.active { background: var(--white); transform: scale(1.2); }
-
         .portfolio-counter {
             position: absolute;
             top: 30px; right: 40px;
@@ -324,7 +326,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .about-text { flex: 1; }
         .about-text h2 {
             font-family: 'Alice', serif;
@@ -339,7 +340,6 @@
             color: var(--steel-blue);
             margin-bottom: 16px;
         }
-
         .about-image { flex: 1; max-width: 400px; }
         .about-image img { width: 100%; border-radius: 12px; filter: grayscale(20%); }
 
@@ -349,14 +349,12 @@
             background: var(--dark-blue);
             text-align: center;
         }
-
         .contact h2 {
             font-family: 'Alice', serif;
             font-size: clamp(2rem, 5vw, 4rem);
             color: var(--beige);
             margin-bottom: 40px;
         }
-
         .contact-email {
             font-family: 'Lora', serif;
             font-size: 1.3rem;
@@ -368,14 +366,12 @@
             cursor: none;
         }
         .contact-email:hover { color: var(--white); }
-
         .social-links {
             margin-top: 40px;
             display: flex;
             justify-content: center;
             gap: 30px;
         }
-
         .social-links a {
             font-family: 'Lora', serif;
             font-size: 0.9rem;
@@ -385,7 +381,6 @@
             cursor: none;
         }
         .social-links a:hover { color: var(--white); }
-
         .footer-bottom {
             margin-top: 60px;
             padding-top: 30px;
@@ -396,7 +391,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .footer-bottom p {
             font-family: 'Lora', serif;
             font-size: 0.8rem;
@@ -404,10 +398,9 @@
         }
 
         @media (max-width: 768px) {
-            .header { padding: 15px 20px; }
-            .hero { padding: 100px 20px 40px; }
-            .shapes-container { width: 60%; right: -20%; }
-            .about { flex-direction: column; padding: 60px 20px; }
+            .header { padding: 20px 24px; }
+            .hero { padding: 120px 24px 60px; }
+            .about { flex-direction: column; padding: 60px 24px; }
             .portfolio-card { width: 95%; }
         }
     </style>
@@ -428,7 +421,7 @@
                 <span></span>
             </div>
 
-            <!-- Logo SVG inline -->
+            <!-- Logo SVG inline - MÁS GRANDE -->
             <svg class="logo-svg" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_logo)">
                     <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/>
@@ -473,9 +466,9 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <!-- Formas decorativas SVG -->
+        <!-- Formas decorativas SVG CORREGIDAS -->
         <div class="shapes-container">
-            <svg viewBox="0 0 856 737" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 856 737" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                 <g clip-path="url(#clip0_shapes)">
                     <path d="M500.294 779.866C500.294 779.866 500.528 787.062 492.719 787.062H423.98C411.963 785.567 414.067 780.52 413.927 779.866C411.963 749.537 418.883 475.833 414.441 328.023C412.711 270.917 434.642 93.2455 303.711 41.9814C273.785 30.252 228.847 24.2703 200.884 30.4856C190.878 31.9343 181.853 36.2335 172.36 38.4299C-56.1597 133.341 191.392 458.356 212.855 487.329C282.529 581.445 250.404 672.898 215.38 727.901C193.637 762.061 162.868 781.034 130.182 790.52C114.938 775.006 100.068 759.397 84.9644 744.537C106.708 741.453 130.884 734.396 147.858 719.255C193.262 689.16 216.783 591.539 164.084 516.209C78.6517 394.194 65.2314 358.304 22.3049 249.748C-35.1641 104.461 22.3517 -25.0309 152.534 -58.7241C324.52 -103.306 410.326 -20.3578 410.981 -19.7504C464.99 26.5134 499.639 60.0663 498.283 255.169C498.19 268.067 496.693 779.819 500.294 779.959V779.866Z" fill="#587D8E"/>
                     <path d="M899.865 256.057C901.221 60.9543 866.525 27.4014 812.563 -18.8624C811.908 -19.4232 726.102 -102.371 554.116 -57.8362C423.934 -24.0963 366.371 105.349 423.887 250.636C466.86 359.239 480.28 395.082 565.666 517.097C618.365 592.38 594.844 690.002 549.44 720.143C516.567 749.49 456.386 748.696 439.926 746.64C302.168 729.256 322.65 552.893 320.686 432.84V-29.9377C320.686 -40.4055 317.833 -50.92 311.38 -59.1914C303.15 -69.7994 290.618 -76.7623 276.544 -77.6502L219.589 -76.5754C219.589 -76.5754 219.261 -76.7623 219.074 -76.7623L47.6961 -76.6688C41.2431 -77.2763 35.4915 -71.2947 47.6961 -69.4722C170.864 -70.9209 257.185 87.6844 256.343 263.393C256.249 278.721 255.454 508.965 255.454 508.965C255.454 510.414 255.267 511.956 255.221 513.405C252.275 725.424 320.826 765.566 390.593 787.296C444.882 804.212 560.896 816.877 616.962 728.788C651.986 673.786 684.111 582.333 614.437 488.217C592.974 459.197 345.422 134.229 573.942 39.3177C583.435 37.1214 592.46 32.8221 602.466 31.3735C630.429 25.1583 675.366 31.1398 705.293 42.8694C836.177 94.1334 814.293 271.805 816.023 328.91C820.465 476.721 813.545 750.425 815.509 780.753C815.649 781.408 813.545 786.501 825.562 787.95H894.301C902.11 787.95 901.876 780.753 901.876 780.753C898.322 780.66 899.818 268.861 899.865 255.963V256.057Z" fill="#2F4153"/>
@@ -491,7 +484,7 @@
         </div>
 
         <div class="hero-content">
-            <!-- Logo grande en hero -->
+            <!-- Logo grande en hero - MÁS GRANDE -->
             <svg class="logo-hero" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_hero)">
                     <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/>
