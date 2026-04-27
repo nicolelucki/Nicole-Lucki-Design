@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicole Lucki | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark-blue: #2f4153;
+            --steel-blue: #587d8e;
+            --light-blue: #a7c1d1;
+            --beige: #ddd8d4;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--beige);
+            color: var(--dark-blue);
+            overflow-x: hidden;
+            cursor: none; /* Ocultar cursor por defecto */
+        }
+
+        /* ── CURSOR PERSONALIZADO ── */
+        .cursor {
+            width: 8px; height: 8px;
+            background: #2f4153;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-ring {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(47, 65, 83, 0.35);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+
+        /* En móvil ocultar cursor personalizado */
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            .cursor, .cursor-ring { display: none; }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--beige); }
+        ::-webkit-scrollbar-thumb { background: var(--steel-blue); border-radius: 4px; }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(221, 216, 212, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-svg {
+            height: 35px;
+            width: auto;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        /* Toggle idioma */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Lora', serif;
+            font-size: 13px;
+            color: var(--dark-blue);
+            cursor: none;
+        }
+
+        .lang-toggle span { opacity: 0.5; transition: opacity 0.3s; }
+        .lang-toggle span.active { opacity: 1; font-weight: 700; }
+        .lang-divider { width: 1px; height: 16px; background: var(--dark-blue); opacity: 0.3; }
+
+        /* Menú hamburguesa redondito */
+        .menu-btn {
+            width: 32px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: none;
+            z-index: 102;
+            padding: 4px;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            background: var(--dark-blue);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-btn.active span:nth-child(2) { opacity: 0; }
+        .menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+        /* Menú Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: var(--dark-blue);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .menu-overlay.active { opacity: 1; pointer-events: all; }
+
+        .menu-nav { text-align: center; }
+        .menu-nav a {
+            display: block;
+            font-family: 'Alice', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--beige);
+            text-decoration: none;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+            cursor: none;
+        }
+
+        .menu-overlay.active .menu-nav a { opacity: 1; transform: translateY(0); }
+        .menu-overlay.active .menu-nav a:nth-child(1) { transition-delay: 0.1s; }
+        .menu-overlay.active .menu-nav a:nth-child(2) { transition-delay: 0.2s; }
+        .menu-overlay.active .menu-nav a:nth-child(3) { transition-delay: 0.3s; }
+        .menu-overlay.active .menu-nav a:nth-child(4) { transition-delay: 0.4s; }
+        .menu-nav a:hover { color: var(--light-blue); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .logo-hero {
+            height: 60px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Formas decorativas SVG */
+        .shapes-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shapes-container svg {
+            position: absolute;
+            right: -10%;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 90vh;
+            width: auto;
+            max-width: none;
+        }
+
+        /* Texto rotativo */
+        .rotating-text {
+            font-family: 'Lora', serif;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--dark-blue);
+            min-height: 2em;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .rotating-text span {
+            position: absolute;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .rotating-text span.active { opacity: 1; transform: translateY(0); }
+
+        /* Portfolio Section con Scroll */
+        .portfolio-section { position: relative; height: 300vh; }
+
+        .portfolio-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--steel-blue);
+            overflow: hidden;
+        }
+
+        .portfolio-card {
+            width: 80%;
+            max-width: 900px;
+            aspect-ratio: 16/10;
+            background: var(--beige);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .portfolio-slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-slide.active { opacity: 1; }
+        .portfolio-slide img { width: 100%; height: 75%; object-fit: cover; }
+
+        .portfolio-info { padding: 20px 30px; background: var(--beige); }
+        .portfolio-info h3 {
+            font-family: 'Alice', serif;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+        }
+        .portfolio-info p {
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            color: var(--steel-blue);
+        }
+
+        .portfolio-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: none;
+            transition: all 0.3s;
+        }
+        .dot.active { background: var(--white); transform: scale(1.2); }
+
+        .portfolio-counter {
+            position: absolute;
+            top: 30px; right: 40px;
+            font-family: 'Alice', serif;
+            font-size: 1rem;
+            color: var(--white);
+            z-index: 10;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 40px;
+            background: var(--beige);
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text { flex: 1; }
+        .about-text h2 {
+            font-family: 'Alice', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--dark-blue);
+            margin-bottom: 24px;
+        }
+        .about-text p {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--steel-blue);
+            margin-bottom: 16px;
+        }
+
+        .about-image { flex: 1; max-width: 400px; }
+        .about-image img { width: 100%; border-radius: 12px; filter: grayscale(20%); }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 40px;
+            background: var(--dark-blue);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Alice', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--beige);
+            margin-bottom: 40px;
+        }
+
+        .contact-email {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            color: var(--light-blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--light-blue);
+            padding-bottom: 4px;
+            transition: color 0.3s;
+            cursor: none;
+        }
+        .contact-email:hover { color: var(--white); }
+
+        .social-links {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-links a {
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            color: var(--steel-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: none;
+        }
+        .social-links a:hover { color: var(--white); }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-bottom p {
+            font-family: 'Lora', serif;
+            font-size: 0.8rem;
+            color: var(--steel-blue);
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 15px 20px; }
+            .hero { padding: 100px 20px 40px; }
+            .shapes-container { width: 60%; right: -20%; }
+            .about { flex-direction: column; padding: 60px 20px; }
+            .portfolio-card { width: 95%; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- ── CURSOR PERSONALIZADO ── -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-left">
+            <!-- Menú hamburguesa IZQUIERDO -->
+            <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Logo SVG inline -->
+            <svg class="logo-svg" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_logo)">
+                    <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/>
+                    <path d="M281.785 345.204L283.408 346.187C276.249 358.707 263.395 367 247.267 367C221.053 367 207.214 345.044 207.214 322.929C207.214 300.814 221.212 278.22 250.514 278.22C271.672 278.22 283.568 289.916 283.568 307.007H266.961C267.121 306.024 267.121 304.881 267.121 303.924C267.121 291.085 259.642 280.187 247.427 280.187C232.284 280.187 223.341 297.092 223.341 314.981C223.341 334.97 234.572 356.128 258.658 356.128C268.585 356.128 277.713 352.381 281.785 345.23V345.204Z" fill="#2F4153"/>
+                    <path d="M379.51 322.929C379.51 345.044 365.192 367 336.05 367C306.908 367 292.59 345.044 292.59 322.929C292.59 300.814 307.414 277.715 336.05 277.715C364.686 277.715 379.51 300.468 379.51 322.929ZM362.903 322.291C362.903 300.84 353.934 279.363 336.023 279.363C318.112 279.363 309.33 300.84 309.33 322.291C309.33 343.742 318.272 365.538 336.023 365.538C353.775 365.538 362.903 343.901 362.903 322.291Z" fill="#2F4153"/>
+                    <path d="M416.317 365.538V367H388.639V365.538H394.813V234.309H388.639V232.687H410.142V365.538H416.317Z" fill="#2F4153"/>
+                    <path d="M500.522 346.187C493.203 358.707 480.509 367 464.7 367C438.645 367 425.126 344.566 425.126 322.132C425.126 299.697 438.486 277.582 466.962 277.582C487.162 277.582 498.553 288.799 498.553 300.016C498.553 311.233 486.843 322.77 460.628 322.77V321.308C474.308 321.308 481.946 309.107 481.946 297.89C481.946 288.454 476.57 279.682 464.7 279.682C448.253 279.682 439.471 296.587 439.471 314.476C439.471 334.651 450.701 356.102 475.292 356.102C485.565 356.102 494.827 352.354 498.899 345.204L500.522 346.187Z" fill="#2F4153"/>
+                    <path d="M727.935 364.395V366.017H706.432V341.801C701.561 358.707 688.68 367 675.826 367C659.219 367 642.453 353.178 642.453 326.358V279.682H636.278V278.061H658.261V326.358C658.261 347.649 670.477 358.388 682.506 358.388C694.535 358.388 706.432 347.809 706.432 326.358V279.682H700.257V278.061H721.761V364.395H727.935Z" fill="#2F4153"/>
+                    <path d="M811.635 345.204L813.259 346.187C806.1 358.707 793.245 367 777.117 367C750.903 367 737.064 345.044 737.064 322.929C737.064 300.814 751.063 278.22 780.364 278.22C801.522 278.22 813.418 289.916 813.418 307.007H796.811C796.971 306.024 796.971 304.881 796.971 303.924C796.971 291.085 789.493 280.187 777.277 280.187C762.134 280.187 753.192 297.092 753.192 314.981C753.192 334.97 764.423 356.128 788.508 356.128C798.435 356.128 807.563 352.381 811.635 345.23V345.204Z" fill="#2F4153"/>
+                    <path d="M907.444 367H882.374L851.928 332.844L843.625 342.599V365.538H849.799V367H822.121V365.538H828.295V234.309H822.121V232.687H843.598V339.994L874.71 303.419C877.797 299.83 880.724 292.999 880.724 286.673C880.724 284.068 880.245 281.303 878.941 279.204H897.65L861.669 321.494L900.259 365.565H907.418V367.027L907.444 367Z" fill="#2F4153"/>
+                    <path d="M943 365.538V367H915.322V365.538H921.496V280.666H915.322V279.204H936.826V365.538H943ZM918.915 259.348C918.915 253.659 923.466 249.114 929.161 249.114C934.856 249.114 939.407 253.819 939.407 259.348C939.407 264.877 934.697 269.581 929.161 269.581C923.625 269.581 918.915 265.036 918.915 259.348Z" fill="#2F4153"/>
+                    <path d="M155.903 268.465C156.142 233.086 149.861 226.999 140.067 218.626C139.934 218.52 124.392 203.475 93.1742 211.555C69.568 217.669 59.1088 241.14 69.5414 267.481C77.3392 287.178 79.761 293.664 95.2767 315.805C104.831 329.468 100.573 347.171 92.3226 352.62C86.3612 357.936 75.4496 357.803 72.4423 357.431C47.4521 354.268 51.1514 322.318 50.8054 300.548V216.632C50.8054 214.745 50.2731 212.831 49.1287 211.316C47.6384 209.402 45.3762 208.126 42.8213 207.967L32.4952 208.153C32.4952 208.153 32.442 208.126 32.4154 208.126H1.30407C0.133074 208.02 -0.904857 209.11 1.30407 209.456C23.6595 209.19 39.3083 237.95 39.1486 269.794C39.1486 272.585 38.9889 314.317 38.9889 314.317C38.9889 314.583 38.9623 314.848 38.9623 315.114C38.4301 353.55 50.8586 360.833 63.5267 364.767C73.3737 367.851 94.4251 370.137 104.591 354.161C110.952 344.194 116.781 327.607 104.139 310.542C100.253 305.279 55.3297 246.35 96.7937 229.152C98.5236 228.753 100.147 227.982 101.983 227.717C107.067 226.6 115.21 227.69 120.64 229.79C144.379 239.093 140.413 271.309 140.733 281.649C141.531 308.442 140.28 358.069 140.653 363.571C140.68 363.704 140.307 364.608 142.489 364.874H154.971C156.382 364.874 156.355 363.571 156.355 363.571C155.716 363.571 155.982 270.751 155.982 268.412L155.903 268.465Z" fill="#2F4153"/>
+                    <path d="M621.029 352.434C614.987 357.83 603.943 357.67 600.909 357.298C575.599 354.108 581.907 321.733 581.534 299.697V214.772C581.534 212.964 581.082 211.13 580.017 209.668C578.5 207.568 576.131 206.186 573.417 206.027L562.958 206.239C562.958 206.239 562.904 206.213 562.878 206.213H528.866C527.695 206.106 526.63 207.223 528.866 207.542C554.548 208.18 565.699 239.04 566.87 272.851C566.95 274.791 567.03 313.705 567.03 313.705C567.03 313.971 567.003 314.237 567.003 314.529C566.471 353.444 579.059 360.807 591.86 364.794C601.84 367.904 623.131 370.216 633.431 354.055C635.187 351.291 636.917 347.995 638.221 344.327C638.381 343.901 637.981 343.476 637.529 343.582L637.13 343.689C631.514 345.177 626.458 348.128 621.933 351.769C621.641 352.008 621.321 352.221 621.029 352.434Z" fill="#2F4153"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_logo">
+                        <rect width="943" height="367" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="header-right">
+            <!-- Toggle idioma DERECHO -->
+            <div class="lang-toggle" onclick="toggleLanguage()">
+                <span class="active" data-lang="es">ES</span>
+                <div class="lang-divider"></div>
+                <span data-lang="en">EN</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-nav">
+            <a href="#home" onclick="toggleMenu()" data-es="Inicio" data-en="Home">Inicio</a>
+            <a href="#works" onclick="toggleMenu()" data-es="Proyectos" data-en="Projects">Proyectos</a>
+            <a href="#about" onclick="toggleMenu()" data-es="Sobre mí" data-en="About">Sobre mí</a>
+            <a href="#contact" onclick="toggleMenu()" data-es="Contacto" data-en="Contact">Contacto</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Formas decorativas SVG -->
+        <div class="shapes-container">
+            <svg viewBox="0 0 856 737" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_shapes)">
+                    <path d="M500.294 779.866C500.294 779.866 500.528 787.062 492.719 787.062H423.98C411.963 785.567 414.067 780.52 413.927 779.866C411.963 749.537 418.883 475.833 414.441 328.023C412.711 270.917 434.642 93.2455 303.711 41.9814C273.785 30.252 228.847 24.2703 200.884 30.4856C190.878 31.9343 181.853 36.2335 172.36 38.4299C-56.1597 133.341 191.392 458.356 212.855 487.329C282.529 581.445 250.404 672.898 215.38 727.901C193.637 762.061 162.868 781.034 130.182 790.52C114.938 775.006 100.068 759.397 84.9644 744.537C106.708 741.453 130.884 734.396 147.858 719.255C193.262 689.16 216.783 591.539 164.084 516.209C78.6517 394.194 65.2314 358.304 22.3049 249.748C-35.1641 104.461 22.3517 -25.0309 152.534 -58.7241C324.52 -103.306 410.326 -20.3578 410.981 -19.7504C464.99 26.5134 499.639 60.0663 498.283 255.169C498.19 268.067 496.693 779.819 500.294 779.959V779.866Z" fill="#587D8E"/>
+                    <path d="M899.865 256.057C901.221 60.9543 866.525 27.4014 812.563 -18.8624C811.908 -19.4232 726.102 -102.371 554.116 -57.8362C423.934 -24.0963 366.371 105.349 423.887 250.636C466.86 359.239 480.28 395.082 565.666 517.097C618.365 592.38 594.844 690.002 549.44 720.143C516.567 749.49 456.386 748.696 439.926 746.64C302.168 729.256 322.65 552.893 320.686 432.84V-29.9377C320.686 -40.4055 317.833 -50.92 311.38 -59.1914C303.15 -69.7994 290.618 -76.7623 276.544 -77.6502L219.589 -76.5754C219.589 -76.5754 219.261 -76.7623 219.074 -76.7623L47.6961 -76.6688C41.2431 -77.2763 35.4915 -71.2947 47.6961 -69.4722C170.864 -70.9209 257.185 87.6844 256.343 263.393C256.249 278.721 255.454 508.965 255.454 508.965C255.454 510.414 255.267 511.956 255.221 513.405C252.275 725.424 320.826 765.566 390.593 787.296C444.882 804.212 560.896 816.877 616.962 728.788C651.986 673.786 684.111 582.333 614.437 488.217C592.974 459.197 345.422 134.229 573.942 39.3177C583.435 37.1214 592.46 32.8221 602.466 31.3735C630.429 25.1583 675.366 31.1398 705.293 42.8694C836.177 94.1334 814.293 271.805 816.023 328.91C820.465 476.721 813.545 750.425 815.509 780.753C815.649 781.408 813.545 786.501 825.562 787.95H894.301C902.11 787.95 901.876 780.753 901.876 780.753C898.322 780.66 899.818 268.861 899.865 255.963V256.057Z" fill="#2F4153"/>
+                    <path d="M871.384 -38.9346C862.81 -36.7191 854.669 -33.2995 846.239 -31.373C581.394 78.6795 868.253 455.507 893.158 489.125C973.892 598.262 936.704 704.269 896.096 768.085C831.113 870.19 696.668 855.549 633.756 835.898C552.925 810.661 473.443 764.183 476.863 518.311C476.863 516.626 477.104 514.892 477.104 513.158C477.104 513.158 478.019 246.19 478.116 228.418C479.127 24.6887 379.076 -159.198 236.297 -157.512C222.134 -159.631 228.83 -166.567 236.297 -165.844L434.906 -165.94C434.906 -165.94 435.291 -165.748 435.484 -165.748L501.478 -167C517.76 -165.989 532.308 -157.897 541.846 -145.616C549.312 -136.031 552.588 -123.846 552.588 -111.661V424.923C554.9 564.114 531.152 768.566 690.839 788.747C709.915 791.155 779.667 792.07 817.77 758.019C870.373 723.1 897.637 609.917 836.557 522.598C737.565 381.143 722.006 339.53 672.245 213.632C611.309 59.4624 661.985 -79.2471 786.603 -131.648C813.145 -99.1865 841.374 -68.0732 871.336 -38.9346H871.384Z" fill="#A7C1D1"/>
+                    <path d="M929.745 849.775C876.952 865.103 819.249 856.178 785.208 845.57C713.804 823.279 643.569 782.249 646.609 565.136C646.609 563.641 646.842 562.099 646.842 560.603C646.842 560.603 647.684 324.845 647.731 309.143C648.619 129.228 560.241 -33.1622 434.081 -31.6668C421.596 -33.536 427.487 -39.7045 434.081 -39.0503L609.574 -39.1437C609.574 -39.1437 609.901 -39.0035 610.088 -38.9568L668.399 -40.0783C682.801 -39.1904 695.614 -32.0406 704.031 -21.199C710.624 -12.7407 713.523 -1.94574 713.523 8.75568V482.656C715.581 605.605 694.585 786.128 835.663 803.979C843.799 805.007 862.503 805.708 883.405 802.764C898.883 817.998 914.08 833.934 929.699 849.869L929.745 849.775Z" fill="#587D8E"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_shapes">
+                        <rect width="856" height="737" fill="white" transform="matrix(1 0 0 -1 0 737)"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="hero-content">
+            <!-- Logo grande en hero -->
+            <svg class="logo-hero" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_hero)">
+                    <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/>
+                    <path d="M281.785 345.204L283.408 346.187C276.249 358.707 263.395 367 247.267 367C221.053 367 207.214 345.044 207.214 322.929C207.214 300.814 221.212 278.22 250.514 278.22C271.672 278.22 283.568 289.916 283.568 307.007H266.961C267.121 306.024 267.121 304.881 267.121 303.924C267.121 291.085 259.642 280.187 247.427 280.187C232.284 280.187 223.341 297.092 223.341 314.981C223.341 334.97 234.572 356.128 258.658 356.128C268.585 356.128 277.713 352.381 281.785 345.23V345.204Z" fill="#2F4153"/>
+                    <path d="M379.51 322.929C379.51 345.044 365.192 367 336.05 367C306.908 367 292.59 345.044 292.59 322.929C292.59 300.814 307.414 277.715 336.05 277.715C364.686 277.715 379.51 300.468 379.51 322.929ZM362.903 322.291C362.903 300.84 353.934 279.363 336.023 279.363C318.112 279.363 309.33 300.84 309.33 322.291C309.33 343.742 318.272 365.538 336.023 365.538C353.775 365.538 362.903 343.901 362.903 322.291Z" fill="#2F4153"/>
+                    <path d="M416.317 365.538V367H388.639V365.538H394.813V234.309H388.639V232.687H410.142V365.538H416.317Z" fill="#2F4153"/>
+                    <path d="M500.522 346.187C493.203 358.707 480.509 367 464.7 367C438.645 367 425.126 344.566 425.126 322.132C425.126 299.697 438.486 277.582 466.962 277.582C487.162 277.582 498.553 288.799 498.553 300.016C498.553 311.233 486.843 322.77 460.628 322.77V321.308C474.308 321.308 481.946 309.107 481.946 297.89C481.946 288.454 476.57 279.682 464.7 279.682C448.253 279.682 439.471 296.587 439.471 314.476C439.471 334.651 450.701 356.102 475.292 356.102C485.565 356.102 494.827 352.354 498.899 345.204L500.522 346.187Z" fill="#2F4153"/>
+                    <path d="M727.935 364.395V366.017H706.432V341.801C701.561 358.707 688.68 367 675.826 367C659.219 367 642.453 353.178 642.453 326.358V279.682H636.278V278.061H658.261V326.358C658.261 347.649 670.477 358.388 682.506 358.388C694.535 358.388 706.432 347.809 706.432 326.358V279.682H700.257V278.061H721.761V364.395H727.935Z" fill="#2F4153"/>
+                    <path d="M811.635 345.204L813.259 346.187C806.1 358.707 793.245 367 777.117 367C750.903 367 737.064 345.044 737.064 322.929C737.064 300.814 751.063 278.22 780.364 278.22C801.522 278.22 813.418 289.916 813.418 307.007H796.811C796.971 306.024 796.971 304.881 796.971 303.924C796.971 291.085 789.493 280.187 777.277 280.187C762.134 280.187 753.192 297.092 753.192 314.981C753.192 334.97 764.423 356.128 788.508 356.128C798.435 356.128 807.563 352.381 811.635 345.23V345.204Z" fill="#2F4153"/>
+                    <path d="M907.444 367H882.374L851.928 332.844L843.625 342.599V365.538H849.799V367H822.121V365.538H828.295V234.309H822.121V232.687H843.598V339.994L874.71 303.419C877.797 299.83 880.724 292.999 880.724 286.673C880.724 284.068 880.245 281.303 878.941 279.204H897.65L861.669 321.494L900.259 365.565H907.418V367.027L907.444 367Z" fill="#2F4153"/>
+                    <path d="M943 365.538V367H915.322V365.538H921.496V280.666H915.322V279.204H936.826V365.538H943ZM918.915 259.348C918.915 253.659 923.466 249.114 929.161 249.114C934.856 249.114 939.407 253.819 939.407 259.348C939.407 264.877 934.697 269.581 929.161 269.581C923.625 269.581 918.915 265.036 918.915 259.348Z" fill="#2F4153"/>
+                    <path d="M155.903 268.465C156.142 233.086 149.861 226.999 140.067 218.626C139.934 218.52 124.392 203.475 93.1742 211.555C69.568 217.669 59.1088 241.14 69.5414 267.481C77.3392 287.178 79.761 293.664 95.2767 315.805C104.831 329.468 100.573 347.171 92.3226 352.62C86.3612 357.936 75.4496 357.803 72.4423 357.431C47.4521 354.268 51.1514 322.318 50.8054 300.548V216.632C50.8054 214.745 50.2731 212.831 49.1287 211.316C47.6384 209.402 45.3762 208.126 42.8213 207.967L32.4952 208.153C32.4952 208.153 32.442 208.126 32.4154 208.126H1.30407C0.133074 208.02 -0.904857 209.11 1.30407 209.456C23.6595 209.19 39.3083 237.95 39.1486 269.794C39.1486 272.585 38.9889 314.317 38.9889 314.317C38.9889 314.583 38.9623 314.848 38.9623 315.114C38.4301 353.55 50.8586 360.833 63.5267 364.767C73.3737 367.851 94.4251 370.137 104.591 354.161C110.952 344.194 116.781 327.607 104.139 310.542C100.253 305.279 55.3297 246.35 96.7937 229.152C98.5236 228.753 100.147 227.982 101.983 227.717C107.067 226.6 115.21 227.69 120.64 229.79C144.379 239.093 140.413 271.309 140.733 281.649C141.531 308.442 140.28 358.069 140.653 363.571C140.68 363.704 140.307 364.608 142.489 364.874H154.971C156.382 364.874 156.355 363.571 156.355 363.571C155.716 363.571 155.982 270.751 155.982 268.412L155.903 268.465Z" fill="#2F4153"/>
+                    <path d="M621.029 352.434C614.987 357.83 603.943 357.67 600.909 357.298C575.599 354.108 581.907 321.733 581.534 299.697V214.772C581.534 212.964 581.082 211.13 580.017 209.668C578.5 207.568 576.131 206.186 573.417 206.027L562.958 206.239C562.958 206.239 562.904 206.213 562.878 206.213H528.866C527.695 206.106 526.63 207.223 528.866 207.542C554.548 208.18 565.699 239.04 566.87 272.851C566.95 274.791 567.03 313.705 567.03 313.705C567.03 313.971 567.003 314.237 567.003 314.529C566.471 353.444 579.059 360.807 591.86 364.794C601.84 367.904 623.131 370.216 633.431 354.055C635.187 351.291 636.917 347.995 638.221 344.327C638.381 343.901 637.981 343.476 637.529 343.582L637.13 343.689C631.514 345.177 626.458 348.128 621.933 351.769C621.641 352.008 621.321 352.221 621.029 352.434Z" fill="#2F4153"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_hero">
+                        <rect width="943" height="367" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+
+            <div class="rotating-text" id="rotatingText">
+                <span class="active" data-es="Diseñadora UX" data-en="UX Designer">Diseñadora UX</span>
+                <span data-es="Creativa visual" data-en="Visual Creative">Creativa visual</span>
+                <span data-es="Diseño de sistemas editoriales" data-en="Editorial Systems Design">Diseño de sistemas editoriales</span>
+                <span data-es="Diseño de sistemas digitales" data-en="Digital Systems Design">Diseño de sistemas digitales</span>
+                <span data-es="Diseñadora gráfica" data-en="Graphic Designer">Diseñadora gráfica</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section con Scroll -->
+    <section class="portfolio-section" id="works">
+        <div class="portfolio-sticky">
+            <div class="portfolio-counter"><span id="currentSlide">01</span> / 03</div>
+
+            <div class="portfolio-card">
+                <!-- Proyecto 1 -->
+                <div class="portfolio-slide active" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&h=600&fit=crop" alt="Proyecto 1">
+                    <div class="portfolio-info">
+                        <h3 data-es="Sistema Editorial Revista" data-en="Magazine Editorial System">Sistema Editorial Revista</h3>
+                        <p data-es="Diseño de identidad y sistema gráfico" data-en="Identity and graphic system design">Diseño de identidad y sistema gráfico</p>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="portfolio-slide" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&h=600&fit=crop" alt="Proyecto 2">
+                    <div class="portfolio-info">
+                        <h3 data-es="App Mobile Financiera" data-en="Financial Mobile App">App Mobile Financiera</h3>
+                        <p data-es="UX/UI Design, Design System" data-en="UX/UI Design, Design System">UX/UI Design, Design System</p>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="portfolio-slide" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=900&h=600&fit=crop" alt="Proyecto 3">
+                    <div class="portfolio-info">
+                        <h3 data-es="Branding Corporativo" data-en="Corporate Branding">Branding Corporativo</h3>
+                        <p data-es="Identidad visual completa" data-en="Complete visual identity">Identidad visual completa</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-dots">
+                <div class="dot active" onclick="goToSlide(0)"></div>
+                <div class="dot" onclick="goToSlide(1)"></div>
+                <div class="dot" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-text">
+            <h2 data-es="Sobre mí" data-en="About me">Sobre mí</h2>
+            <p data-es="Soy diseñadora con pasión por crear experiencias visuales que conecten. Me especializo en sistemas de diseño, tanto editoriales como digitales, buscando siempre el equilibrio entre estética y funcionalidad." 
+               data-en="I'm a designer passionate about creating visual experiences that connect. I specialize in design systems, both editorial and digital, always seeking the balance between aesthetics and functionality.">
+                Soy diseñadora con pasión por crear experiencias visuales que conecten. Me especializo en sistemas de diseño, tanto editoriales como digitales, buscando siempre el equilibrio entre estética y funcionalidad.
+            </p>
+            <p data-es="Basada en Buenos Aires, trabajo con clientes locales e internacionales para llevar sus ideas al siguiente nivel." 
+               data-en="Based in Buenos Aires, I work with local and international clients to take their ideas to the next level.">
+                Basada en Buenos Aires, trabajo con clientes locales e internacionales para llevar sus ideas al siguiente nivel.
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop" alt="Nicole Lucki">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 data-es="Trabajemos juntos" data-en="Let's work together">Trabajemos juntos</h2>
+        <a href="mailto:hello@nicolelucki.com" class="contact-email">hello@nicolelucki.com</a>
+
+        <div class="social-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">Behance</a>
+            <a href="#">Instagram</a>
+            <a href="#">Dribbble</a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 Nicole Lucki</p>
+            <p data-es="Diseñadora UX & Gráfica" data-en="UX & Graphic Designer">Diseñadora UX & Gráfica</p>
+        </div>
+    </section>
+
+    <script>
+        // ── CURSOR PERSONALIZADO ──
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.left = mx + 'px';
+            cursor.style.top = my + 'px';
+        });
+
+        function animateRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        document.querySelectorAll('a, button, .menu-btn, .lang-toggle, .dot').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ring.style.width = '56px';
+                ring.style.height = '56px';
+            });
+            el.addEventListener('mouseleave', () => {
+                ring.style.width = '36px';
+                ring.style.height = '36px';
+            });
+        });
+
+        // Menú hamburguesa
+        function toggleMenu() {
+            const menuBtn = document.getElementById('menuBtn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuBtn.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Header scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Texto rotativo
+        const textSpans = document.querySelectorAll('.rotating-text span');
+        let currentText = 0;
+        setInterval(() => {
+            textSpans[currentText].classList.remove('active');
+            currentText = (currentText + 1) % textSpans.length;
+            textSpans[currentText].classList.add('active');
+        }, 3000);
+
+        // Portfolio scroll
+        const portfolioSection = document.querySelector('.portfolio-section');
+        const slides = document.querySelectorAll('.portfolio-slide');
+        const dots = document.querySelectorAll('.dot');
+        const currentSlideEl = document.getElementById('currentSlide');
+        let currentSlide = 0;
+
+        function updateSlide(index) {
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            currentSlideEl.textContent = String(index + 1).padStart(2, '0');
+            currentSlide = index;
+        }
+        function goToSlide(index) { updateSlide(index); }
+
+        window.addEventListener('scroll', () => {
+            const rect = portfolioSection.getBoundingClientRect();
+            const sectionHeight = portfolioSection.offsetHeight;
+            const scrollProgress = Math.abs(rect.top) / (sectionHeight - window.innerHeight);
+            if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+                const newSlide = Math.min(2, Math.floor(scrollProgress * 3));
+                if (newSlide !== currentSlide) updateSlide(newSlide);
+            }
+        });
+
+        // Traducción
+        let currentLang = 'es';
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.querySelectorAll('.lang-toggle span').forEach(span => {
+                span.classList.toggle('active', span.dataset.lang === currentLang);
+            });
+            document.querySelectorAll('[data-es][data-en]').forEach(el => {
+                el.textContent = el.dataset[currentLang];
+            });
+        }
+    </script>
+</body>
+</html>
