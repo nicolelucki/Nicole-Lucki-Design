@@ -26,10 +26,10 @@
             cursor: none;
         }
 
-        /* ── CURSOR PERSONALIZADO ── */
+        /* ── CURSOR PERSONALIZADO EN #a7c1d1 ── */
         .cursor {
             width: 8px; height: 8px;
-            background: #2f4153;
+            background: #a7c1d1;
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -38,7 +38,7 @@
         }
         .cursor-ring {
             width: 36px; height: 36px;
-            border: 1px solid rgba(47, 65, 83, 0.35);
+            border: 1px solid rgba(167, 193, 209, 0.5);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -77,36 +77,52 @@
             align-items: center;
             gap: 24px;
         }
+
         /* LOGO HEADER MÁS GRANDE */
         .logo-svg {
-            height: 50px;
+            height: 55px;
             width: auto;
         }
         @media (max-width: 768px) {
-            .logo-svg { height: 40px; }
+            .logo-svg { height: 42px; }
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
         }
 
-        /* Toggle idioma */
+        /* ── TOGGLE IDIOMA CON CAJA Y BORDES CURVOS ── */
         .lang-toggle {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0;
             font-family: 'Lora', serif;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--dark-blue);
             cursor: none;
+            border: 1px solid rgba(47, 65, 83, 0.25);
+            border-radius: 20px;
+            padding: 4px 4px;
+            background: rgba(221, 216, 212, 0.5);
+            backdrop-filter: blur(4px);
         }
-        .lang-toggle span { opacity: 0.5; transition: opacity 0.3s; }
-        .lang-toggle span.active { opacity: 1; font-weight: 700; }
-        .lang-divider { width: 1px; height: 16px; background: var(--dark-blue); opacity: 0.3; }
+        .lang-toggle span {
+            opacity: 0.5;
+            transition: all 0.3s;
+            padding: 4px 10px;
+            border-radius: 16px;
+        }
+        .lang-toggle span.active {
+            opacity: 1;
+            font-weight: 700;
+            background: var(--dark-blue);
+            color: var(--beige);
+        }
+        .lang-divider { display: none; }
 
-        /* Menú hamburguesa redondito */
+        /* Menú hamburguesa - COLOR #a7c1d1 para que se vea */
         .menu-btn {
             width: 32px;
             height: 24px;
@@ -124,6 +140,9 @@
             background: var(--dark-blue);
             border-radius: 2px;
             transition: all 0.3s ease;
+        }
+        .menu-btn.active span {
+            background: #a7c1d1; /* Cruz en color claro para fondo azul */
         }
         .menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .menu-btn.active span:nth-child(2) { opacity: 0; }
@@ -148,10 +167,10 @@
         .menu-nav a {
             display: block;
             font-family: 'Alice', serif;
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 6vw, 5rem);
             color: var(--beige);
             text-decoration: none;
-            margin: 20px 0;
+            margin: 16px 0;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.5s ease;
@@ -184,17 +203,17 @@
             .hero-content { max-width: 100%; }
         }
 
-        /* LOGO HERO MÁS GRANDE Y BIEN PROPORCIONADO */
+        /* LOGO HERO MUCHO MÁS GRANDE */
         .logo-hero {
-            height: 130px;
+            height: 120px;
             width: auto;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         @media (max-width: 768px) {
-            .logo-hero { height: 60px; }
+            .logo-hero { height: 70px; }
         }
 
-        /* FORMAS DECORATIVAS CORREGIDAS */
+        /* FORMAS DECORATIVAS */
         .shapes-container {
             position: absolute;
             top: 0;
@@ -227,14 +246,14 @@
             }
         }
 
-        /* Texto rotativo */
+        /* TEXTO ROTATIVO MÁS GRANDE */
         .rotating-text {
             font-family: 'Lora', serif;
-            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            font-size: clamp(1.3rem, 2.8vw, 1.8rem);
             color: var(--dark-blue);
             min-height: 2em;
             position: relative;
-            margin-top: 16px;
+            margin-top: 20px;
             letter-spacing: 0.02em;
         }
         .rotating-text span {
@@ -445,7 +464,7 @@
         </div>
 
         <div class="header-right">
-            <!-- Toggle idioma DERECHO -->
+            <!-- Toggle idioma CON CAJA Y BORDES CURVOS -->
             <div class="lang-toggle" onclick="toggleLanguage()">
                 <span class="active" data-lang="es">ES</span>
                 <div class="lang-divider"></div>
@@ -466,7 +485,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <!-- Formas decorativas SVG CORREGIDAS -->
+        <!-- Formas decorativas SVG -->
         <div class="shapes-container">
             <svg viewBox="0 0 856 737" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                 <g clip-path="url(#clip0_shapes)">
@@ -484,7 +503,7 @@
         </div>
 
         <div class="hero-content">
-            <!-- Logo grande en hero - MÁS GRANDE -->
+            <!-- Logo grande en hero - MUCHO MÁS GRANDE -->
             <svg class="logo-hero" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_hero)">
                     <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/>
@@ -506,6 +525,7 @@
                 </defs>
             </svg>
 
+            <!-- TEXTO ROTATIVO MÁS GRANDE -->
             <div class="rotating-text" id="rotatingText">
                 <span class="active" data-es="Diseñadora UX" data-en="UX Designer">Diseñadora UX</span>
                 <span data-es="Creativa visual" data-en="Visual Creative">Creativa visual</span>
