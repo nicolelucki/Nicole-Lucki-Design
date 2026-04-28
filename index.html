@@ -1135,7 +1135,17 @@
             });
         }
 
-        // ── SCROLL REVEAL SERVICIOS (se repite cada vez) ──
+        // ── VELOCIDAD UNIFORME EN MARQUEES ──
+        window.addEventListener('load', () => {
+            const marquees = document.querySelectorAll('.card-marquee');
+            if (marquees.length < 1) return;
+            const baseWidth    = marquees[0].scrollWidth;
+            const baseDuration = 32; // duración de la primera tarjeta en segundos
+            marquees.forEach(m => {
+                const duration = (m.scrollWidth / baseWidth) * baseDuration;
+                m.style.animationDuration = duration + 's';
+            });
+        });
         const serviceItems = document.querySelectorAll('.service-item');
         const pendingReveal = new Map();
 
