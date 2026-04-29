@@ -598,11 +598,110 @@
             color: var(--steel-blue);
         }
 
-        /* Mobile header */
+        /* ── MOBILE RESPONSIVE ── */
         @media (max-width: 768px) {
+            /* Header */
             .logo-svg  { height: clamp(28px, 7vw, 42px); }
             .logo-hero { height: clamp(40px, 12vw, 70px); }
             .header    { padding: clamp(14px, 2.5vh, 20px) clamp(16px, 5vw, 24px); }
+
+            /* Hero */
+            .hero { padding: clamp(90px, 13vh, 120px) clamp(20px, 5vw, 30px) clamp(40px, 6vh, 60px); }
+            .hero-content { max-width: 100%; }
+
+            /* Tarjetas — layout vertical */
+            .card-scene {
+                width: 88vw;
+                aspect-ratio: 3/4;
+            }
+            .flip-front {
+                flex-direction: column;
+            }
+            .flip-front-img {
+                width: 100%;
+                height: 58%;
+                flex-shrink: 0;
+            }
+            .flip-front-info {
+                padding: clamp(14px, 4vw, 20px);
+                justify-content: center;
+            }
+            .flip-back {
+                flex-direction: column;
+                justify-content: center;
+                gap: clamp(16px, 4vw, 24px);
+                padding: clamp(20px, 5vw, 32px);
+                overflow-y: auto;
+            }
+            .flip-back h2 {
+                font-size: clamp(1.1rem, 5vw, 1.6rem);
+                margin-top: clamp(6px, 2vw, 10px);
+            }
+            .flip-back-desc {
+                font-size: clamp(0.75rem, 3.5vw, 0.88rem);
+                line-height: 1.65;
+                margin-top: clamp(8px, 2vw, 12px);
+            }
+            .flip-back-tags {
+                gap: clamp(5px, 1.5vw, 8px);
+            }
+            .flip-back-cta {
+                margin-top: clamp(10px, 3vw, 16px);
+                font-size: clamp(0.75rem, 3.5vw, 0.88rem);
+            }
+
+            /* Marquee */
+            .card-marquee {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+
+            /* Barra de progreso — ocultar en mobile para no interferir */
+            .flip-progress { display: none; }
+
+            /* Scroll hint */
+            .scroll-hint { font-size: clamp(0.65rem, 3vw, 0.78rem); }
+
+            /* Servicios */
+            .services-section {
+                padding: clamp(50px, 8vh, 80px) clamp(20px, 5vw, 30px);
+            }
+            .service-num {
+                font-size: clamp(2.2rem, 12vw, 4rem);
+            }
+            .service-title {
+                font-size: clamp(1.1rem, 5.5vw, 1.8rem);
+            }
+            .service-desc {
+                font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+                margin-left: clamp(48px, 16vw, 80px);
+            }
+            .service-item {
+                padding: clamp(22px, 4vh, 36px) 0;
+            }
+
+            /* About */
+            .about {
+                flex-direction: column;
+                padding: clamp(50px, 8vh, 80px) clamp(20px, 5vw, 30px);
+            }
+            .about-image { max-width: 100%; }
+
+            /* Contact */
+            .contact {
+                padding: clamp(50px, 8vh, 80px) clamp(20px, 5vw, 30px);
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                padding-top: clamp(14px, 2vh, 20px);
+            }
+            .social-links { gap: clamp(12px, 4vw, 20px); }
+
+            /* Menú overlay */
+            .menu-nav a {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+                margin: clamp(8px, 2vh, 14px) 0;
+            }
         }
 
         /* ── SECCIÓN SERVICIOS ── */
@@ -901,10 +1000,10 @@
                 <p class="service-desc" data-es="Desarrollo identidades visuales que comunican la esencia de una marca. Logotipos, paletas, sistemas gráficos y manuales que dan coherencia a cada punto de contacto, digital o impreso." data-en="I develop visual identities that communicate the essence of a brand. Logos, palettes, graphic systems and brand manuals that bring coherence to every touchpoint, digital or print.">Desarrollo identidades visuales que comunican la esencia de una marca. Logotipos, paletas, sistemas gráficos y manuales que dan coherencia a cada punto de contacto, digital o impreso.</p>
             </div>
 
-            <div class="service-item">
+              <div class="service-item">
                 <div class="service-header">
                     <span class="service-num">04</span>
-                    <h3 class="service-title"><span>/</span><span data-es="Diseño de objetos graficos" data-en="Graphic objects Design">Diseño de objetos graficos</span></h3>
+                    <h3 class="service-title"><span>/</span><span data-es="Diseño de objetos gráficos" data-en="Graphic objects Design">Diseño de objetos gráficos</span></h3>
                 </div>
                 <p class="service-desc" data-es="Diseño objetos gráficos que combinan lo visual con lo material. Desarrollo piezas como fanzines, packaging y ediciones especiales, trabajando formato, textura y sistema para crear experiencias que se exploran con las manos y acompañan el universo del proyecto." data-en="I design graphic objects that combine the visual with the material. I develop pieces such as fanzines, packaging, and special editions, working with format, texture, and systems to create hands-on experiences that support and expand the project’s universe.">Diseño objetos gráficos que combinan lo visual con lo material. Desarrollo piezas como fanzines, packaging y ediciones especiales, trabajando formato, textura y sistema para crear experiencias que se exploran con las manos y acompañan el universo del proyecto.</p>
             </div>
