@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicole Lucki | Portfolio - Proyectos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+    --dark-blue:#2f4153;
+    --steel-blue:#587d8e;
+    --light-blue:#a7c1d1;
+    --beige:#ddd8d4;
+    --white:#ffffff;
+}
+
+body { font-family:'Lora',serif; background:var(--dark-blue); color:var(--dark-blue); overflow-x:hidden; cursor:none; }
+
+/* ── CURSOR ── */
+.cursor { width:8px; height:8px; border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:background .3s ease; }
+.cursor-ring { width:36px; height:36px; border-radius:50%; border:1px solid transparent; position:fixed; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .2s,height .2s,border-color .3s ease; }
+.cursor.dark       { background:var(--dark-blue); }
+.cursor-ring.dark  { border-color:rgba(47,65,83,.45); }
+.cursor.light      { background:var(--beige); }
+.cursor-ring.light { border-color:rgba(221,216,212,.45); }
+.cursor.menu       { background:var(--light-blue); }
+.cursor-ring.menu  { border-color:rgba(167,193,209,.5); }
+@media(max-width:768px){ body{cursor:auto;} .cursor,.cursor-ring{display:none;} }
+
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background:var(--light-blue); }
+::-webkit-scrollbar-thumb { background:var(--steel-blue); border-radius:4px; }
+
+/* ── HEADER ── */
+.header {
+    position:fixed; top:0; left:0; width:100%;
+    padding:clamp(14px,1.8vh,24px) clamp(20px,3vw,40px);
+    display:flex; justify-content:space-between; align-items:center;
+    z-index:100;
+    background:rgba(221,216,212,0.95);
+    backdrop-filter:blur(10px);
+    transition:background .3s ease, backdrop-filter .3s ease;
+}
+.header-left { display:flex; align-items:center; gap:clamp(12px,1.8vw,24px); height:100%; }
+.header-right { display:flex; align-items:center; gap:clamp(10px,1.5vw,20px); }
+
+/* ── LOGO ── */
+.logo-svg { height:clamp(28.56px,2.856vw,40.8px); width:auto; display:block; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+
+/* ── HAMBURGUESA ── */
+.menu-btn {
+    width: clamp(24px,2.2vw,32px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: none;
+    z-index: 102;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--dark-blue);
+    border-radius: 2px;
+    transition: all .3s ease;
+}
+.menu-btn.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); background:var(--light-blue); }
+.menu-btn.active span:nth-child(2) { opacity:0; }
+.menu-btn.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); background:var(--light-blue); }
+
+/* ── LANG TOGGLE ── */
+.lang-toggle { display:flex; align-items:center; font-family:'Lora',serif; font-size:clamp(11px,.9vw,13px); color:var(--dark-blue); cursor:none; border:1px solid rgba(47,65,83,.25); border-radius:20px; padding:clamp(3px,.3vw,4px); background:rgba(221,216,212,.5); backdrop-filter:blur(4px); }
+.lang-toggle span { opacity:.5; transition:all .3s; padding:clamp(3px,.3vw,4px) clamp(7px,.7vw,10px); border-radius:16px; color:var(--dark-blue); }
+.lang-toggle span.active { opacity:1; font-weight:700; background:var(--dark-blue); color:var(--beige); }
+.lang-divider { display:none; }
+
+/* ── MENU OVERLAY ── */
+.menu-overlay { position:fixed; top:0; left:0; width:100%; height:100vh; background:var(--dark-blue); z-index:99; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .5s ease; }
+.menu-overlay.active { opacity:1; pointer-events:all; }
+.menu-nav { text-align:center; }
+.menu-nav a { display:block; font-family:'Alice',serif; font-size:clamp(2rem,5.5vw,5rem); color:var(--beige); text-decoration:none; margin:clamp(10px,1.5vh,20px) 0; opacity:0; transform:translateY(30px); transition:all .5s ease; cursor:none; }
+.menu-overlay.active .menu-nav a { opacity:1; transform:translateY(0); }
+.menu-overlay.active .menu-nav a:nth-child(1) { transition-delay:.1s; }
+.menu-overlay.active .menu-nav a:nth-child(2) { transition-delay:.2s; }
+.menu-overlay.active .menu-nav a:nth-child(3) { transition-delay:.3s; }
+.menu-overlay.active .menu-nav a:nth-child(4) { transition-delay:.4s; }
+.menu-nav a:hover { color:var(--light-blue); }
+
+/* ── SLIDER ── */
+.slider-wrap { display:flex; flex-direction:column; gap:14px; overflow:hidden; padding:120px 0 60px; background:var(--dark-blue); min-height:100vh; }
+.slider-row { display:flex; gap:14px; width:max-content; align-items:center; }
+.row-a { animation:goLeft  22s linear infinite; }
+.row-b { animation:goRight 26s linear infinite; }
+.row-c { animation:goLeft  20s linear infinite; }
+.slider-row:hover { animation-play-state:paused; }
+@keyframes goLeft  { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
+@keyframes goRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)}    }
+
+/* ── CARDS ── */
+.card { border-radius:14px; overflow:hidden; flex-shrink:0; cursor:pointer; position:relative; transition:transform .25s,box-shadow .25s; }
+.card:hover { transform:translateY(-6px); box-shadow:0 18px 44px rgba(0,0,0,.35); }
+.card-sm { width:260px; height:190px; }
+.card-lg { width:420px; height:260px; }
+.card-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.card-bg-div { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.5rem; opacity:.25; }
+.card-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(47,65,83,.82) 0%,transparent 65%); }
+.card-inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:1rem 1.1rem; z-index:1; }
+.card-tag { font-family:'Lora',serif; font-style:italic; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:#A7C1D1; margin-bottom:5px; }
+.card-title    { font-family:'Lora',serif; font-size:.85rem; font-weight:500; color:#DDD8D4; line-height:1.35; }
+.card-title-lg { font-family:'Lora',serif; font-size:1rem;   font-weight:500; color:#DDD8D4; line-height:1.35; }
+.ca { background:#DDD8D4; } .cb { background:#A7C1D1; } .cc { background:#587D8E; }
+
+.card-horizontal { display:flex; flex-direction:row; position:relative; overflow:hidden; }
+.bg-light { background:#DDD8D4; } .bg-mid { background:#A7C1D1; }
+.ch-img { width:52%; height:100%; flex-shrink:0; overflow:hidden; }
+.ch-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.ch-img-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:2.5rem; opacity:.3; }
+
+.ch-info { flex:1; display:flex; flex-direction:column; justify-content:center; padding:20px 22px; gap:8px; }
+.ch-tag { font-family:'Lora',serif; font-style:italic; font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; }
+.ch-tag.dark { color:#587D8E; } .ch-tag.light { color:#2F4153; opacity:.7; }
+.ch-title { font-family:'Lora',serif; font-weight:500; font-size:.95rem; line-height:1.3; }
+.ch-title.dark { color:#2F4153; } .ch-title.light { color:#2F4153; }
+.ch-sub { font-family:'Lora',serif; font-size:.72rem; line-height:1.4; }
+.ch-sub.dark { color:#587D8E; } .ch-sub.light { color:#2F4153; opacity:.65; }
+.ch-pill { display:inline-block; font-family:'Lora',serif; font-style:italic; font-size:.62rem; padding:4px 13px; border-radius:50px; width:fit-content; }
+.ch-pill.dark  { border:1px solid #587D8E; color:#587D8E; }
+.ch-pill.light { border:1px solid #2F4153; color:#2F4153; opacity:.7; }
+
+.card-sm .ch-info  { padding:12px 14px; gap:5px; }
+.card-sm .ch-tag   { font-size:.5rem; letter-spacing:.14em; }
+.card-sm .ch-title { font-size:.75rem; line-height:1.25; }
+.card-sm .ch-sub   { font-size:.6rem; line-height:1.3; }
+.card-sm .ch-pill  { font-size:.52rem; padding:3px 9px; }
+
+/* ── MODAL ── */
+.modal-overlay { display:none; position:fixed; inset:0; z-index:1000; align-items:center; justify-content:center; padding:24px; }
+.modal-overlay.active { display:flex; }
+.modal-blur { position:absolute; inset:0; backdrop-filter:blur(14px); background:rgba(47,65,83,.55); }
+.card-scene { position:relative; z-index:2; width:clamp(320px,62vw,820px); aspect-ratio:16/9; }
+.card-flipper { width:100%; height:100%; animation:flipIn .6s cubic-bezier(.23,1,.32,1) forwards; border-radius:clamp(10px,1.2vw,18px); box-shadow:0 32px 80px rgba(0,0,0,.55); overflow:hidden; }
+@keyframes flipIn { 0%{transform:rotateY(-90deg) scale(.88);opacity:0} 65%{transform:rotateY(5deg) scale(1.01);opacity:1} 100%{transform:rotateY(0) scale(1);opacity:1} }
+
+.flip-back { width:100%; height:100%; display:flex; flex-direction:row; align-items:center; gap:clamp(20px,4vw,60px); padding:clamp(24px,4vw,48px) clamp(28px,5vw,60px); }
+.back-left  { flex:1; display:flex; flex-direction:column; justify-content:center; }
+.back-right { flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(14px,1.8vw,24px); }
+.modal-label { font-family:'Lora',serif; font-size:clamp(.65rem,.78vw,.78rem); letter-spacing:.12em; text-transform:uppercase; }
+.modal-title { font-family:'Alice',serif; font-size:clamp(1.2rem,2vw,1.9rem); line-height:1.25; margin-top:clamp(8px,1vw,14px); }
+.modal-desc  { font-size:clamp(.78rem,.95vw,.95rem); line-height:1.75; margin-top:clamp(10px,1.2vw,16px); }
+.modal-tags  { display:flex; flex-wrap:wrap; gap:clamp(6px,.8vw,10px); }
+.modal-tag   { padding:clamp(4px,.4vw,6px) clamp(10px,1.2vw,16px); border-radius:20px; font-size:clamp(.65rem,.75vw,.78rem); letter-spacing:.04em; }
+.modal-cta   { display:inline-flex; align-items:center; gap:10px; font-family:'Lora',serif; font-size:clamp(.78rem,.9vw,.92rem); text-decoration:none; border-bottom:1px solid; padding-bottom:3px; width:fit-content; transition:opacity .3s; cursor:none; }
+.modal-cta::after { content:'→'; transition:transform .3s; }
+.modal-cta:hover { opacity:.75; }
+.modal-cta:hover::after { transform:translateX(4px); }
+
+.scheme-teal { background:var(--steel-blue); }
+.scheme-teal .modal-label { color:var(--light-blue); }
+.scheme-teal .modal-title { color:var(--beige); }
+.scheme-teal .modal-desc  { color:var(--light-blue); }
+.scheme-teal .modal-tag   { border:1px solid rgba(167,193,209,.4); color:var(--beige); }
+.scheme-teal .modal-cta   { color:var(--beige); border-color:rgba(221,216,212,.35); }
+
+.scheme-blue { background:var(--light-blue); }
+.scheme-blue .modal-label { color:var(--dark-blue); }
+.scheme-blue .modal-title { color:var(--dark-blue); }
+.scheme-blue .modal-desc  { color:var(--dark-blue); }
+.scheme-blue .modal-tag   { border:1px solid rgba(47,65,83,.4); color:var(--dark-blue); }
+.scheme-blue .modal-cta   { color:var(--dark-blue); border-color:rgba(47,65,83,.35); }
+
+.modal-close { position:absolute; top:clamp(10px,1.5vw,18px); right:clamp(10px,1.5vw,18px); width:32px; height:32px; background:rgba(47,65,83,.7); border:.5px solid rgba(221,216,212,.25); border-radius:50%; color:#DDD8D4; font-size:.8rem; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; transition:background .2s; }
+.modal-close:hover { background:rgba(47,65,83,.95); }
+
+@media(max-width:768px){
+    .card-scene { width:88vw; aspect-ratio:3/4; }
+    .flip-back { flex-direction:column; padding:clamp(20px,5vw,32px); gap:clamp(16px,4vw,24px); overflow-y:auto; }
+    .card-sm { width:200px; height:150px; } .card-lg { width:290px; height:200px; }
+}
+
+/* ── FOOTER ── */
+.contact { padding:clamp(60px,8vh,100px) clamp(20px,3.5vw,60px); background:var(--dark-blue); text-align:center; border-top:1px solid rgba(167,193,209,.15); }
+.contact h2 { font-family:'Alice',serif; font-size:clamp(2rem,4.5vw,4rem); color:var(--beige); margin-bottom:clamp(24px,3vw,40px); }
+.contact-email { font-family:'Lora',serif; font-size:clamp(.95rem,1.2vw,1.3rem); color:var(--light-blue); text-decoration:none; border-bottom:1px solid var(--light-blue); padding-bottom:clamp(2px,.3vw,4px); transition:color .3s; cursor:none; }
+.contact-email:hover { color:var(--white); }
+.social-links { margin-top:clamp(24px,3vw,40px); display:flex; justify-content:center; gap:clamp(16px,2.5vw,30px); flex-wrap:wrap; }
+.social-links a { font-family:'Lora',serif; font-size:clamp(.8rem,.85vw,.9rem); color:var(--steel-blue); text-decoration:none; transition:color .3s; cursor:none; }
+.social-links a:hover { color:var(--white); }
+.footer-bottom { margin-top:clamp(36px,5vh,60px); padding-top:clamp(18px,2.5vh,30px); border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; max-width:1200px; margin-left:auto; margin-right:auto; }
+.footer-bottom p { font-family:'Lora',serif; font-size:clamp(.7rem,.78vw,.8rem); color:var(--steel-blue); }
+</style>
+</head>
+<body>
+
+<div class="cursor light" id="cursor"></div>
+<div class="cursor-ring light" id="cursorRing"></div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="header-left">
+        <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+    <svg class="logo-svg" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_logo)">
+            <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/>
+            <path d="M281.785 345.204L283.408 346.187C276.249 358.707 263.395 367 247.267 367C221.053 367 207.214 345.044 207.214 322.929C207.214 300.814 221.212 278.22 250.514 278.22C271.672 278.22 283.568 289.916 283.568 307.007H266.961C267.121 306.024 267.121 304.881 267.121 303.924C267.121 291.085 259.642 280.187 247.427 280.187C232.284 280.187 223.341 297.092 223.341 314.981C223.341 334.97 234.572 356.128 258.658 356.128C268.585 356.128 277.713 352.381 281.785 345.23V345.204Z" fill="#2F4153"/>
+            <path d="M379.51 322.929C379.51 345.044 365.192 367 336.05 367C306.908 367 292.59 345.044 292.59 322.929C292.59 300.814 307.414 277.715 336.05 277.715C364.686 277.715 379.51 300.468 379.51 322.929ZM362.903 322.291C362.903 300.84 353.934 279.363 336.023 279.363C318.112 279.363 309.33 300.84 309.33 322.291C309.33 343.742 318.272 365.538 336.023 365.538C353.775 365.538 362.903 343.901 362.903 322.291Z" fill="#2F4153"/>
+            <path d="M416.317 365.538V367H388.639V365.538H394.813V234.309H388.639V232.687H410.142V365.538H416.317Z" fill="#2F4153"/>
+            <path d="M500.522 346.187C493.203 358.707 480.509 367 464.7 367C438.645 367 425.126 344.566 425.126 322.132C425.126 299.697 438.486 277.582 466.962 277.582C487.162 277.582 498.553 288.799 498.553 300.016C498.553 311.233 486.843 322.77 460.628 322.77V321.308C474.308 321.308 481.946 309.107 481.946 297.89C481.946 288.454 476.57 279.682 464.7 279.682C448.253 279.682 439.471 296.587 439.471 314.476C439.471 334.651 450.701 356.102 475.292 356.102C485.565 356.102 494.827 352.354 498.899 345.204L500.522 346.187Z" fill="#2F4153"/>
+            <path d="M727.935 364.395V366.017H706.432V341.801C701.561 358.707 688.68 367 675.826 367C659.219 367 642.453 353.178 642.453 326.358V279.682H636.278V278.061H658.261V326.358C658.261 347.649 670.477 358.388 682.506 358.388C694.535 358.388 706.432 347.809 706.432 326.358V279.682H700.257V278.061H721.761V364.395H727.935Z" fill="#2F4153"/>
+            <path d="M811.635 345.204L813.259 346.187C806.1 358.707 793.245 367 777.117 367C750.903 367 737.064 345.044 737.064 322.929C737.064 300.814 751.063 278.22 780.364 278.22C801.522 278.22 813.418 289.916 813.418 307.007H796.811C796.971 306.024 796.971 304.881 796.971 303.924C796.971 291.085 789.493 280.187 777.277 280.187C762.134 280.187 753.192 297.092 753.192 314.981C753.192 334.97 764.423 356.128 788.508 356.128C798.435 356.128 807.563 352.381 811.635 345.23V345.204Z" fill="#2F4153"/>
+            <path d="M907.444 367H882.374L851.928 332.844L843.625 342.599V365.538H849.799V367H822.121V365.538H828.295V234.309H822.121V232.687H843.598V339.994L874.71 303.419C877.797 299.83 880.724 292.999 880.724 286.673C880.724 284.068 880.245 281.303 878.941 279.204H897.65L861.669 321.494L900.259 365.565H907.418V367.027L907.444 367Z" fill="#2F4153"/>
+            <path d="M943 365.538V367H915.322V365.538H921.496V280.666H915.322V279.204H936.826V365.538H943ZM918.915 259.348C918.915 253.659 923.466 249.114 929.161 249.114C934.856 249.114 939.407 253.819 939.407 259.348C939.407 264.877 934.697 269.581 929.161 269.581C923.625 269.581 918.915 265.036 918.915 259.348Z" fill="#2F4153"/>
+            <path d="M155.903 268.465C156.142 233.086 149.861 226.999 140.067 218.626C139.934 218.52 124.392 203.475 93.1742 211.555C69.568 217.669 59.1088 241.14 69.5414 267.481C77.3392 287.178 79.761 293.664 95.2767 315.805C104.831 329.468 100.573 347.171 92.3226 352.62C86.3612 357.936 75.4496 357.803 72.4423 357.431C47.4521 354.268 51.1514 322.318 50.8054 300.548V216.632C50.8054 214.745 50.2731 212.831 49.1287 211.316C47.6384 209.402 45.3762 208.126 42.8213 207.967L32.4952 208.153H1.30407C0.133074 208.02 -0.904857 209.11 1.30407 209.456C23.6595 209.19 39.3083 237.95 39.1486 269.794C39.1486 272.585 38.9889 314.317 38.9889 314.317C38.4301 353.55 50.8586 360.833 63.5267 364.767C73.3737 367.851 94.4251 370.137 104.591 354.161C110.952 344.194 116.781 327.607 104.139 310.542C100.253 305.279 55.3297 246.35 96.7937 229.152C98.5236 228.753 100.147 227.982 101.983 227.717C107.067 226.6 115.21 227.69 120.64 229.79C144.379 239.093 140.413 271.309 140.733 281.649C141.531 308.442 140.28 358.069 140.653 363.571C140.68 363.704 140.307 364.608 142.489 364.874H154.971C156.382 364.874 156.355 363.571 156.355 363.571C155.716 363.571 155.982 270.751 155.982 268.412L155.903 268.465Z" fill="#2F4153"/>
+            <path d="M621.029 352.434C614.987 357.83 603.943 357.67 600.909 357.298C575.599 354.108 581.907 321.733 581.534 299.697V214.772C581.534 212.964 581.082 211.13 580.017 209.668C578.5 207.568 576.131 206.186 573.417 206.027L562.958 206.239H528.866C527.695 206.106 526.63 207.223 528.866 207.542C554.548 208.18 565.699 239.04 566.87 272.851C566.95 274.791 567.03 313.705 567.03 313.705C566.471 353.444 579.059 360.807 591.86 364.794C601.84 367.904 623.131 370.216 633.431 354.055C635.187 351.291 636.917 347.995 638.221 344.327C638.381 343.901 637.981 343.476 637.529 343.582L637.13 343.689C631.514 345.177 626.458 348.128 621.933 351.769C621.641 352.008 621.321 352.221 621.029 352.434Z" fill="#2F4153"/>
+        </g>
+        <defs><clipPath id="clip0_logo"><rect width="943" height="367" fill="white"/></clipPath></defs>
+    </svg>
+    <div class="header-right">
+        <div class="lang-toggle" onclick="toggleLanguage()">
+            <span class="active" data-lang="es">ES</span>
+            <div class="lang-divider"></div>
+            <span data-lang="en">EN</span>
+        </div>
+    </div>
+</header>
+
+<!-- Menú Overlay -->
+<div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-nav">
+        <a href="index.html#home"    onclick="toggleMenu()" data-es="Inicio"    data-en="Home">Inicio</a>
+        <a href="index.html#works"   onclick="toggleMenu()" data-es="Proyectos" data-en="Projects">Proyectos</a>
+        <a href="index.html#about"   onclick="toggleMenu()" data-es="Sobre mí"  data-en="About">Sobre mí</a>
+        <a href="index.html#contact" onclick="toggleMenu()" data-es="Contacto"  data-en="Contact">Contacto</a>
+    </nav>
+</div>
+
+<!-- Slider -->
+<div class="slider-wrap" data-cursor="light">
+    <div class="slider-row row-a" id="rowA"></div>
+    <div class="slider-row row-b" id="rowB"></div>
+    <div class="slider-row row-c" id="rowC"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+    <div class="modal-blur" id="modalBlur"></div>
+    <div class="card-scene">
+        <button class="modal-close" id="modalClose">✕</button>
+        <div class="card-flipper" id="cardFlipper">
+            <div class="flip-back" id="flipBack">
+                <div class="back-left">
+                    <div class="modal-label" id="modalNum"></div>
+                    <div class="modal-title" id="modalTitle"></div>
+                    <div class="modal-desc"  id="modalDesc"></div>
+                </div>
+                <div class="back-right">
+                    <div class="modal-tags" id="modalTags"></div>
+                    <a class="modal-cta" href="#" id="modalCta">Ver proyecto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<section class="contact" id="contact">
+    <h2 data-es="Trabajemos juntos" data-en="Let's work together">Trabajemos juntos</h2>
+    <a href="mailto:nicolelucki22@gmail.com" class="contact-email">nicolelucki22@gmail.com</a>
+    <div class="social-links">
+        <a href="https://www.behance.net/nicolelucki" target="_blank">Behance</a>
+        <a href="https://www.instagram.com/nl_portfolio.design?igsh=MWo1dTE3ZndkcWRtcg==" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/nicole-lucki-n" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+        <p>©️ 2026 Nicole Lucki</p>
+        <p data-es="Diseñadora UX & Gráfica" data-en="UX & Graphic Designer">Diseñadora UX & Gráfica</p>
+    </div>
+</section>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0, menuIsOpen=false;
+
+function setCursorTheme(t) {
+    cursor.className = 'cursor ' + t;
+    ring.className   = 'cursor-ring ' + t;
+}
+
+document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+    if (menuIsOpen) { setCursorTheme('menu'); return; }
+    const hdr = document.getElementById('header').getBoundingClientRect();
+    if (e.clientY <= hdr.bottom) { setCursorTheme('dark'); return; }
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (el) {
+        const card = el.closest('.card');
+        if (card) {
+            const bg = window.getComputedStyle(card).backgroundColor;
+            setCursorTheme(bg === 'rgb(47, 65, 83)' ? 'light' : 'dark');
+            return;
+        }
+    }
+    setCursorTheme('light');
+});
+
+(function animateRing(){
+    rx += (mx-rx)*.12; ry += (my-ry)*.12;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(animateRing);
+})();
+
+document.addEventListener('mouseover', e => {
+    if (e.target.closest('a,button,.menu-btn,.lang-toggle,.card'))
+        ring.style.cssText += 'width:56px;height:56px;';
+});
+document.addEventListener('mouseout', e => {
+    if (e.target.closest('a,button,.menu-btn,.lang-toggle,.card'))
+        ring.style.cssText += 'width:36px;height:36px;';
+});
+
+// ── MENÚ ──
+function toggleMenu() {
+    const btn = document.getElementById('menuBtn');
+    const ov  = document.getElementById('menuOverlay');
+    const hdr = document.getElementById('header');
+    btn.classList.toggle('active');
+    ov.classList.toggle('active');
+    menuIsOpen = ov.classList.contains('active');
+    document.body.style.overflow = menuIsOpen ? 'hidden' : '';
+    hdr.style.background      = menuIsOpen ? 'transparent' : 'rgba(221,216,212,0.95)';
+    hdr.style.backdropFilter  = menuIsOpen ? 'none' : 'blur(10px)';
+    setCursorTheme(menuIsOpen ? 'menu' : 'dark');
+}
+
+// ── TRADUCCIÓN ──
+let currentLang = 'es';
+function toggleLanguage() {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+    document.querySelectorAll('.lang-toggle span').forEach(s =>
+        s.classList.toggle('active', s.dataset.lang === currentLang));
+    document.querySelectorAll('[data-es][data-en]').forEach(el =>
+        el.textContent = el.dataset[currentLang]);
+    document.querySelectorAll('.lang-es,.lang-en').forEach(el =>
+        el.style.display = el.classList.contains('lang-'+currentLang) ? '' : 'none');
+    // Re-render cards and update open modal if any
+    renderAllRows();
+    if (activeProject && modal.classList.contains('active')) renderModal(activeProject);
+}
+
+// ── CARDS DATA ──
+const data = [
+  { row:'rowA', size:'sm', type:'standard', color:'ca',
+    tag:      { es:'Identidad Visual',    en:'Visual Identity' },
+    title:    { es:'Amigos del Rottweiler', en:'Amigos del Rottweiler' },
+    num:      { es:'PROYECTO 04',         en:'PROJECT 04' },
+    desc:     { es:'Diseño de marca para Amigos del Rottweiler, una comunidad dedicada a la raza. El proyecto incluyó el desarrollo de logo primario y secundario en Adobe Illustrator, construyendo un sistema de identidad visual coherente que refleja la personalidad de la raza: fuerza, lealtad y carácter. Cada variante fue pensada para adaptarse a distintos contextos de uso, desde aplicaciones digitales hasta piezas impresas.',
+                en:'Brand design for Amigos del Rottweiler, a community dedicated to the breed. The project included the development of primary and secondary logos in Adobe Illustrator, building a cohesive visual identity system that reflects the breed\'s personality: strength, loyalty, and character. Each variant was designed to adapt to different contexts, from digital applications to printed pieces.' },
+    chips:    { es:['Adobe Illustrator','Branding','Identidad visual','Logo'], en:['Adobe Illustrator','Branding','Visual Identity','Logo'] },
+    cardImg:'https://i.pinimg.com/736x/76/80/f5/7680f5b5d179a0451f8b07781f63cbc5.jpg', placeholderBg:'#DDD8D4', deco:'🐕', modalScheme:'scheme-teal' },
+
+  { row:'rowA', size:'lg', type:'horizontal', cardBg:'bg-light', textScheme:'dark',
+    tag:      { es:'UX/UI',               en:'UX/UI' },
+    title:    { es:'App MALBA — Diseño UX/UI', en:'MALBA App — UX/UI Design' },
+    subtitle: { es:'Rediseño de experiencia móvil', en:'Mobile experience redesign' },
+    pill:     { es:'Digital · 2025',      en:'Digital · 2025' },
+    num:      { es:'PROYECTO 01',         en:'PROJECT 01' },
+    desc:     { es:'Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable.',
+                en:'Redesign of the mobile application for the Museum of Latin American Art of Buenos Aires. User research, information architecture, wireframes and navigable prototype.' },
+    chips:    { es:['UX Research','UI Design','Prototipo','Arquitectura de info'], en:['UX Research','UI Design','Prototype','Information Architecture'] },
+    cardImg:'https://i.pinimg.com/736x/a5/42/15/a542152e3f568b3e17f4860a714cde8b.jpg', placeholderBg:'#A7C1D1', deco:'📱', modalScheme:'scheme-teal' },
+
+  { row:'rowA', size:'sm', type:'standard', color:'ca',
+    tag:      { es:'Editorial',            en:'Editorial' },
+    title:    { es:'Libro Arte Efímero',   en:'Ephemeral Art Book' },
+    num:      { es:'PROYECTO 03',         en:'PROJECT 03' },
+    desc:     { es:'Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano. Este volumen explora el arte efímero como expresión callejera que desaparece con el tiempo.',
+                en:'Volume 4 of 4 of the URBAVERT collection, a series of books dedicated to urban art. This volume explores ephemeral art as a street expression that fades over time.' },
+    chips:    { es:['Diseño editorial','Arte urbano','Sistema de colección','URBAVERT'], en:['Editorial Design','Urban Art','Collection System','URBAVERT'] },
+    cardImg:'https://i.pinimg.com/736x/ba/dd/75/badd75eaacd288122df7ed71934488d3.jpg', placeholderBg:'#DDD8D4', deco:'📖', modalScheme:'scheme-teal' },
+
+  { row:'rowB', size:'sm', type:'standard', color:'cb',
+    tag:      { es:'Ilustración',          en:'Illustration' },
+    title:    { es:'Tarot mitológico',     en:'Mythological Tarot' },
+    num:      { es:'PROYECTO 07',         en:'PROJECT 07' },
+    desc:     { es:'Diseño de un mazo de cartas de tarot que vincula cada arcano mayor con un mito de la mitología griega. Las ilustraciones fueron creadas mediante sellos hechos a mano y luego compuestas digitalmente en Photoshop, logrando una estética artesanal con acabado editorial.',
+                en:'Design of a tarot card deck linking each major arcana to a myth from Greek mythology. Illustrations were created using handmade stamps and then digitally composed in Photoshop, achieving a handcrafted aesthetic with an editorial finish.' },
+    chips:    { es:['Photoshop','Sellos artesanales','Ilustración','Diseño editorial'], en:['Photoshop','Handmade Stamps','Illustration','Editorial Design'] },
+    cardImg:'https://i.pinimg.com/736x/3d/66/a9/3d66a9d257d1b8a636928ff8376b941b.jpg', placeholderBg:'#A7C1D1', deco:'🔮', modalScheme:'scheme-blue' },
+
+  { row:'rowB', size:'sm', type:'standard', color:'cc',
+    tag:      { es:'UX/UI · Videojuego',  en:'UX/UI · Video Game' },
+    title:    { es:'El último trago',     en:'The Last Round' },
+    num:      { es:'PROYECTO 05',        en:'PROJECT 05' },
+    desc:     { es:'Diseño de experiencia y sistema visual para "El último trago", un RPG narrativo donde el jugador encarna a un semidiós castigado a servir bebidas en el inframundo para ayudar a las almas perdidas a trascender. El proyecto abarca diseño de interfaz, mecánicas de juego, sistema de decisiones narrativas e identidad visual, desarrollado íntegramente en Figma e Illustrator.',
+                en:'Experience design and visual system for "The Last Round", a narrative RPG where the player takes on the role of a demigod condemned to serve drinks in the underworld to help lost souls transcend. The project covers interface design, game mechanics, narrative decision systems and visual identity, developed entirely in Figma and Illustrator.' },
+    chips:    { es:['Figma','Adobe Illustrator','UX/UI','Game Design','Diseño de mecánicas','Interactivo'], en:['Figma','Adobe Illustrator','UX/UI','Game Design','Mechanics Design','Interactive'] },
+    cardImg:'https://i.pinimg.com/736x/39/ba/db/39badb2fd500d8098f837b9ed7870ef3.jpg', placeholderBg:'#587D8E', deco:'🎮', modalScheme:'scheme-teal' },
+
+  { row:'rowB', size:'lg', type:'standard', color:'ca',
+    tag:      { es:'Diseño Audiovisual',  en:'Audiovisual Design' },
+    title:    { es:'El tiempo entre nosotros', en:'The Time Between Us' },
+    num:      { es:'PROYECTO 06',        en:'PROJECT 06' },
+    desc:     { es:'Diseño de piezas comunicacionales para el cortometraje estudiantil "El tiempo entre nosotros", una historia que sigue a Martina y Thiago en un relato íntimo sobre el amor y la distancia. El proyecto incluyó el desarrollo de un afiche principal trabajado en Adobe Illustrator y Photoshop, integrando fotografía, tipografía y composición visual para capturar la esencia emocional del film.',
+                en:'Communication design for the student short film "The Time Between Us", a story following Martina and Thiago in an intimate tale about love and distance. The project included the development of a main poster crafted in Adobe Illustrator and Photoshop, integrating photography, typography and visual composition to capture the emotional essence of the film.' },
+    chips:    { es:['Adobe Illustrator','Photoshop','Diseño gráfico','Comunicación audiovisual'], en:['Adobe Illustrator','Photoshop','Graphic Design','Audiovisual Communication'] },
+    cardImg:'https://i.pinimg.com/736x/b0/bb/c8/b0bbc8702bb5b2668df6445475c5d76c.jpg', placeholderBg:'#DDD8D4', deco:'🎬', modalScheme:'scheme-teal' },
+
+  { row:'rowC', size:'lg', type:'horizontal', cardBg:'bg-mid', textScheme:'light',
+    tag:      { es:'Ilustración',         en:'Illustration' },
+    title:    { es:'Libro Ilustrado — Sellos de Naturaleza', en:'Illustrated Book — Nature Stamps' },
+    subtitle: { es:'Ilustración editorial con sellos artesanales', en:'Editorial illustration with handmade stamps' },
+    pill:     { es:'Ilustración · 2025', en:'Illustration · 2025' },
+    num:      { es:'PROYECTO 02',        en:'PROJECT 02' },
+    desc:     { es:'A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano.',
+                en:'Based on the story Cositas sueltas en el último cajón, an editorial illustration proposal was developed using handmade stamps.' },
+    chips:    { es:['Ilustración','Sellos artesanales','Editorial','Libro infantil'], en:['Illustration','Handmade Stamps','Editorial','Children\'s Book'] },
+    cardImg:'https://i.pinimg.com/736x/8a/bc/46/8abc46a2fa81710d68765c3c34e7db5e.jpg', placeholderBg:'#A7C1D1', deco:'📖', modalScheme:'scheme-blue' },
+
+  { row:'rowC', size:'sm', type:'standard', color:'ca',
+    tag:      { es:'Diseño Editorial',   en:'Editorial Design' },
+    title:    { es:'Lost in Shadow — Tapa de libro', en:'Lost in Shadow — Book Cover' },
+    num:      { es:'PROYECTO 08',       en:'PROJECT 08' },
+    desc:     { es:'Diseño de tapa y contratapa para un libro inexistente inspirado en dos personajes del universo de Percy Jackson. La propuesta apuesta por una estética minimalista donde el verdadero protagonismo recae en el foil plateado y la síntesis visual: cada elemento fue elegido para anticipar la trama sin revelarla, creando una cubierta que invita a la lectura desde la primera mirada.',
+                en:'Cover and back cover design for a fictional book inspired by two characters from the Percy Jackson universe. The proposal embraces a minimalist aesthetic where the real star is the silver foil and visual synthesis: every element was chosen to hint at the plot without revealing it, creating a cover that invites reading from the very first glance.' },
+    chips:    { es:['Diseño editorial','Ilustración','Adobe Illustrator','Tipografía'], en:['Editorial Design','Illustration','Adobe Illustrator','Typography'] },
+    cardImg:'https://i.pinimg.com/736x/0b/f6/de/0bf6de55a4ecc2f21bb5bb645cc91396.jpg', placeholderBg:'#DDD8D4', deco:'📚', modalScheme:'scheme-teal' },
+
+  { row:'rowC', size:'sm', type:'standard', color:'cb',
+    tag:      { es:'Identidad Visual',   en:'Visual Identity' },
+    title:    { es:'Bloom Producciones — Branding', en:'Bloom Productions — Branding' },
+    num:      { es:'PROYECTO 09',       en:'PROJECT 09' },
+    desc:     { es:'Desarrollo de logo e identidad visual para Bloom Producciones, una productora estudiantil audiovisual especializada en comedias románticas. El proyecto buscó traducir la esencia del género —ternura, frescura y emoción— en un sistema de marca coherente y versátil. Se trabajó la construcción del logotipo, paleta cromática y criterios de aplicación, logrando una identidad que refleja tanto el espíritu joven de la productora como la calidez característica de sus historias.',
+                en:'Logo and visual identity development for Bloom Productions, a student audiovisual production company specializing in romantic comedies. The project aimed to translate the essence of the genre — warmth, freshness and emotion — into a cohesive and versatile brand system. The logotype construction, color palette and application guidelines were developed, resulting in an identity that reflects both the youthful spirit of the studio and the characteristic warmth of its stories.' },
+    chips:    { es:['Adobe Illustrator','Branding','Identidad visual','Logo','Productora audiovisual'], en:['Adobe Illustrator','Branding','Visual Identity','Logo','Film Production'] },
+    cardImg:'https://i.pinimg.com/736x/a8/f3/ab/a8f3abe9a50682343b8e0e2f9633793e.jpg', placeholderBg:'#A7C1D1', deco:'🌸', modalScheme:'scheme-blue' },
+];
+
+// ── MODAL ──
+const modal=document.getElementById('modal'), modalBlur=document.getElementById('modalBlur'),
+      cardFlipper=document.getElementById('cardFlipper'), flipBack=document.getElementById('flipBack');
+let activeProject=null;
+
+function openModal(p) {
+    activeProject = p;
+    renderModal(p);
+    modal.classList.add('active');
+    cardFlipper.style.animation='none';
+    void cardFlipper.offsetWidth;
+    cardFlipper.style.animation='flipIn .6s cubic-bezier(.23,1,.32,1) forwards';
+}
+
+function renderModal(p) {
+    const L = currentLang;
+    document.getElementById('modalNum').textContent   = p.num[L];
+    document.getElementById('modalTitle').textContent = p.title[L];
+    document.getElementById('modalDesc').textContent  = p.desc[L];
+    document.getElementById('modalTags').innerHTML    = p.chips[L].map(c=>`<span class="modal-tag">${c}</span>`).join('');
+    document.getElementById('modalCta').textContent   = L==='es' ? 'Ver proyecto →' : 'View project →';
+    flipBack.className = 'flip-back '+p.modalScheme;
+}
+
+document.getElementById('modalClose').addEventListener('click', ()=>modal.classList.remove('active'));
+modalBlur.addEventListener('click', ()=>modal.classList.remove('active'));
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('active'); });
+
+// ── RENDER CARDS ──
+function t(p, key) { return (p[key] && typeof p[key]==='object') ? p[key][currentLang] : (p[key]||''); }
+
+function cardHTML(p) {
+    if (p.type==='horizontal') {
+        const s=p.textScheme, img=p.cardImg
+            ? `<img src="${p.cardImg}" alt="${t(p,'title')}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+            : `<div class="ch-img-ph" style="background:${p.placeholderBg}">${p.deco}</div>`;
+        return `<div class="card card-${p.size} card-horizontal ${p.cardBg||''}">
+            <div class="ch-img">${img}</div>
+            <div class="ch-info">
+                <div class="ch-tag ${s}">${t(p,'tag')}</div>
+                <div class="ch-title ${s}">${t(p,'title')}</div>
+                <div class="ch-sub ${s}">${t(p,'subtitle')}</div>
+                <div class="ch-pill ${s}">${t(p,'pill')}</div>
+            </div></div>`;
+    }
+    const bg=p.cardImg?`<img class="card-bg" src="${p.cardImg}" alt="${t(p,'title')}">`
+        :`<div class="card-bg-div" style="background:${p.placeholderBg}">${p.deco}</div>`;
+    return `<div class="card card-${p.size} ${p.color||'ca'}">
+        ${bg}<div class="card-overlay"></div>
+        <div class="card-inner">
+            <div class="card-tag">${t(p,'tag')}</div>
+            <div class="${p.size==='lg'?'card-title-lg':'card-title'}">${t(p,'title')}</div>
+        </div></div>`;
+}
+
+const rowMap={rowA:[],rowB:[],rowC:[]};
+data.forEach(p=>rowMap[p.row].push(p));
+
+function renderAllRows() {
+    ['rowA','rowB','rowC'].forEach(id=>{
+        const el=document.getElementById(id), items=rowMap[id];
+        el.innerHTML=[...items,...items,...items,...items].map(cardHTML).join('');
+        el.querySelectorAll('.card').forEach((c,i)=>c.addEventListener('click',()=>openModal(items[i%items.length])));
+    });
+}
+renderAllRows();
+</script>
+</body>
+</html>
