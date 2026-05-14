@@ -167,21 +167,17 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
 .figma-modal-body { position:relative;width:100%;padding-top:56.25%; }
 .figma-modal-body iframe { position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border:none; }
 
-/* ══════════════════════════════════════════
-   SECCIÓN CARDS (ex nicole_cards_v5)
-══════════════════════════════════════════ */
+/* ══ CARDS SECTION ══ */
 #cards-section { display:none; background:var(--dark-blue); min-height:100vh; }
 #cards-section.visible { display:block; }
-
 .slider-wrap { display:flex;flex-direction:column;gap:14px;overflow:hidden;padding:120px 0 60px;background:var(--dark-blue); }
 .slider-row { display:flex;gap:14px;width:max-content;align-items:center; }
-.row-a { animation:goLeft  22s linear infinite; }
+.row-a { animation:goLeft 22s linear infinite; }
 .row-b { animation:goRight 26s linear infinite; }
-.row-c { animation:goLeft  20s linear infinite; }
+.row-c { animation:goLeft 20s linear infinite; }
 .slider-row:hover { animation-play-state:paused; }
-@keyframes goLeft  { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
-@keyframes goRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)}    }
-
+@keyframes goLeft  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes goRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
 .card { border-radius:14px;overflow:hidden;flex-shrink:0;cursor:pointer;position:relative;transition:transform .25s,box-shadow .25s; }
 .card:hover { transform:translateY(-6px);box-shadow:0 18px 44px rgba(0,0,0,.35); }
 .card-sm { width:260px;height:190px; }
@@ -191,10 +187,9 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
 .card-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(47,65,83,.82) 0%,transparent 65%); }
 .card-inner { position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem 1.1rem;z-index:1; }
 .card-tag { font-family:'Lora',serif;font-style:italic;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#A7C1D1;margin-bottom:5px; }
-.card-title    { font-family:'Lora',serif;font-size:.85rem;font-weight:500;color:#DDD8D4;line-height:1.35; }
-.card-title-lg { font-family:'Lora',serif;font-size:1rem;  font-weight:500;color:#DDD8D4;line-height:1.35; }
+.card-title { font-family:'Lora',serif;font-size:.85rem;font-weight:500;color:#DDD8D4;line-height:1.35; }
+.card-title-lg { font-family:'Lora',serif;font-size:1rem;font-weight:500;color:#DDD8D4;line-height:1.35; }
 .ca { background:#DDD8D4; } .cb { background:#A7C1D1; } .cc { background:#587D8E; }
-
 .card-horizontal { display:flex;flex-direction:row;position:relative;overflow:hidden; }
 .bg-light { background:#DDD8D4; } .bg-mid { background:#A7C1D1; }
 .ch-img { width:52%;height:100%;flex-shrink:0;overflow:hidden; }
@@ -208,15 +203,13 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
 .ch-sub { font-family:'Lora',serif;font-size:.72rem;line-height:1.4; }
 .ch-sub.dark { color:#587D8E; } .ch-sub.light { color:#2F4153;opacity:.65; }
 .ch-pill { display:inline-block;font-family:'Lora',serif;font-style:italic;font-size:.62rem;padding:4px 13px;border-radius:50px;width:fit-content; }
-.ch-pill.dark  { border:1px solid #587D8E;color:#587D8E; }
+.ch-pill.dark { border:1px solid #587D8E;color:#587D8E; }
 .ch-pill.light { border:1px solid #2F4153;color:#2F4153;opacity:.7; }
-.card-sm .ch-info  { padding:12px 14px;gap:5px; }
-.card-sm .ch-tag   { font-size:.5rem;letter-spacing:.14em; }
+.card-sm .ch-info { padding:12px 14px;gap:5px; }
+.card-sm .ch-tag { font-size:.5rem;letter-spacing:.14em; }
 .card-sm .ch-title { font-size:.75rem;line-height:1.25; }
-.card-sm .ch-sub   { font-size:.6rem;line-height:1.3; }
-.card-sm .ch-pill  { font-size:.52rem;padding:3px 9px; }
-
-/* modal cards */
+.card-sm .ch-sub { font-size:.6rem;line-height:1.3; }
+.card-sm .ch-pill { font-size:.52rem;padding:3px 9px; }
 .modal-overlay { display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;padding:24px; }
 .modal-overlay.active { display:flex; }
 .modal-blur { position:absolute;inset:0;backdrop-filter:blur(14px);background:rgba(47,65,83,.55); }
@@ -224,35 +217,31 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
 .card-flipper { width:100%;height:100%;animation:flipIn .6s cubic-bezier(.23,1,.32,1) forwards;border-radius:clamp(10px,1.2vw,18px);box-shadow:0 32px 80px rgba(0,0,0,.55);overflow:hidden; }
 @keyframes flipIn { 0%{transform:rotateY(-90deg) scale(.88);opacity:0} 65%{transform:rotateY(5deg) scale(1.01);opacity:1} 100%{transform:rotateY(0) scale(1);opacity:1} }
 .flip-back-m { width:100%;height:100%;display:flex;flex-direction:row;align-items:center;gap:clamp(20px,4vw,60px);padding:clamp(24px,4vw,48px) clamp(28px,5vw,60px); }
-.back-left  { flex:1;display:flex;flex-direction:column;justify-content:center; }
+.back-left { flex:1;display:flex;flex-direction:column;justify-content:center; }
 .back-right { flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px); }
 .modal-label { font-family:'Lora',serif;font-size:clamp(.65rem,.78vw,.78rem);letter-spacing:.12em;text-transform:uppercase; }
 .modal-title { font-family:'Alice',serif;font-size:clamp(1.2rem,2vw,1.9rem);line-height:1.25;margin-top:clamp(8px,1vw,14px); }
-.modal-desc  { font-size:clamp(.78rem,.95vw,.95rem);line-height:1.75;margin-top:clamp(10px,1.2vw,16px); }
-.modal-tags  { display:flex;flex-wrap:wrap;gap:clamp(6px,.8vw,10px); }
-.modal-tag   { padding:clamp(4px,.4vw,6px) clamp(10px,1.2vw,16px);border-radius:20px;font-size:clamp(.65rem,.75vw,.78rem);letter-spacing:.04em; }
-.modal-cta   { display:inline-flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:clamp(.78rem,.9vw,.92rem);text-decoration:none;border-bottom:1px solid;padding-bottom:3px;width:fit-content;transition:opacity .3s;cursor:none; }
+.modal-desc { font-size:clamp(.78rem,.95vw,.95rem);line-height:1.75;margin-top:clamp(10px,1.2vw,16px); }
+.modal-tags { display:flex;flex-wrap:wrap;gap:clamp(6px,.8vw,10px); }
+.modal-tag { padding:clamp(4px,.4vw,6px) clamp(10px,1.2vw,16px);border-radius:20px;font-size:clamp(.65rem,.75vw,.78rem);letter-spacing:.04em; }
+.modal-cta { display:inline-flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:clamp(.78rem,.9vw,.92rem);text-decoration:none;border-bottom:1px solid;padding-bottom:3px;width:fit-content;transition:opacity .3s;cursor:none; }
 .modal-cta:hover { opacity:.75; }
 .scheme-teal { background:var(--steel-blue); }
 .scheme-teal .modal-label { color:var(--light-blue); }
 .scheme-teal .modal-title { color:var(--beige); }
-.scheme-teal .modal-desc  { color:var(--light-blue); }
-.scheme-teal .modal-tag   { border:1px solid rgba(167,193,209,.4);color:var(--beige); }
-.scheme-teal .modal-cta   { color:var(--beige);border-color:rgba(221,216,212,.35); }
+.scheme-teal .modal-desc { color:var(--light-blue); }
+.scheme-teal .modal-tag { border:1px solid rgba(167,193,209,.4);color:var(--beige); }
+.scheme-teal .modal-cta { color:var(--beige);border-color:rgba(221,216,212,.35); }
 .scheme-blue { background:var(--light-blue); }
 .scheme-blue .modal-label { color:var(--dark-blue); }
 .scheme-blue .modal-title { color:var(--dark-blue); }
-.scheme-blue .modal-desc  { color:var(--dark-blue); }
-.scheme-blue .modal-tag   { border:1px solid rgba(47,65,83,.4);color:var(--dark-blue); }
-.scheme-blue .modal-cta   { color:var(--dark-blue);border-color:rgba(47,65,83,.35); }
-.modal-close-btn { position:absolute;top:clamp(10px,1.5vw,18px);right:clamp(10px,1.5vw,18px);width:32px;height:32px;background:rgba(47,65,83,.7);border:.5px solid rgba(221,216,212,.25);border-radius:50%;color:#DDD8D4;font-size:.8rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:background .2s;border:none; }
+.scheme-blue .modal-desc { color:var(--dark-blue); }
+.scheme-blue .modal-tag { border:1px solid rgba(47,65,83,.4);color:var(--dark-blue); }
+.scheme-blue .modal-cta { color:var(--dark-blue);border-color:rgba(47,65,83,.35); }
+.modal-close-btn { position:absolute;top:clamp(10px,1.5vw,18px);right:clamp(10px,1.5vw,18px);width:32px;height:32px;background:rgba(47,65,83,.7);border-radius:50%;color:#DDD8D4;font-size:.8rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:background .2s;border:none; }
 .modal-close-btn:hover { background:rgba(47,65,83,.95); }
-
-/* back button */
 .back-to-home { display:flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:clamp(.8rem,.9vw,.95rem);color:var(--light-blue);cursor:none;background:none;border:none;padding:0;letter-spacing:.04em;transition:color .3s; }
 .back-to-home:hover { color:var(--beige); }
-.back-to-home svg { transition:transform .3s; }
-.back-to-home:hover svg { transform:translateX(-4px); }
 
 /* ── MOBILE ── */
 @media (max-width:768px) {
@@ -280,6 +269,7 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
     .about-aside { width:100%;flex-direction:row;flex-wrap:wrap;gap:20px; }
     .about-stat { min-width:120px; }
     .about-heading { font-size:clamp(1.5rem,6vw,2.2rem); }
+    .ver-cv-btn { display:block;width:100%;text-align:center;padding:14px 24px;margin-top:8px;box-sizing:border-box; }
     .contact { padding:56px 24px; }
     .contact h2 { font-size:clamp(1.6rem,7vw,2.6rem); }
     .footer-bottom { flex-direction:column;gap:8px;padding-top:16px;margin-top:32px; }
@@ -294,9 +284,6 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
 <div class="cursor dark" id="cursor"></div>
 <div class="cursor-ring dark" id="cursorRing"></div>
 
-<!-- ══════════════════════════════════════════
-     MODALES PROYECTOS DESTACADOS
-══════════════════════════════════════════ -->
 <div class="figma-modal-overlay" id="sellasModal">
     <div class="figma-modal">
         <div class="figma-modal-header">
@@ -331,7 +318,6 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
     </div>
 </div>
 
-<!-- modal cards genérico -->
 <div class="modal-overlay" id="cardModal">
     <div class="modal-blur" id="cardModalBlur"></div>
     <div class="card-scene-m">
@@ -341,7 +327,7 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
                 <div class="back-left">
                     <div class="modal-label" id="modalNum"></div>
                     <div class="modal-title" id="modalTitle"></div>
-                    <div class="modal-desc"  id="modalDesc"></div>
+                    <div class="modal-desc" id="modalDesc"></div>
                 </div>
                 <div class="back-right">
                     <div class="modal-tags" id="modalTags"></div>
@@ -352,9 +338,6 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
     </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     HEADER
-══════════════════════════════════════════ -->
 <header class="header" id="header">
     <div class="header-left">
         <button class="menu-btn" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
@@ -374,232 +357,262 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
     </div>
 </header>
 
-<!-- Menú Overlay -->
 <div class="menu-overlay" id="menuOverlay">
     <nav class="menu-nav">
-        <a href="#home"    onclick="goHome();toggleMenu();" data-es="Inicio"    data-en="Home">Inicio</a>
-        <a href="#works"   onclick="goHome();toggleMenu();" data-es="Proyectos" data-en="Projects">Proyectos</a>
-        <a href="#about"   onclick="goHome();toggleMenu();" data-es="Sobre mí"  data-en="About">Sobre mí</a>
-        <a href="#contact" onclick="goHome();toggleMenu();" data-es="Contacto"  data-en="Contact">Contacto</a>
+        <a href="#home" onclick="goHome();toggleMenu();" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="#works" onclick="goHome();toggleMenu();" data-es="Proyectos" data-en="Projects">Proyectos</a>
+        <a href="#about" onclick="goHome();toggleMenu();" data-es="Sobre mí" data-en="About">Sobre mí</a>
+        <a href="#contact" onclick="goHome();toggleMenu();" data-es="Contacto" data-en="Contact">Contacto</a>
     </nav>
 </div>
 
-<!-- ══════════════════════════════════════════
-     PÁGINA PRINCIPAL
-══════════════════════════════════════════ -->
 <div id="main-page">
 
-    <!-- Hero -->
-    <section class="hero" id="home" data-cursor="dark">
-        <div class="shapes-container">
-            <svg viewBox="0 0 856 737" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <g clip-path="url(#clip0_shapes)">
-                    <path d="M500.294 779.866C500.294 779.866 500.528 787.062 492.719 787.062H423.98C411.963 785.567 414.067 780.52 413.927 779.866C411.963 749.537 418.883 475.833 414.441 328.023C412.711 270.917 434.642 93.2455 303.711 41.9814C273.785 30.252 228.847 24.2703 200.884 30.4856C190.878 31.9343 181.853 36.2335 172.36 38.4299C-56.1597 133.341 191.392 458.356 212.855 487.329C282.529 581.445 250.404 672.898 215.38 727.901C193.637 762.061 162.868 781.034 130.182 790.52C114.938 775.006 100.068 759.397 84.9644 744.537C106.708 741.453 130.884 734.396 147.858 719.255C193.262 689.16 216.783 591.539 164.084 516.209C78.6517 394.194 65.2314 358.304 22.3049 249.748C-35.1641 104.461 22.3517 -25.0309 152.534 -58.7241C324.52 -103.306 410.326 -20.3578 410.981 -19.7504C464.99 26.5134 499.639 60.0663 498.283 255.169C498.19 268.067 496.693 779.819 500.294 779.959V779.866Z" fill="#587D8E"/><path d="M899.865 256.057C901.221 60.9543 866.525 27.4014 812.563 -18.8624C811.908 -19.4232 726.102 -102.371 554.116 -57.8362C423.934 -24.0963 366.371 105.349 423.887 250.636C466.86 359.239 480.28 395.082 565.666 517.097C618.365 592.38 594.844 690.002 549.44 720.143C516.567 749.49 456.386 748.696 439.926 746.64C302.168 729.256 322.65 552.893 320.686 432.84V-29.9377C320.686 -40.4055 317.833 -50.92 311.38 -59.1914C303.15 -69.7994 290.618 -76.7623 276.544 -77.6502L219.589 -76.5754H47.6961C41.2431 -77.2763 35.4915 -71.2947 47.6961 -69.4722C170.864 -70.9209 257.185 87.6844 256.343 263.393C256.249 278.721 255.454 508.965 255.454 508.965C252.275 725.424 320.826 765.566 390.593 787.296C444.882 804.212 560.896 816.877 616.962 728.788C651.986 673.786 684.111 582.333 614.437 488.217C592.974 459.197 345.422 134.229 573.942 39.3177C583.435 37.1214 592.46 32.8221 602.466 31.3735C630.429 25.1583 675.366 31.1398 705.293 42.8694C836.177 94.1334 814.293 271.805 816.023 328.91C820.465 476.721 813.545 750.425 815.509 780.753C815.649 781.408 813.545 786.501 825.562 787.95H894.301C902.11 787.95 901.876 780.753 901.876 780.753C898.322 780.66 899.818 268.861 899.865 255.963V256.057Z" fill="#2F4153"/><path d="M871.384 -38.9346C862.81 -36.7191 854.669 -33.2995 846.239 -31.373C581.394 78.6795 868.253 455.507 893.158 489.125C973.892 598.262 936.704 704.269 896.096 768.085C831.113 870.19 696.668 855.549 633.756 835.898C552.925 810.661 473.443 764.183 476.863 518.311C476.863 516.626 477.104 514.892 477.104 513.158C477.104 513.158 478.019 246.19 478.116 228.418C479.127 24.6887 379.076 -159.198 236.297 -157.512C222.134 -159.631 228.83 -166.567 236.297 -165.844L434.906 -165.94H501.478C517.76 -165.989 532.308 -157.897 541.846 -145.616C549.312 -136.031 552.588 -123.846 552.588 -111.661V424.923C554.9 564.114 531.152 768.566 690.839 788.747C709.915 791.155 779.667 792.07 817.77 758.019C870.373 723.1 897.637 609.917 836.557 522.598C737.565 381.143 722.006 339.53 672.245 213.632C611.309 59.4624 661.985 -79.2471 786.603 -131.648C813.145 -99.1865 841.374 -68.0732 871.336 -38.9346H871.384Z" fill="#A7C1D1"/><path d="M929.745 849.775C876.952 865.103 819.249 856.178 785.208 845.57C713.804 823.279 643.569 782.249 646.609 565.136C646.609 563.641 646.842 562.099 646.842 560.603C646.842 560.603 647.684 324.845 647.731 309.143C648.619 129.228 560.241 -33.1622 434.081 -31.6668C421.596 -33.536 427.487 -39.7045 434.081 -39.0503L609.574 -39.1437H668.399C682.801 -39.1904 695.614 -32.0406 704.031 -21.199C710.624 -12.7407 713.523 -1.94574 713.523 8.75568V482.656C715.581 605.605 694.585 786.128 835.663 803.979C843.799 805.007 862.503 805.708 883.405 802.764C898.883 817.998 914.08 833.934 929.699 849.869L929.745 849.775Z" fill="#587D8E"/>
-                </g>
-                <defs><clipPath id="clip0_shapes"><rect width="856" height="737" fill="white" transform="matrix(1 0 0 -1 0 737)"/></clipPath></defs>
-            </svg>
-        </div>
-        <div class="hero-content">
-            <svg class="logo-hero" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_hero)">
-                    <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/><path d="M281.785 345.204L283.408 346.187C276.249 358.707 263.395 367 247.267 367C221.053 367 207.214 345.044 207.214 322.929C207.214 300.814 221.212 278.22 250.514 278.22C271.672 278.22 283.568 289.916 283.568 307.007H266.961C267.121 306.024 267.121 304.881 267.121 303.924C267.121 291.085 259.642 280.187 247.427 280.187C232.284 280.187 223.341 297.092 223.341 314.981C223.341 334.97 234.572 356.128 258.658 356.128C268.585 356.128 277.713 352.381 281.785 345.23V345.204Z" fill="#2F4153"/><path d="M379.51 322.929C379.51 345.044 365.192 367 336.05 367C306.908 367 292.59 345.044 292.59 322.929C292.59 300.814 307.414 277.715 336.05 277.715C364.686 277.715 379.51 300.468 379.51 322.929ZM362.903 322.291C362.903 300.84 353.934 279.363 336.023 279.363C318.112 279.363 309.33 300.84 309.33 322.291C309.33 343.742 318.272 365.538 336.023 365.538C353.775 365.538 362.903 343.901 362.903 322.291Z" fill="#2F4153"/><path d="M416.317 365.538V367H388.639V365.538H394.813V234.309H388.639V232.687H410.142V365.538H416.317Z" fill="#2F4153"/><path d="M500.522 346.187C493.203 358.707 480.509 367 464.7 367C438.645 367 425.126 344.566 425.126 322.132C425.126 299.697 438.486 277.582 466.962 277.582C487.162 277.582 498.553 288.799 498.553 300.016C498.553 311.233 486.843 322.77 460.628 322.77V321.308C474.308 321.308 481.946 309.107 481.946 297.89C481.946 288.454 476.57 279.682 464.7 279.682C448.253 279.682 439.471 296.587 439.471 314.476C439.471 334.651 450.701 356.102 475.292 356.102C485.565 356.102 494.827 352.354 498.899 345.204L500.522 346.187Z" fill="#2F4153"/><path d="M727.935 364.395V366.017H706.432V341.801C701.561 358.707 688.68 367 675.826 367C659.219 367 642.453 353.178 642.453 326.358V279.682H636.278V278.061H658.261V326.358C658.261 347.649 670.477 358.388 682.506 358.388C694.535 358.388 706.432 347.809 706.432 326.358V279.682H700.257V278.061H721.761V364.395H727.935Z" fill="#2F4153"/><path d="M811.635 345.204L813.259 346.187C806.1 358.707 793.245 367 777.117 367C750.903 367 737.064 345.044 737.064 322.929C737.064 300.814 751.063 278.22 780.364 278.22C801.522 278.22 813.418 289.916 813.418 307.007H796.811C796.971 306.024 796.971 304.881 796.971 303.924C796.971 291.085 789.493 280.187 777.277 280.187C762.134 280.187 753.192 297.092 753.192 314.981C753.192 334.97 764.423 356.128 788.508 356.128C798.435 356.128 807.563 352.381 811.635 345.23V345.204Z" fill="#2F4153"/><path d="M907.444 367H882.374L851.928 332.844L843.625 342.599V365.538H849.799V367H822.121V365.538H828.295V234.309H822.121V232.687H843.598V339.994L874.71 303.419C877.797 299.83 880.724 292.999 880.724 286.673C880.724 284.068 880.245 281.303 878.941 279.204H897.65L861.669 321.494L900.259 365.565H907.418V367.027L907.444 367Z" fill="#2F4153"/><path d="M943 365.538V367H915.322V365.538H921.496V280.666H915.322V279.204H936.826V365.538H943ZM918.915 259.348C918.915 253.659 923.466 249.114 929.161 249.114C934.856 249.114 939.407 253.819 939.407 259.348C939.407 264.877 934.697 269.581 929.161 269.581C923.625 269.581 918.915 265.036 918.915 259.348Z" fill="#2F4153"/><path d="M155.903 268.465C156.142 233.086 149.861 226.999 140.067 218.626C139.934 218.52 124.392 203.475 93.1742 211.555C69.568 217.669 59.1088 241.14 69.5414 267.481C77.3392 287.178 79.761 293.664 95.2767 315.805C104.831 329.468 100.573 347.171 92.3226 352.62C86.3612 357.936 75.4496 357.803 72.4423 357.431C47.4521 354.268 51.1514 322.318 50.8054 300.548V216.632C50.8054 214.745 50.2731 212.831 49.1287 211.316C47.6384 209.402 45.3762 208.126 42.8213 207.967L32.4952 208.153H1.30407C0.133074 208.02 -0.904857 209.11 1.30407 209.456C23.6595 209.19 39.3083 237.95 39.1486 269.794C39.1486 272.585 38.9889 314.317 38.9889 314.317C38.4301 353.55 50.8586 360.833 63.5267 364.767C73.3737 367.851 94.4251 370.137 104.591 354.161C110.952 344.194 116.781 327.607 104.139 310.542C100.253 305.279 55.3297 246.35 96.7937 229.152C98.5236 228.753 100.147 227.982 101.983 227.717C107.067 226.6 115.21 227.69 120.64 229.79C144.379 239.093 140.413 271.309 140.733 281.649C141.531 308.442 140.28 358.069 140.653 363.571C140.68 363.704 140.307 364.608 142.489 364.874H154.971C156.382 364.874 156.355 363.571 156.355 363.571C155.716 363.571 155.982 270.751 155.982 268.412L155.903 268.465Z" fill="#2F4153"/><path d="M621.029 352.434C614.987 357.83 603.943 357.67 600.909 357.298C575.599 354.108 581.907 321.733 581.534 299.697V214.772C581.534 212.964 581.082 211.13 580.017 209.668C578.5 207.568 576.131 206.186 573.417 206.027L562.958 206.239H528.866C527.695 206.106 526.63 207.223 528.866 207.542C554.548 208.18 565.699 239.04 566.87 272.851C566.95 274.791 567.03 313.705 567.03 313.705C566.471 353.444 579.059 360.807 591.86 364.794C601.84 367.904 623.131 370.216 633.431 354.055C635.187 351.291 636.917 347.995 638.221 344.327C638.381 343.901 637.981 343.476 637.529 343.582L637.13 343.689C631.514 345.177 626.458 348.128 621.933 351.769C621.641 352.008 621.321 352.221 621.029 352.434Z" fill="#2F4153"/>
-                </g>
-                <defs><clipPath id="clip0_hero"><rect width="943" height="367" fill="white"/></clipPath></defs>
-            </svg>
-            <div class="rotating-text" id="rotatingText">
-                <span class="active" data-es="Diseñadora UX" data-en="UX Designer">Diseñadora UX</span>
-                <span data-es="Creativa visual" data-en="Visual Creative">Creativa visual</span>
-                <span data-es="Diseño de sistemas editoriales" data-en="Editorial Systems Design">Diseño de sistemas editoriales</span>
-                <span data-es="Diseño de sistemas digitales" data-en="Digital Systems Design">Diseño de sistemas digitales</span>
-                <span data-es="Diseñadora gráfica" data-en="Graphic Designer">Diseñadora gráfica</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- shapes mobile -->
-    <div class="shapes-mobile">
-        <svg version="1.1" viewBox="0 490 1350 480" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#2F4153" d="M397.73,608.17c-29.36,42.63-28.37,113.03-27.99,174.29c7.47-10.74,13.09-18.19,15.31-21.19C427.5,703.89,417.19,647.89,397.73,608.17z"/><path fill="#2F4153" d="M531.06,793.5c8.56-13.07,18.39-27.5,29.88-43.93c36.08-51.57,26.4-116.53-0.41-147.62C525.62,646.78,531.47,729.3,531.06,793.5z"/><path fill="#2F4153" d="M174.62,800.96c1.41-86.05-13.26-212.43,85.43-224.91c11.78-1.49,54.91-2.04,78.44,18.99c2.02,1.34,3.97,2.87,5.86,4.56c7.16-13.45,15.49-23.86,24.6-32.1c-43.37-39.34-110.46-31.14-144.24-20.6c-49.95,15.59-99.08,44.33-96.96,196.31c0.01,1.05,0.15,2.13,0.15,3.18c0,0,0.57,165.03,0.63,176.01c0.3,59.09-13.17,115.48-36.65,158.59h82.71L174.62,800.96z"/><path fill="#2F4153" d="M530.95,1081h35.21c15.3-27.52,23.94-69.73,23.37-153.3c-0.03-3.79-0.22-67.98-0.27-142.28c-13.6,18.91-37.58,54.05-58.3,95.19L530.95,1081z"/><path fill="#2F4153" d="M307.47,1047.78c-37.18-48.11-17.35-120.05,11.69-180c-0.1-28.61-0.21-59.11-0.29-81.03c-34.66,53.71-45.74,82.64-70.33,144.82c-22.18,56.09-20.44,108.88,0.44,149.44h48.27C301.14,1070.35,304.56,1059.24,307.47,1047.78z"/><path fill="#A7C1D1" d="M450.15,1080.46c0.18-0.07,0.34-0.15,0.52-0.21c21.21-42.99,33.23-97.23,32.95-153.88c-0.02-3.62-0.09-23.49-0.18-48.83c-10.67,23.02-20.2,47.34-33.19,80.19c-17.48,44.21-21.32,86.52-13.5,123.27h11.99C449.21,1080.82,449.68,1080.64,450.15,1080.46z"/><path fill="#A7C1D1" d="M600.99,584.19c-1.79-2.81-3.66-5.47-5.6-8.03c-1.86,0.71-3.68,1.46-5.44,2.28c-12.11,5.62-21.75,13.65-29.43,23.5c26.81,31.09,36.48,96.05,0.41,147.62c-11.5,16.43-21.32,30.87-29.88,43.93c-0.02,2.72-0.05,5.42-0.09,8.07l0,79.04c20.72-41.13,44.7-76.28,58.3-95.19c4.64-6.46,8.08-11.03,9.75-13.29C653.4,698.6,628.34,627.17,600.99,584.19z"/><path fill="#A7C1D1" d="M561.28,546.4c-45.98-25.9-105.11-17.85-137-7.9c-19.38,6.05-38.64,13.92-55.31,29.01c-9.11,8.25-17.45,18.66-24.6,32.1c-16.54,31.08-26.79,78.38-25.75,152.84c0.02,1.15,0.17,2.32,0.17,3.47c0,0,0.04,12.37,0.11,30.83c0.08,21.92,0.18,52.42,0.29,81.03c0.14,39.21,0.27,74.86,0.29,79.97c0.17,34.81-4.04,68.76-11.99,100.03c-2.91,11.46-6.33,22.57-10.21,33.22h54.14h18.26l0.02-265.62c0.17-10.5,0.13-21.55,0.06-32.92c-0.37-61.26-1.37-131.66,27.99-174.29c13.85-20.11,34.44-34.04,65.05-37.91c9.11-1.15,35.43-1.78,59.11,6.14c2.25-2.57,4.56-4.96,6.93-7.19c10.52-9.91,22.19-16.64,34.29-21.75C562.5,547.1,561.89,546.74,561.28,546.4z"/><path fill="#587D8E" d="M603.44,1081h48.08c4.59-9.8,8.7-20.15,12.33-30.94c-34.03-50.66-12.03-124.2,18.03-184.65c-0.1-28.08-0.21-59.39-0.29-82.12c-37.51,57.58-48.84,87.19-74.65,152.49C585.63,989.65,585.8,1040.56,603.44,1081z"/><path fill="#587D8E" d="M582.44,540.5c-5.62,1.75-11.23,3.67-16.76,5.9c-0.86,0.35-1.71,0.7-2.57,1.06c-12.1,5.11-23.77,11.84-34.29,21.75c0,2.98,0.01,6.26,0.03,9.81c-2.28-0.96-4.61-1.83-6.96-2.61c-23.97,27.48-40.34,75.45-39.08,165.82c0.01,1.08,0.16,2.19,0.16,3.27c0,0,0.27,78.31,0.47,132.04c0.09,25.34,0.16,45.22,0.18,48.83c0.28,56.65-11.74,110.89-32.95,153.88c-0.12,0.25-0.25,0.5-0.38,0.75h61.68h18.98l0.01-200.4c-0.53,1.05-1.05,2.1-1.58,3.16c-0.02-3.06-0.01-5.86,0.06-8.33c0.7-23.55,1.01-51.55,1.07-81.11c0.18-0.28,0.36-0.55,0.54-0.83c0.41-64.19-5.44-146.72,29.47-191.55c7.67-9.85,17.32-17.89,29.43-23.5c0.05-3.17,0.1-6.1,0.15-8.76c1.82,2.06,3.58,4.23,5.29,6.48c7.01-2.68,14.75-4.62,23.36-5.71c12.11-1.53,56.43-2.1,80.61,19.52c3.33,2.21,6.51,4.93,9.48,8.07c8.02-13.36,17.39-23.22,27.55-30.77C692.22,520.49,618.68,529.19,582.44,540.5z"/>
+<section class="hero" id="home" data-cursor="dark">
+    <div class="shapes-container">
+        <svg viewBox="0 0 856 737" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <g clip-path="url(#clip0_shapes)">
+                <path d="M500.294 779.866C500.294 779.866 500.528 787.062 492.719 787.062H423.98C411.963 785.567 414.067 780.52 413.927 779.866C411.963 749.537 418.883 475.833 414.441 328.023C412.711 270.917 434.642 93.2455 303.711 41.9814C273.785 30.252 228.847 24.2703 200.884 30.4856C190.878 31.9343 181.853 36.2335 172.36 38.4299C-56.1597 133.341 191.392 458.356 212.855 487.329C282.529 581.445 250.404 672.898 215.38 727.901C193.637 762.061 162.868 781.034 130.182 790.52C114.938 775.006 100.068 759.397 84.9644 744.537C106.708 741.453 130.884 734.396 147.858 719.255C193.262 689.16 216.783 591.539 164.084 516.209C78.6517 394.194 65.2314 358.304 22.3049 249.748C-35.1641 104.461 22.3517 -25.0309 152.534 -58.7241C324.52 -103.306 410.326 -20.3578 410.981 -19.7504C464.99 26.5134 499.639 60.0663 498.283 255.169C498.19 268.067 496.693 779.819 500.294 779.959V779.866Z" fill="#587D8E"/><path d="M899.865 256.057C901.221 60.9543 866.525 27.4014 812.563 -18.8624C811.908 -19.4232 726.102 -102.371 554.116 -57.8362C423.934 -24.0963 366.371 105.349 423.887 250.636C466.86 359.239 480.28 395.082 565.666 517.097C618.365 592.38 594.844 690.002 549.44 720.143C516.567 749.49 456.386 748.696 439.926 746.64C302.168 729.256 322.65 552.893 320.686 432.84V-29.9377C320.686 -40.4055 317.833 -50.92 311.38 -59.1914C303.15 -69.7994 290.618 -76.7623 276.544 -77.6502L219.589 -76.5754H47.6961C41.2431 -77.2763 35.4915 -71.2947 47.6961 -69.4722C170.864 -70.9209 257.185 87.6844 256.343 263.393C256.249 278.721 255.454 508.965 255.454 508.965C252.275 725.424 320.826 765.566 390.593 787.296C444.882 804.212 560.896 816.877 616.962 728.788C651.986 673.786 684.111 582.333 614.437 488.217C592.974 459.197 345.422 134.229 573.942 39.3177C583.435 37.1214 592.46 32.8221 602.466 31.3735C630.429 25.1583 675.366 31.1398 705.293 42.8694C836.177 94.1334 814.293 271.805 816.023 328.91C820.465 476.721 813.545 750.425 815.509 780.753C815.649 781.408 813.545 786.501 825.562 787.95H894.301C902.11 787.95 901.876 780.753 901.876 780.753C898.322 780.66 899.818 268.861 899.865 255.963V256.057Z" fill="#2F4153"/><path d="M871.384 -38.9346C862.81 -36.7191 854.669 -33.2995 846.239 -31.373C581.394 78.6795 868.253 455.507 893.158 489.125C973.892 598.262 936.704 704.269 896.096 768.085C831.113 870.19 696.668 855.549 633.756 835.898C552.925 810.661 473.443 764.183 476.863 518.311C476.863 516.626 477.104 514.892 477.104 513.158C477.104 513.158 478.019 246.19 478.116 228.418C479.127 24.6887 379.076 -159.198 236.297 -157.512C222.134 -159.631 228.83 -166.567 236.297 -165.844L434.906 -165.94H501.478C517.76 -165.989 532.308 -157.897 541.846 -145.616C549.312 -136.031 552.588 -123.846 552.588 -111.661V424.923C554.9 564.114 531.152 768.566 690.839 788.747C709.915 791.155 779.667 792.07 817.77 758.019C870.373 723.1 897.637 609.917 836.557 522.598C737.565 381.143 722.006 339.53 672.245 213.632C611.309 59.4624 661.985 -79.2471 786.603 -131.648C813.145 -99.1865 841.374 -68.0732 871.336 -38.9346H871.384Z" fill="#A7C1D1"/><path d="M929.745 849.775C876.952 865.103 819.249 856.178 785.208 845.57C713.804 823.279 643.569 782.249 646.609 565.136C646.609 563.641 646.842 562.099 646.842 560.603C646.842 560.603 647.684 324.845 647.731 309.143C648.619 129.228 560.241 -33.1622 434.081 -31.6668C421.596 -33.536 427.487 -39.7045 434.081 -39.0503L609.574 -39.1437H668.399C682.801 -39.1904 695.614 -32.0406 704.031 -21.199C710.624 -12.7407 713.523 -1.94574 713.523 8.75568V482.656C715.581 605.605 694.585 786.128 835.663 803.979C843.799 805.007 862.503 805.708 883.405 802.764C898.883 817.998 914.08 833.934 929.699 849.869L929.745 849.775Z" fill="#587D8E"/>
+            </g>
+            <defs><clipPath id="clip0_shapes"><rect width="856" height="737" fill="white" transform="matrix(1 0 0 -1 0 737)"/></clipPath></defs>
         </svg>
     </div>
-
-    <!-- Tarjeta 1 -->
-    <section class="cardflip-section" id="works" data-cursor="light">
-        <div class="cardflip-sticky">
-            <div class="flip-progress"><div class="flip-progress-bar"><div class="flip-progress-fill" style="height:0%"></div></div></div>
-            <div class="scroll-hint"><div class="scroll-arrow"></div><span data-es="Scrolleá para descubrir" data-en="Scroll to discover">Scrolleá para descubrir</span></div>
-            <div class="card-marquee-wrapper"><span class="card-marquee">APP MALBA — DISEÑO UX/UI &nbsp;&nbsp;&nbsp;&nbsp; APP MALBA — DISEÑO UX/UI &nbsp;&nbsp;&nbsp;&nbsp; APP MALBA — DISEÑO UX/UI</span></div>
-            <div class="card-scene">
-                <div class="flip-card">
-                    <div class="flip-face flip-front">
-                        <img class="flip-front-img" src="https://i.pinimg.com/736x/a5/42/15/a542152e3f568b3e17f4860a714cde8b.jpg" alt="Proyecto 1">
-                        <div class="flip-front-info">
-                            <h3 data-es="App MALBA — Diseño UX/UI" data-en="MALBA App — UX/UI Design">App MALBA — Diseño UX/UI</h3>
-                            <p data-es="Rediseño de experiencia móvil" data-en="Mobile experience redesign">Rediseño de experiencia móvil</p>
-                            <span class="flip-front-tag">Digital · 2025</span>
-                        </div>
-                    </div>
-                    <div class="flip-face flip-back bg-1">
-                        <div style="flex:1">
-                            <span class="flip-back-label" data-es="Proyecto 01" data-en="Project 01">Proyecto 01</span>
-                            <h2 data-es="App MALBA — Diseño UX/UI" data-en="MALBA App — UX/UI Design">App MALBA — Diseño UX/UI</h2>
-                            <p class="flip-back-desc" data-es="Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable para mejorar la experiencia de visitantes dentro y fuera del museo." data-en="Redesign of the mobile app for the Museum of Latin American Art of Buenos Aires. User research, information architecture, wireframes and navigable prototype to improve the visitor experience inside and outside the museum.">Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable para mejorar la experiencia de visitantes dentro y fuera del museo.</p>
-                        </div>
-                        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px)">
-                            <div class="flip-back-tags"><span class="flip-back-tag">UX Research</span><span class="flip-back-tag">UI Design</span><span class="flip-back-tag" data-es="Prototipo" data-en="Prototype">Prototipo</span><span class="flip-back-tag" data-es="Arquitectura de info" data-en="Info Architecture">Arquitectura de info</span></div>
-                            <a class="flip-back-cta" id="malbaCta" href="#" data-es="Ver proyecto" data-en="View project">Ver proyecto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="hero-content">
+        <svg class="logo-hero" viewBox="0 0 2269 367" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_hero)">
+                <path d="M198.404 365.538V367H170.726V365.538H176.901V280.666H170.726V279.204H192.23V365.538H198.404ZM174.319 259.348C174.319 253.659 178.87 249.114 184.565 249.114C190.261 249.114 194.812 253.819 194.812 259.348C194.812 264.877 190.101 269.581 184.565 269.581C179.03 269.581 174.319 265.036 174.319 259.348Z" fill="#2F4153"/><path d="M281.785 345.204L283.408 346.187C276.249 358.707 263.395 367 247.267 367C221.053 367 207.214 345.044 207.214 322.929C207.214 300.814 221.212 278.22 250.514 278.22C271.672 278.22 283.568 289.916 283.568 307.007H266.961C267.121 306.024 267.121 304.881 267.121 303.924C267.121 291.085 259.642 280.187 247.427 280.187C232.284 280.187 223.341 297.092 223.341 314.981C223.341 334.97 234.572 356.128 258.658 356.128C268.585 356.128 277.713 352.381 281.785 345.23V345.204Z" fill="#2F4153"/><path d="M379.51 322.929C379.51 345.044 365.192 367 336.05 367C306.908 367 292.59 345.044 292.59 322.929C292.59 300.814 307.414 277.715 336.05 277.715C364.686 277.715 379.51 300.468 379.51 322.929ZM362.903 322.291C362.903 300.84 353.934 279.363 336.023 279.363C318.112 279.363 309.33 300.84 309.33 322.291C309.33 343.742 318.272 365.538 336.023 365.538C353.775 365.538 362.903 343.901 362.903 322.291Z" fill="#2F4153"/><path d="M416.317 365.538V367H388.639V365.538H394.813V234.309H388.639V232.687H410.142V365.538H416.317Z" fill="#2F4153"/><path d="M500.522 346.187C493.203 358.707 480.509 367 464.7 367C438.645 367 425.126 344.566 425.126 322.132C425.126 299.697 438.486 277.582 466.962 277.582C487.162 277.582 498.553 288.799 498.553 300.016C498.553 311.233 486.843 322.77 460.628 322.77V321.308C474.308 321.308 481.946 309.107 481.946 297.89C481.946 288.454 476.57 279.682 464.7 279.682C448.253 279.682 439.471 296.587 439.471 314.476C439.471 334.651 450.701 356.102 475.292 356.102C485.565 356.102 494.827 352.354 498.899 345.204L500.522 346.187Z" fill="#2F4153"/><path d="M727.935 364.395V366.017H706.432V341.801C701.561 358.707 688.68 367 675.826 367C659.219 367 642.453 353.178 642.453 326.358V279.682H636.278V278.061H658.261V326.358C658.261 347.649 670.477 358.388 682.506 358.388C694.535 358.388 706.432 347.809 706.432 326.358V279.682H700.257V278.061H721.761V364.395H727.935Z" fill="#2F4153"/><path d="M811.635 345.204L813.259 346.187C806.1 358.707 793.245 367 777.117 367C750.903 367 737.064 345.044 737.064 322.929C737.064 300.814 751.063 278.22 780.364 278.22C801.522 278.22 813.418 289.916 813.418 307.007H796.811C796.971 306.024 796.971 304.881 796.971 303.924C796.971 291.085 789.493 280.187 777.277 280.187C762.134 280.187 753.192 297.092 753.192 314.981C753.192 334.97 764.423 356.128 788.508 356.128C798.435 356.128 807.563 352.381 811.635 345.23V345.204Z" fill="#2F4153"/><path d="M907.444 367H882.374L851.928 332.844L843.625 342.599V365.538H849.799V367H822.121V365.538H828.295V234.309H822.121V232.687H843.598V339.994L874.71 303.419C877.797 299.83 880.724 292.999 880.724 286.673C880.724 284.068 880.245 281.303 878.941 279.204H897.65L861.669 321.494L900.259 365.565H907.418V367.027L907.444 367Z" fill="#2F4153"/><path d="M943 365.538V367H915.322V365.538H921.496V280.666H915.322V279.204H936.826V365.538H943ZM918.915 259.348C918.915 253.659 923.466 249.114 929.161 249.114C934.856 249.114 939.407 253.819 939.407 259.348C939.407 264.877 934.697 269.581 929.161 269.581C923.625 269.581 918.915 265.036 918.915 259.348Z" fill="#2F4153"/><path d="M155.903 268.465C156.142 233.086 149.861 226.999 140.067 218.626C139.934 218.52 124.392 203.475 93.1742 211.555C69.568 217.669 59.1088 241.14 69.5414 267.481C77.3392 287.178 79.761 293.664 95.2767 315.805C104.831 329.468 100.573 347.171 92.3226 352.62C86.3612 357.936 75.4496 357.803 72.4423 357.431C47.4521 354.268 51.1514 322.318 50.8054 300.548V216.632C50.8054 214.745 50.2731 212.831 49.1287 211.316C47.6384 209.402 45.3762 208.126 42.8213 207.967L32.4952 208.153H1.30407C0.133074 208.02 -0.904857 209.11 1.30407 209.456C23.6595 209.19 39.3083 237.95 39.1486 269.794C39.1486 272.585 38.9889 314.317 38.9889 314.317C38.4301 353.55 50.8586 360.833 63.5267 364.767C73.3737 367.851 94.4251 370.137 104.591 354.161C110.952 344.194 116.781 327.607 104.139 310.542C100.253 305.279 55.3297 246.35 96.7937 229.152C98.5236 228.753 100.147 227.982 101.983 227.717C107.067 226.6 115.21 227.69 120.64 229.79C144.379 239.093 140.413 271.309 140.733 281.649C141.531 308.442 140.28 358.069 140.653 363.571C140.68 363.704 140.307 364.608 142.489 364.874H154.971C156.382 364.874 156.355 363.571 156.355 363.571C155.716 363.571 155.982 270.751 155.982 268.412L155.903 268.465Z" fill="#2F4153"/><path d="M621.029 352.434C614.987 357.83 603.943 357.67 600.909 357.298C575.599 354.108 581.907 321.733 581.534 299.697V214.772C581.534 212.964 581.082 211.13 580.017 209.668C578.5 207.568 576.131 206.186 573.417 206.027L562.958 206.239H528.866C527.695 206.106 526.63 207.223 528.866 207.542C554.548 208.18 565.699 239.04 566.87 272.851C566.95 274.791 567.03 313.705 567.03 313.705C566.471 353.444 579.059 360.807 591.86 364.794C601.84 367.904 623.131 370.216 633.431 354.055C635.187 351.291 636.917 347.995 638.221 344.327C638.381 343.901 637.981 343.476 637.529 343.582L637.13 343.689C631.514 345.177 626.458 348.128 621.933 351.769C621.641 352.008 621.321 352.221 621.029 352.434Z" fill="#2F4153"/>
+            </g>
+            <defs><clipPath id="clip0_hero"><rect width="943" height="367" fill="white"/></clipPath></defs>
+        </svg>
+        <div class="rotating-text" id="rotatingText">
+            <span class="active" data-es="Diseñadora UX" data-en="UX Designer">Diseñadora UX</span>
+            <span data-es="Creativa visual" data-en="Visual Creative">Creativa visual</span>
+            <span data-es="Diseño de sistemas editoriales" data-en="Editorial Systems Design">Diseño de sistemas editoriales</span>
+            <span data-es="Diseño de sistemas digitales" data-en="Digital Systems Design">Diseño de sistemas digitales</span>
+            <span data-es="Diseñadora gráfica" data-en="Graphic Designer">Diseñadora gráfica</span>
         </div>
-    </section>
-
-    <!-- Tarjeta 2 -->
-    <section class="cardflip-section" data-cursor="light">
-        <div class="cardflip-sticky">
-            <div class="flip-progress"><div class="flip-progress-bar"><div class="flip-progress-fill" style="height:0%"></div></div></div>
-            <div class="scroll-hint"><div class="scroll-arrow"></div><span data-es="Scrolleá para descubrir" data-en="Scroll to discover">Scrolleá para descubrir</span></div>
-            <div class="card-marquee-wrapper"><span class="card-marquee">LIBRO ILUSTRADO — SELLOS DE NATURALEZA &nbsp;&nbsp;&nbsp;&nbsp; LIBRO ILUSTRADO — SELLOS DE NATURALEZA</span></div>
-            <div class="card-scene">
-                <div class="flip-card">
-                    <div class="flip-face flip-front">
-                        <img class="flip-front-img" src="https://i.pinimg.com/736x/8a/bc/46/8abc46a2fa81710d68765c3c34e7db5e.jpg" alt="Proyecto 2">
-                        <div class="flip-front-info">
-                            <h3 data-es="Libro Ilustrado — Sellos de Naturaleza" data-en="Illustrated Book — Nature Stamps">Libro Ilustrado — Sellos de Naturaleza</h3>
-                            <p data-es="Ilustración editorial con sellos artesanales" data-en="Editorial illustration with handmade stamps">Ilustración editorial con sellos artesanales</p>
-                            <span class="flip-front-tag">Ilustración · 2025</span>
-                        </div>
-                    </div>
-                    <div class="flip-face flip-back bg-2">
-                        <div style="flex:1">
-                            <span class="flip-back-label" data-es="Proyecto 02" data-en="Project 02">Proyecto 02</span>
-                            <h2 data-es="Libro Ilustrado — Sellos de Naturaleza" data-en="Illustrated Book — Nature Stamps">Libro Ilustrado — Sellos de Naturaleza</h2>
-                            <p class="flip-back-desc" data-es="A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano." data-en="Based on the story Cositas sueltas en el último cajón, an editorial illustration project was developed using handmade stamps.">A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano.</p>
-                        </div>
-                        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px)">
-                            <div class="flip-back-tags"><span class="flip-back-tag" data-es="Ilustración" data-en="Illustration">Ilustración</span><span class="flip-back-tag" data-es="Sellos artesanales" data-en="Handmade stamps">Sellos artesanales</span><span class="flip-back-tag">Editorial</span><span class="flip-back-tag" data-es="Libro infantil" data-en="Children's book">Libro infantil</span></div>
-                            <a class="flip-back-cta" id="sellasCta" href="#" data-es="Ver proyecto" data-en="View project">Ver proyecto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tarjeta 3 -->
-    <section class="cardflip-section" data-cursor="light">
-        <div class="cardflip-sticky">
-            <div class="flip-progress"><div class="flip-progress-bar"><div class="flip-progress-fill" style="height:0%"></div></div></div>
-            <div class="scroll-hint"><div class="scroll-arrow"></div><span data-es="Scrolleá para descubrir" data-en="Scroll to discover">Scrolleá para descubrir</span></div>
-            <div class="card-marquee-wrapper"><span class="card-marquee">LIBRO ARTE EFÍMERO — URBAVERT &nbsp;&nbsp;&nbsp;&nbsp; LIBRO ARTE EFÍMERO — URBAVERT &nbsp;&nbsp;&nbsp;&nbsp; LIBRO ARTE EFÍMERO — URBAVERT</span></div>
-            <div class="card-scene">
-                <div class="flip-card">
-                    <div class="flip-face flip-front">
-                        <img class="flip-front-img" src="https://i.pinimg.com/736x/ba/dd/75/badd75eaacd288122df7ed71934488d3.jpg" alt="Proyecto 3">
-                        <div class="flip-front-info">
-                            <h3 data-es="Libro Arte Efímero" data-en="Ephemeral Art Book">Libro Arte Efímero</h3>
-                            <p data-es="Diseño editorial · Colección URBAVERT" data-en="Editorial design · URBAVERT Collection">Diseño editorial · Colección URBAVERT</p>
-                            <span class="flip-front-tag">Editorial · 2024</span>
-                        </div>
-                    </div>
-                    <div class="flip-face flip-back bg-1">
-                        <div style="flex:1">
-                            <span class="flip-back-label" data-es="Proyecto 03" data-en="Project 03">Proyecto 03</span>
-                            <h2 data-es="Libro Arte Efímero" data-en="Ephemeral Art Book">Libro Arte Efímero</h2>
-                            <p class="flip-back-desc" data-es="Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano. Este volumen explora el arte efímero como expresión callejera que desaparece con el tiempo." data-en="Volume 4 of 4 of the URBAVERT collection, a series of books dedicated to urban art. This volume explores ephemeral art as street expression that fades over time.">Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano.</p>
-                        </div>
-                        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px)">
-                            <div class="flip-back-tags"><span class="flip-back-tag" data-es="Diseño editorial" data-en="Editorial design">Diseño editorial</span><span class="flip-back-tag" data-es="Arte urbano" data-en="Urban art">Arte urbano</span><span class="flip-back-tag" data-es="Sistema de colección" data-en="Collection system">Sistema de colección</span><span class="flip-back-tag">URBAVERT</span></div>
-                            <a class="flip-back-cta" id="urbaCta" href="#" data-es="Ver proyecto" data-en="View project">Ver proyecto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="ver-mas-wrapper" data-cursor="light">
-        <button class="ver-mas-btn" id="verMasBtn" data-es="Ver más proyectos" data-en="View more projects">Ver más proyectos</button>
     </div>
+</section>
 
-    <!-- Servicios -->
-    <section class="services-section" data-cursor="dark">
-        <div class="services-container">
-            <p class="services-title" data-es="Qué hago" data-en="What I do">Qué hago</p>
-            <div class="service-item">
-                <div class="service-header"><span class="service-num">01</span><h3 class="service-title"><span>/</span><span data-es="Diseño UX/UI" data-en="UX/UI Design">Diseño UX/UI</span></h3></div>
-                <p class="service-desc" data-es="Diseño experiencias digitales centradas en las personas. Desde la investigación y el mapeo de flujos hasta la interfaz final, busco que cada interacción sea clara, funcional y visualmente coherente." data-en="I design people-centred digital experiences. From research and flow mapping to the final interface, I ensure every interaction is clear, functional and visually coherent.">Diseño experiencias digitales centradas en las personas. Desde la investigación y el mapeo de flujos hasta la interfaz final, busco que cada interacción sea clara, funcional y visualmente coherente.</p>
-            </div>
-            <div class="service-item">
-                <div class="service-header"><span class="service-num">02</span><h3 class="service-title"><span>/</span><span data-es="Diseño Editorial" data-en="Editorial Design">Diseño Editorial</span></h3></div>
-                <p class="service-desc" data-es="Construyo sistemas editoriales que dan forma a libros, revistas y colecciones. La grilla, la tipografía y el ritmo visual no son detalles, son el lenguaje de cada publicación." data-en="I build editorial systems that shape books, magazines and collections. The grid, typography and visual rhythm are not details — they are the language of each publication.">Construyo sistemas editoriales que dan forma a libros, revistas y colecciones. La grilla, la tipografía y el ritmo visual no son detalles, son el lenguaje de cada publicación.</p>
-            </div>
-            <div class="service-item">
-                <div class="service-header"><span class="service-num">03</span><h3 class="service-title"><span>/</span><span data-es="Identidad Visual" data-en="Visual Identity">Identidad Visual</span></h3></div>
-                <p class="service-desc" data-es="Desarrollo identidades visuales que comunican la esencia de una marca. Logotipos, paletas, sistemas gráficos y manuales que dan coherencia a cada punto de contacto, digital o impreso." data-en="I develop visual identities that communicate the essence of a brand. Logos, palettes, graphic systems and brand manuals that bring coherence to every touchpoint, digital or print.">Desarrollo identidades visuales que comunican la esencia de una marca. Logotipos, paletas, sistemas gráficos y manuales que dan coherencia a cada punto de contacto, digital o impreso.</p>
-            </div>
-            <div class="service-item">
-                <div class="service-header"><span class="service-num">04</span><h3 class="service-title"><span>/</span><span data-es="Diseño de objetos gráficos" data-en="Graphic Objects Design">Diseño de objetos gráficos</span></h3></div>
-                <p class="service-desc" data-es="Diseño objetos gráficos que combinan lo visual con lo material. Desarrollo piezas como fanzines, packaging y ediciones especiales, trabajando formato, textura y sistema para crear experiencias que se exploran con las manos." data-en="I design graphic objects that combine the visual with the material. I develop pieces such as fanzines, packaging, and special editions, working with format, texture, and systems to create hands-on experiences.">Diseño objetos gráficos que combinan lo visual con lo material. Desarrollo piezas como fanzines, packaging y ediciones especiales, trabajando formato, textura y sistema para crear experiencias que se exploran con las manos.</p>
-            </div>
-        </div>
-    </section>
+<!-- shapes mobile — SVG completo del index.html que funciona -->
+<div class="shapes-mobile">
+    <svg version="1.1" viewBox="0 490 1350 480" xmlns="http://www.w3.org/2000/svg">
+<path fill="none" d="M1067,1049.63c26.66-41.92,27.82-98.72,27.33-137.01C1074.05,957.4,1059.71,1007,1067,1049.63z"/>
+<path fill="none" d="M942.44,827.78L942.42,1081h64.92c-4.63-33.74,0.12-71.56,15.67-110.87c25.69-64.99,37.85-96.64,72.12-150.75c0.49-83.57-1.36-182.71-1.64-230.96c-23.37-7.52-48.98-6.89-57.95-5.76c-33.78,4.27-55.37,20.79-69.15,44.34c14.24,38.9,16.89,88.63-20.69,139.43c-0.75,1.01-1.88,2.52-3.32,4.48C942.39,790.68,942.73,810.02,942.44,827.78z"/>
+<path fill="none" d="M915.79,614.55c-4.99-7.8-10.92-14.17-17.48-18.63c-0.2,20.45-0.32,46.45-0.4,74.83C902.16,647.75,908.28,629.37,915.79,614.55z"/>
+<path fill="none" d="M663.85,1050.06c11.97-35.66,18.48-76.18,18.27-118.04c-0.02-4.43-0.13-33.24-0.25-66.61C651.82,925.86,629.82,999.4,663.85,1050.06z"/>
+<path fill="none" d="M729.47,807.22L729.46,1081h16.38c4.56-1.24,8.91-2.65,12.87-4.2c13.32-5.22,24.42-12.27,33.68-20.63c-6.94-34.31-3.19-73.66,13.05-114.74c12.86-32.53,22.12-56.19,32.82-78.88c2.15-87.46-0.5-226.45-0.84-286.9c-8.91-0.43-16.24-0.04-20.16,0.46c-25.31,3.2-43.36,13.69-56.23,29.01c19.48,40.71,29.21,97.49-13.83,155.67c-2.47,3.34-9,12-17.63,24.51C729.6,792.81,729.59,800.15,729.47,807.22z"/>
+<path fill="none" d="M307.47,1047.78c7.94-31.27,12.16-65.22,11.99-100.03c-0.03-5.11-0.15-40.76-0.29-79.97C290.12,927.73,270.29,999.67,307.47,1047.78z"/>
+<path fill="none" d="M248.55,931.56c24.58-62.18,35.67-91.1,70.33-144.82c-0.06-18.46-0.11-30.83-0.11-30.83c0-1.15-0.15-2.32-0.17-3.47c-1.04-74.46,9.21-121.77,25.75-152.84c-1.89-1.7-3.84-3.22-5.86-4.56c-23.53-21.03-66.66-20.48-78.44-18.99c-98.69,12.47-84.01,138.86-85.43,224.91L174.61,1081h74.38C228.11,1040.44,226.37,987.66,248.55,931.56z"/>
+<path fill="none" d="M1155.79,667.32c-0.07,12.5-0.12,25.98-0.15,40.02C1157.77,693.6,1157.68,680.02,1155.79,667.32z"/>
+<path fill="none" d="M369.68,815.38L369.66,1081h67.08c-7.82-36.75-3.97-79.07,13.5-123.27c12.99-32.84,22.51-57.17,33.19-80.19c-0.19-53.73-0.47-132.04-0.47-132.04c0-1.08-0.14-2.19-0.16-3.27c-1.26-90.38,15.11-138.34,39.08-165.82c-23.68-7.92-50-7.29-59.11-6.14c-30.61,3.87-51.21,17.8-65.05,37.91c19.47,39.72,29.77,95.71-12.68,153.1c-2.22,3.01-7.84,10.45-15.31,21.19C369.8,793.83,369.85,804.88,369.68,815.38z"/>
+<path fill="none" d="M599.01,772.13c-1.67,2.26-5.11,6.83-9.75,13.29c0.05,74.3,0.24,138.48,0.27,142.28c0.57,83.58-8.07,125.78-23.37,153.3h37.28c-17.64-40.44-17.81-91.35,3.49-145.22c25.82-65.3,37.15-94.91,74.65-152.49c-0.07-19.09-0.11-32.14-0.11-32.14c0-1.08-0.14-2.19-0.16-3.27c-1.05-74.95,10.04-120.72,27.53-149.84c-2.97-3.14-6.15-5.85-9.48-8.07c-24.18-21.61-68.5-21.05-80.61-19.52c-8.6,1.09-16.35,3.04-23.36,5.71c1.94,2.55,3.81,5.22,5.6,8.03C628.34,627.17,653.4,698.6,599.01,772.13z"/>
+<path fill="#2F4153" d="M397.73,608.17c-29.36,42.63-28.37,113.03-27.99,174.29c7.47-10.74,13.09-18.19,15.31-21.19C427.5,703.89,417.19,647.89,397.73,608.17z"/>
+<path fill="#2F4153" d="M531.06,793.5c8.56-13.07,18.39-27.5,29.88-43.93c36.08-51.57,26.4-116.53-0.41-147.62C525.62,646.78,531.47,729.3,531.06,793.5z"/>
+<path fill="#2F4153" d="M174.62,800.96c1.41-86.05-13.26-212.43,85.43-224.91c11.78-1.49,54.91-2.04,78.44,18.99c2.02,1.34,3.97,2.87,5.86,4.56c7.16-13.45,15.49-23.86,24.6-32.1c-43.37-39.34-110.46-31.14-144.24-20.6c-49.95,15.59-99.08,44.33-96.96,196.31c0.01,1.05,0.15,2.13,0.15,3.18c0,0,0.57,165.03,0.63,176.01c0.3,59.09-13.17,115.48-36.65,158.59h82.71L174.62,800.96z"/>
+<path fill="#2F4153" d="M530.95,1081h35.21c15.3-27.52,23.94-69.73,23.37-153.3c-0.03-3.79-0.22-67.98-0.27-142.28c-13.6,18.91-37.58,54.05-58.3,95.19L530.95,1081z"/>
+<path fill="#2F4153" d="M307.47,1047.78c-37.18-48.11-17.35-120.05,11.69-180c-0.1-28.61-0.21-59.11-0.29-81.03c-34.66,53.71-45.74,82.64-70.33,144.82c-22.18,56.09-20.44,108.88,0.44,149.44h48.27C301.14,1070.35,304.56,1059.24,307.47,1047.78z"/>
+<path fill="#2F4153" d="M565.68,546.4h-4.4c0.62,0.35,1.23,0.7,1.84,1.06C563.97,547.1,564.82,546.74,565.68,546.4z"/>
+<path fill="#A7C1D1" d="M450.15,1080.46c0.18-0.07,0.34-0.15,0.52-0.21c21.21-42.99,33.23-97.23,32.95-153.88c-0.02-3.62-0.09-23.49-0.18-48.83c-10.67,23.02-20.2,47.34-33.19,80.19c-17.48,44.21-21.32,86.52-13.5,123.27h11.99C449.21,1080.82,449.68,1080.64,450.15,1080.46z"/>
+<path fill="#DDD8D4" d="M450.15,1080.46c-0.46,0.18-0.94,0.36-1.42,0.54h1.55c0.13-0.25,0.26-0.5,0.38-0.75C450.49,1080.32,450.32,1080.39,450.15,1080.46z"/>
+<path fill="#A7C1D1" d="M600.99,584.19c-1.79-2.81-3.66-5.47-5.6-8.03c-1.86,0.71-3.68,1.46-5.44,2.28c-12.11,5.62-21.75,13.65-29.43,23.5c26.81,31.09,36.48,96.05,0.41,147.62c-11.5,16.43-21.32,30.87-29.88,43.93c-0.02,2.72-0.05,5.42-0.09,8.07l0,79.04c20.72-41.13,44.7-76.28,58.3-95.19c4.64-6.46,8.08-11.03,9.75-13.29C653.4,698.6,628.34,627.17,600.99,584.19z"/>
+<path fill="#A7C1D1" d="M561.28,546.4c-45.98-25.9-105.11-17.85-137-7.9c-19.38,6.05-38.64,13.92-55.31,29.01c-9.11,8.25-17.45,18.66-24.6,32.1c-16.54,31.08-26.79,78.38-25.75,152.84c0.02,1.15,0.17,2.32,0.17,3.47c0,0,0.04,12.37,0.11,30.83c0.08,21.92,0.18,52.42,0.29,81.03c0.14,39.21,0.27,74.86,0.29,79.97c0.17,34.81-4.04,68.76-11.99,100.03c-2.91,11.46-6.33,22.57-10.21,33.22h54.14h18.26l0.02-265.62c0.17-10.5,0.13-21.55,0.06-32.92c-0.37-61.26-1.37-131.66,27.99-174.29c13.85-20.11,34.44-34.04,65.05-37.91c9.11-1.15,35.43-1.78,59.11,6.14c2.25-2.57,4.56-4.96,6.93-7.19c10.52-9.91,22.19-16.64,34.29-21.75C562.5,547.1,561.89,546.74,561.28,546.4z"/>
+<path fill="#587D8E" d="M838.26,862.55c12.82-27.19,27.7-52.96,53.28-90.86c-0.01-2.18-0.01-3.38-0.01-3.38c0-1.15-0.15-2.32-0.17-3.47c-0.53-37.94,1.88-68.81,6.55-94.09c0.08-28.39,0.2-54.39,0.4-74.83c-0.15-0.1-0.29-0.2-0.44-0.3c-16.34-14.61-41.87-19.08-60.45-19.97C837.76,636.1,840.41,775.08,838.26,862.55z"/>
+<path fill="#587D8E" d="M894.09,546.08l-0.23-0.02c1.51,0.56,3.02,1.16,4.51,1.78C897.59,546.88,896.29,546.08,894.09,546.08z"/>
+<path fill="#587D8E" d="M758.71,1076.8c-3.97,1.55-8.31,2.96-12.87,4.2h53.77c-3.06-7.92-5.48-16.22-7.22-24.83C783.13,1064.53,772.03,1071.58,758.71,1076.8z"/>
+<path fill="#587D8E" d="M876.81,1072.68c10.15-34.63,15.6-73.03,15.41-112.53c-0.03-6.44-0.23-61.41-0.4-110.87C852.9,919.66,817.25,1017.11,876.81,1072.68z"/>
+<path fill="#587D8E" d="M761.03,605.11c-34.56,41.15-31.69,117.13-31.46,180.18c8.62-12.51,15.16-21.17,17.63-24.51C790.24,702.6,780.51,645.82,761.03,605.11z"/>
+<path fill="#587D8E" d="M603.44,1081h48.08c4.59-9.8,8.7-20.15,12.33-30.94c-34.03-50.66-12.03-124.2,18.03-184.65c-0.1-28.08-0.21-59.39-0.29-82.12c-37.51,57.58-48.84,87.19-74.65,152.49C585.63,989.65,585.8,1040.56,603.44,1081z"/>
+<path fill="#587D8E" d="M528.82,569.21c-2.37,2.23-4.69,4.62-6.93,7.19c2.35,0.79,4.68,1.65,6.96,2.61C528.84,575.47,528.83,572.19,528.82,569.21z"/>
+<path fill="#587D8E" d="M595.4,576.16c-1.71-2.26-3.47-4.42-5.29-6.48c-0.05,2.67-0.1,5.59-0.15,8.76C591.71,577.63,593.53,576.88,595.4,576.16z"/>
+<path fill="#587D8E" d="M529.38,883.76c0.52-1.06,1.05-2.11,1.58-3.16l0-79.04c0.04-2.65,0.07-5.35,0.09-8.07c-0.18,0.28-0.36,0.55-0.54,0.83c-0.06,29.56-0.37,57.56-1.07,81.11C529.37,877.9,529.36,880.7,529.38,883.76z"/>
+<path fill="#587D8E" d="M582.44,540.5c-5.62,1.75-11.23,3.67-16.76,5.9c-0.86,0.35-1.71,0.7-2.57,1.06c-12.1,5.11-23.77,11.84-34.29,21.75c0,2.98,0.01,6.26,0.03,9.81c-2.28-0.96-4.61-1.83-6.96-2.61c-23.97,27.48-40.34,75.45-39.08,165.82c0.01,1.08,0.16,2.19,0.16,3.27c0,0,0.27,78.31,0.47,132.04c0.09,25.34,0.16,45.22,0.18,48.83c0.28,56.65-11.74,110.89-32.95,153.88c-0.12,0.25-0.25,0.5-0.38,0.75h61.68h18.98l0.01-200.4c-0.53,1.05-1.05,2.1-1.58,3.16c-0.02-3.06-0.01-5.86,0.06-8.33c0.7-23.55,1.01-51.55,1.07-81.11c0.18-0.28,0.36-0.55,0.54-0.83c0.41-64.19-5.44-146.72,29.47-191.55c7.67-9.85,17.32-17.89,29.43-23.5c0.05-3.17,0.1-6.1,0.15-8.76c1.82,2.06,3.58,4.23,5.29,6.48c7.01-2.68,14.75-4.62,23.36-5.71c12.11-1.53,56.43-2.1,80.61,19.52c3.33,2.21,6.51,4.93,9.48,8.07c8.02-13.36,17.39-23.22,27.55-30.77C692.22,520.49,618.68,529.19,582.44,540.5z"/>
+<path fill="#2F4153" d="M1095.12,819.38c10.46-16.52,22.98-35.13,38.57-57.42c12.1-17.29,19.05-36.1,21.93-54.62c0.04-14.04,0.09-27.52,0.15-40.02c-4.23-28.44-17.46-52.48-34.75-63.96c-7.74-6.92-17.44-11.69-27.55-14.94C1093.76,636.67,1095.62,735.81,1095.12,819.38z"/>
+<path fill="#2F4153" d="M964.4,627c-21.78,37.24-24.03,92.06-24.01,143.9c1.44-1.95,2.57-3.46,3.32-4.48C981.28,715.64,978.64,665.9,964.4,627z"/>
+<path fill="#2F4153" d="M872.6,1081h1.67c0.7-2.18,1.38-4.39,2.04-6.6C875.11,1076.69,873.88,1078.89,872.6,1081z"/>
+<path fill="#2F4153" d="M1067,1049.63c1.88,10.99,5.2,21.51,10.23,31.37h61.25c11.53-28.41,17.85-70.67,17.35-143.55c-0.03-3.87-0.23-62.5-0.27-130.51c-16.5,23.65-41.63,62.41-61.23,105.68C1094.83,950.91,1093.66,1007.71,1067,1049.63z"/>
+<path fill="#2F4153" d="M898.37,547.85c-1.49-0.63-3-1.22-4.51-1.78c-40.24-15.01-86.49-8.16-112.9,0.08c-15.39,4.8-30.71,10.83-44.55,21.12c-10.16,7.55-19.53,17.41-27.55,30.77c-17.48,29.12-28.57,74.89-27.53,149.84c0.01,1.08,0.16,2.19,0.16,3.27c0,0,0.05,13.05,0.11,32.14c0.08,22.73,0.19,54.04,0.29,82.12c0.12,33.37,0.22,62.18,0.25,66.61c0.21,41.85-6.31,82.38-18.27,118.04c-3.62,10.79-7.74,21.14-12.33,30.94h39.98h37.95l0.02-273.78c0.12-7.07,0.13-14.41,0.1-21.92c-0.23-63.05-3.11-139.03,31.46-180.18c12.87-15.32,30.92-25.81,56.23-29.01c3.93-0.5,11.25-0.89,20.16-0.46c18.58,0.9,44.11,5.37,60.45,19.97c0.15,0.1,0.29,0.2,0.44,0.3c6.56,4.46,12.49,10.83,17.48,18.63c7.33-14.46,15.98-25.54,25.48-34.24C929.21,564.94,914.36,554.56,898.37,547.85z"/>
+<path fill="#2F4153" d="M891.54,771.69c-25.58,37.9-40.46,63.67-53.28,90.86c-10.69,22.68-19.96,46.35-32.82,78.88c-16.24,41.08-19.99,80.43-13.05,114.74c1.74,8.61,4.16,16.91,7.22,24.83h72.99c1.28-2.11,2.51-4.31,3.7-6.6c0.17-0.57,0.34-1.14,0.5-1.71c-59.56-55.57-23.91-153.02,15-223.4C891.69,814.23,891.58,781.95,891.54,771.69z"/>
+<path fill="#DDD8D4" d="M876.3,1074.4c-0.66,2.22-1.34,4.42-2.04,6.6h12.62c-3.53-2.58-6.81-5.28-9.83-8.08C876.81,1073.41,876.56,1073.91,876.3,1074.4z"/>
+<path fill="#DDD8D4" d="M877.06,1072.92c-0.08-0.08-0.16-0.16-0.25-0.23c-0.17,0.57-0.33,1.14-0.5,1.71C876.56,1073.91,876.81,1073.41,877.06,1072.92z"/>
+<path fill="#A7C1D1" d="M1171.75,596.59c-43.76-68.79-134.32-58.93-176.72-45.7c-19.55,6.1-38.99,14.06-55.77,29.42c-9.5,8.7-18.15,19.78-25.48,34.24c-7.51,14.81-13.63,33.2-17.88,56.2c-4.67,25.29-7.08,56.16-6.55,94.09c0.02,1.15,0.17,2.32,0.17,3.47c0,0,0,1.19,0.01,3.38c0.04,10.26,0.15,42.53,0.27,77.59c0.17,49.46,0.37,104.43,0.4,110.87c0.2,39.51-5.26,77.9-15.41,112.53c0.08,0.08,0.16,0.16,0.25,0.23l0,0c3.03,2.81,6.31,5.5,9.83,8.08h55.53l0.02-253.22c0.29-17.76-0.04-37.1-0.05-56.88c-0.02-51.84,2.23-106.67,24.01-143.9c13.78-23.55,35.37-40.07,69.15-44.34c8.96-1.13,34.57-1.76,57.95,5.76c10.11,3.25,19.8,8.02,27.55,14.94c17.29,11.48,30.52,35.51,34.75,63.96c1.89,12.7,1.99,26.28-0.15,40.02c-2.89,18.53-9.83,37.33-21.93,54.62c-15.59,22.29-28.11,40.9-38.57,57.42c-34.26,54.11-46.42,85.76-72.12,150.75c-15.54,39.31-20.3,77.13-15.67,110.87h30.2h39.69c-5.02-9.86-8.35-20.38-10.23-31.37c-7.3-42.63,7.05-92.23,27.33-137.01c19.6-43.27,44.73-82.04,61.23-105.68c7.91-11.34,13.84-19.2,16.21-22.41C1224.16,711,1199.1,639.57,1171.75,596.59z"/>
+    </svg>
+</div>
 
-    <!-- About -->
-    <section class="about-section" id="about">
-        <div class="about-inner">
-            <div class="about-text">
-                <p class="about-label" data-es="Sobre mí" data-en="About me">Sobre mí</p>
-                <h2 class="about-heading">
-                    <span class="lang-es">Diseño con <em>intención</em>,<br>construyo con sistema.</span>
-                    <span class="lang-en" style="display:none">I design with <em>intention</em>,<br>I build with system.</span>
-                </h2>
-                <div class="about-body">
-                    <p data-es="Soy Nicole Lucki, diseñadora gráfica y UX/UI con base en Buenos Aires. Me muevo entre lo digital y lo impreso buscando que cada pieza tenga coherencia, propósito y algo que valga la pena mirar dos veces." data-en="I'm Nicole Lucki, a graphic and UX/UI designer based in Buenos Aires. I move between digital and print looking for pieces that have coherence, purpose and something worth looking at twice.">Soy Nicole Lucki, diseñadora gráfica y UX/UI con base en Buenos Aires. Me muevo entre lo digital y lo impreso buscando que cada pieza tenga coherencia, propósito y algo que valga la pena mirar dos veces.</p>
-                    <p data-es="Trabajo desde la investigación hasta la entrega final: entendiendo el problema, construyendo el sistema y cuidando cada detalle visual. Me interesa el diseño que resuelve y también el que emociona." data-en="I work from research to final delivery: understanding the problem, building the system and taking care of every visual detail. I'm interested in design that solves and also in design that moves people.">Trabajo desde la investigación hasta la entrega final: entendiendo el problema, construyendo el sistema y cuidando cada detalle visual. Me interesa el diseño que resuelve y también el que emociona.</p>
+<!-- Tarjeta 1 -->
+<section class="cardflip-section" id="works" data-cursor="light">
+    <div class="cardflip-sticky">
+        <div class="flip-progress"><div class="flip-progress-bar"><div class="flip-progress-fill" style="height:0%"></div></div></div>
+        <div class="scroll-hint"><div class="scroll-arrow"></div><span data-es="Scrolleá para descubrir" data-en="Scroll to discover">Scrolleá para descubrir</span></div>
+        <div class="card-marquee-wrapper"><span class="card-marquee">APP MALBA — DISEÑO UX/UI &nbsp;&nbsp;&nbsp;&nbsp; APP MALBA — DISEÑO UX/UI &nbsp;&nbsp;&nbsp;&nbsp; APP MALBA — DISEÑO UX/UI</span></div>
+        <div class="card-scene">
+            <div class="flip-card">
+                <div class="flip-face flip-front">
+                    <img class="flip-front-img" src="https://i.pinimg.com/736x/a5/42/15/a542152e3f568b3e17f4860a714cde8b.jpg" alt="Proyecto 1">
+                    <div class="flip-front-info">
+                        <h3 data-es="App MALBA — Diseño UX/UI" data-en="MALBA App — UX/UI Design">App MALBA — Diseño UX/UI</h3>
+                        <p data-es="Rediseño de experiencia móvil" data-en="Mobile experience redesign">Rediseño de experiencia móvil</p>
+                        <span class="flip-front-tag">Digital · 2025</span>
+                    </div>
                 </div>
-                <div class="about-skills">
-                    <span class="about-skill">Figma</span><span class="about-skill">Adobe Suite</span><span class="about-skill">InDesign</span><span class="about-skill">UX Research</span>
-                    <span class="about-skill" data-es="Prototipado" data-en="Prototyping">Prototipado</span><span class="about-skill" data-es="Sistemas visuales" data-en="Visual systems">Sistemas visuales</span>
-                    <span class="about-skill" data-es="Tipografía" data-en="Typography">Tipografía</span><span class="about-skill">Branding</span>
+                <div class="flip-face flip-back bg-1">
+                    <div style="flex:1">
+                        <span class="flip-back-label" data-es="Proyecto 01" data-en="Project 01">Proyecto 01</span>
+                        <h2 data-es="App MALBA — Diseño UX/UI" data-en="MALBA App — UX/UI Design">App MALBA — Diseño UX/UI</h2>
+                        <p class="flip-back-desc" data-es="Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable para mejorar la experiencia de visitantes dentro y fuera del museo." data-en="Redesign of the mobile app for the Museum of Latin American Art of Buenos Aires. User research, information architecture, wireframes and navigable prototype to improve the visitor experience inside and outside the museum.">Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable para mejorar la experiencia de visitantes dentro y fuera del museo.</p>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px)">
+                        <div class="flip-back-tags"><span class="flip-back-tag">UX Research</span><span class="flip-back-tag">UI Design</span><span class="flip-back-tag" data-es="Prototipo" data-en="Prototype">Prototipo</span><span class="flip-back-tag" data-es="Arquitectura de info" data-en="Info Architecture">Arquitectura de info</span></div>
+                        <a class="flip-back-cta" id="malbaCta" href="#" data-es="Ver proyecto" data-en="View project">Ver proyecto</a>
+                    </div>
                 </div>
             </div>
-            <div class="about-aside">
-                <div class="about-stat"><div class="about-stat-num">3+</div><div class="about-stat-label" data-es="años de experiencia" data-en="years of experience">años de experiencia</div></div>
-                <div class="about-stat"><div class="about-stat-num">20+</div><div class="about-stat-label" data-es="proyectos realizados" data-en="projects completed">proyectos realizados</div></div>
-                <div class="about-stat"><div class="about-stat-num">2</div><div class="about-stat-label" data-es="disciplinas: digital e impreso" data-en="disciplines: digital and print">disciplinas: digital e impreso</div></div>
-                <a href="#" target="_blank" class="ver-cv-btn" data-es="Ver CV" data-en="View CV">Ver CV</a>
+        </div>
+    </div>
+</section>
+
+<!-- Tarjeta 2 -->
+<section class="cardflip-section" data-cursor="light">
+    <div class="cardflip-sticky">
+        <div class="flip-progress"><div class="flip-progress-bar"><div class="flip-progress-fill" style="height:0%"></div></div></div>
+        <div class="scroll-hint"><div class="scroll-arrow"></div><span data-es="Scrolleá para descubrir" data-en="Scroll to discover">Scrolleá para descubrir</span></div>
+        <div class="card-marquee-wrapper"><span class="card-marquee">LIBRO ILUSTRADO — SELLOS DE NATURALEZA &nbsp;&nbsp;&nbsp;&nbsp; LIBRO ILUSTRADO — SELLOS DE NATURALEZA</span></div>
+        <div class="card-scene">
+            <div class="flip-card">
+                <div class="flip-face flip-front">
+                    <img class="flip-front-img" src="https://i.pinimg.com/736x/8a/bc/46/8abc46a2fa81710d68765c3c34e7db5e.jpg" alt="Proyecto 2">
+                    <div class="flip-front-info">
+                        <h3 data-es="Libro Ilustrado — Sellos de Naturaleza" data-en="Illustrated Book — Nature Stamps">Libro Ilustrado — Sellos de Naturaleza</h3>
+                        <p data-es="Ilustración editorial con sellos artesanales" data-en="Editorial illustration with handmade stamps">Ilustración editorial con sellos artesanales</p>
+                        <span class="flip-front-tag">Ilustración · 2025</span>
+                    </div>
+                </div>
+                <div class="flip-face flip-back bg-2">
+                    <div style="flex:1">
+                        <span class="flip-back-label" data-es="Proyecto 02" data-en="Project 02">Proyecto 02</span>
+                        <h2 data-es="Libro Ilustrado — Sellos de Naturaleza" data-en="Illustrated Book — Nature Stamps">Libro Ilustrado — Sellos de Naturaleza</h2>
+                        <p class="flip-back-desc" data-es="A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano." data-en="Based on the story Cositas sueltas en el último cajón, an editorial illustration project was developed using handmade stamps.">A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano.</p>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px)">
+                        <div class="flip-back-tags"><span class="flip-back-tag" data-es="Ilustración" data-en="Illustration">Ilustración</span><span class="flip-back-tag" data-es="Sellos artesanales" data-en="Handmade stamps">Sellos artesanales</span><span class="flip-back-tag">Editorial</span><span class="flip-back-tag" data-es="Libro infantil" data-en="Children's book">Libro infantil</span></div>
+                        <a class="flip-back-cta" id="sellasCta" href="#" data-es="Ver proyecto" data-en="View project">Ver proyecto</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact" data-cursor="light">
-        <h2 data-es="Trabajemos juntos" data-en="Let's work together">Trabajemos juntos</h2>
-        <a href="mailto:nicolelucki22@gmail.com" class="contact-email">nicolelucki22@gmail.com</a>
-        <div class="social-links">
-            <a href="https://www.behance.net/nicolelucki" target="_blank">Behance</a>
-            <a href="https://www.instagram.com/nl_portfolio.design?igsh=MWo1dTE3ZndkcWRtcg==" target="_blank">Instagram</a>
-            <a href="https://www.linkedin.com/in/nicole-lucki-n" target="_blank">LinkedIn</a>
+<!-- Tarjeta 3 -->
+<section class="cardflip-section" data-cursor="light">
+    <div class="cardflip-sticky">
+        <div class="flip-progress"><div class="flip-progress-bar"><div class="flip-progress-fill" style="height:0%"></div></div></div>
+        <div class="scroll-hint"><div class="scroll-arrow"></div><span data-es="Scrolleá para descubrir" data-en="Scroll to discover">Scrolleá para descubrir</span></div>
+        <div class="card-marquee-wrapper"><span class="card-marquee">LIBRO ARTE EFÍMERO — URBAVERT &nbsp;&nbsp;&nbsp;&nbsp; LIBRO ARTE EFÍMERO — URBAVERT &nbsp;&nbsp;&nbsp;&nbsp; LIBRO ARTE EFÍMERO — URBAVERT</span></div>
+        <div class="card-scene">
+            <div class="flip-card">
+                <div class="flip-face flip-front">
+                    <img class="flip-front-img" src="https://i.pinimg.com/736x/ba/dd/75/badd75eaacd288122df7ed71934488d3.jpg" alt="Proyecto 3">
+                    <div class="flip-front-info">
+                        <h3 data-es="Libro Arte Efímero" data-en="Ephemeral Art Book">Libro Arte Efímero</h3>
+                        <p data-es="Diseño editorial · Colección URBAVERT" data-en="Editorial design · URBAVERT Collection">Diseño editorial · Colección URBAVERT</p>
+                        <span class="flip-front-tag">Editorial · 2024</span>
+                    </div>
+                </div>
+                <div class="flip-face flip-back bg-1">
+                    <div style="flex:1">
+                        <span class="flip-back-label" data-es="Proyecto 03" data-en="Project 03">Proyecto 03</span>
+                        <h2 data-es="Libro Arte Efímero" data-en="Ephemeral Art Book">Libro Arte Efímero</h2>
+                        <p class="flip-back-desc" data-es="Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano. Este volumen explora el arte efímero como expresión callejera que desaparece con el tiempo." data-en="Volume 4 of 4 of the URBAVERT collection, a series of books dedicated to urban art. This volume explores ephemeral art as street expression that fades over time.">Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano.</p>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.8vw,24px)">
+                        <div class="flip-back-tags"><span class="flip-back-tag" data-es="Diseño editorial" data-en="Editorial design">Diseño editorial</span><span class="flip-back-tag" data-es="Arte urbano" data-en="Urban art">Arte urbano</span><span class="flip-back-tag" data-es="Sistema de colección" data-en="Collection system">Sistema de colección</span><span class="flip-back-tag">URBAVERT</span></div>
+                        <a class="flip-back-cta" id="urbaCta" href="#" data-es="Ver proyecto" data-en="View project">Ver proyecto</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="footer-bottom">
-            <p>©️ 2026 Nicole Lucki</p>
-            <p data-es="Diseñadora UX & Gráfica" data-en="UX & Graphic Designer">Diseñadora UX & Gráfica</p>
-        </div>
-    </section>
-</div><!-- fin #main-page -->
+    </div>
+</section>
 
-<!-- ══════════════════════════════════════════
-     SECCIÓN CARDS (todos los proyectos)
-══════════════════════════════════════════ -->
+<div class="ver-mas-wrapper" data-cursor="light">
+    <button class="ver-mas-btn" id="verMasBtn" data-es="Ver más proyectos" data-en="View more projects">Ver más proyectos</button>
+</div>
+
+<!-- Servicios -->
+<section class="services-section" data-cursor="dark">
+    <div class="services-container">
+        <p class="services-title" data-es="Qué hago" data-en="What I do">Qué hago</p>
+        <div class="service-item">
+            <div class="service-header"><span class="service-num">01</span><h3 class="service-title"><span>/</span><span data-es="Diseño UX/UI" data-en="UX/UI Design">Diseño UX/UI</span></h3></div>
+            <p class="service-desc" data-es="Diseño experiencias digitales centradas en las personas. Desde la investigación y el mapeo de flujos hasta la interfaz final, busco que cada interacción sea clara, funcional y visualmente coherente." data-en="I design people-centred digital experiences. From research and flow mapping to the final interface, I ensure every interaction is clear, functional and visually coherent.">Diseño experiencias digitales centradas en las personas. Desde la investigación y el mapeo de flujos hasta la interfaz final, busco que cada interacción sea clara, funcional y visualmente coherente.</p>
+        </div>
+        <div class="service-item">
+            <div class="service-header"><span class="service-num">02</span><h3 class="service-title"><span>/</span><span data-es="Diseño Editorial" data-en="Editorial Design">Diseño Editorial</span></h3></div>
+            <p class="service-desc" data-es="Construyo sistemas editoriales que dan forma a libros, revistas y colecciones. La grilla, la tipografía y el ritmo visual no son detalles, son el lenguaje de cada publicación." data-en="I build editorial systems that shape books, magazines and collections. The grid, typography and visual rhythm are not details — they are the language of each publication.">Construyo sistemas editoriales que dan forma a libros, revistas y colecciones. La grilla, la tipografía y el ritmo visual no son detalles, son el lenguaje de cada publicación.</p>
+        </div>
+        <div class="service-item">
+            <div class="service-header"><span class="service-num">03</span><h3 class="service-title"><span>/</span><span data-es="Identidad Visual" data-en="Visual Identity">Identidad Visual</span></h3></div>
+            <p class="service-desc" data-es="Desarrollo identidades visuales que comunican la esencia de una marca. Logotipos, paletas, sistemas gráficos y manuales que dan coherencia a cada punto de contacto, digital o impreso." data-en="I develop visual identities that communicate the essence of a brand. Logos, palettes, graphic systems and brand manuals that bring coherence to every touchpoint, digital or print.">Desarrollo identidades visuales que comunican la esencia de una marca. Logotipos, paletas, sistemas gráficos y manuales que dan coherencia a cada punto de contacto, digital o impreso.</p>
+        </div>
+        <div class="service-item">
+            <div class="service-header"><span class="service-num">04</span><h3 class="service-title"><span>/</span><span data-es="Diseño de objetos gráficos" data-en="Graphic Objects Design">Diseño de objetos gráficos</span></h3></div>
+            <p class="service-desc" data-es="Diseño objetos gráficos que combinan lo visual con lo material. Desarrollo piezas como fanzines, packaging y ediciones especiales, trabajando formato, textura y sistema para crear experiencias que se exploran con las manos." data-en="I design graphic objects that combine the visual with the material. I develop pieces such as fanzines, packaging, and special editions, working with format, texture, and systems to create hands-on experiences.">Diseño objetos gráficos que combinan lo visual con lo material. Desarrollo piezas como fanzines, packaging y ediciones especiales, trabajando formato, textura y sistema para crear experiencias que se exploran con las manos.</p>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about-section" id="about">
+    <div class="about-inner">
+        <div class="about-text">
+            <p class="about-label" data-es="Sobre mí" data-en="About me">Sobre mí</p>
+            <h2 class="about-heading">
+                <span class="lang-es">Diseño con <em>intención</em>,<br>construyo con sistema.</span>
+                <span class="lang-en" style="display:none">I design with <em>intention</em>,<br>I build with system.</span>
+            </h2>
+            <div class="about-body">
+                <p data-es="Soy Nicole Lucki, diseñadora gráfica y UX/UI con base en Buenos Aires. Me muevo entre lo digital y lo impreso buscando que cada pieza tenga coherencia, propósito y algo que valga la pena mirar dos veces." data-en="I'm Nicole Lucki, a graphic and UX/UI designer based in Buenos Aires. I move between digital and print looking for pieces that have coherence, purpose and something worth looking at twice.">Soy Nicole Lucki, diseñadora gráfica y UX/UI con base en Buenos Aires. Me muevo entre lo digital y lo impreso buscando que cada pieza tenga coherencia, propósito y algo que valga la pena mirar dos veces.</p>
+                <p data-es="Trabajo desde la investigación hasta la entrega final: entendiendo el problema, construyendo el sistema y cuidando cada detalle visual. Me interesa el diseño que resuelve y también el que emociona." data-en="I work from research to final delivery: understanding the problem, building the system and taking care of every visual detail. I'm interested in design that solves and also in design that moves people.">Trabajo desde la investigación hasta la entrega final: entendiendo el problema, construyendo el sistema y cuidando cada detalle visual. Me interesa el diseño que resuelve y también el que emociona.</p>
+            </div>
+            <div class="about-skills">
+                <span class="about-skill">Figma</span><span class="about-skill">Adobe Suite</span><span class="about-skill">InDesign</span><span class="about-skill">UX Research</span>
+                <span class="about-skill" data-es="Prototipado" data-en="Prototyping">Prototipado</span><span class="about-skill" data-es="Sistemas visuales" data-en="Visual systems">Sistemas visuales</span>
+                <span class="about-skill" data-es="Tipografía" data-en="Typography">Tipografía</span><span class="about-skill">Branding</span>
+            </div>
+        </div>
+        <div class="about-aside">
+            <div class="about-stat"><div class="about-stat-num">3+</div><div class="about-stat-label" data-es="años de experiencia" data-en="years of experience">años de experiencia</div></div>
+            <div class="about-stat"><div class="about-stat-num">20+</div><div class="about-stat-label" data-es="proyectos realizados" data-en="projects completed">proyectos realizados</div></div>
+            <div class="about-stat"><div class="about-stat-num">2</div><div class="about-stat-label" data-es="disciplinas: digital e impreso" data-en="disciplines: digital and print">disciplinas: digital e impreso</div></div>
+            <a href="#" target="_blank" class="ver-cv-btn" data-es="Ver CV" data-en="View CV">Ver CV</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact" data-cursor="light">
+    <h2 data-es="Trabajemos juntos" data-en="Let's work together">Trabajemos juntos</h2>
+    <a href="mailto:nicolelucki22@gmail.com" class="contact-email">nicolelucki22@gmail.com</a>
+    <div class="social-links">
+        <a href="https://www.behance.net/nicolelucki" target="_blank">Behance</a>
+        <a href="https://www.instagram.com/nl_portfolio.design?igsh=MWo1dTE3ZndkcWRtcg==" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/nicole-lucki-n" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+        <p>©️ 2026 Nicole Lucki</p>
+        <p data-es="Diseñadora UX & Gráfica" data-en="UX & Graphic Designer">Diseñadora UX & Gráfica</p>
+    </div>
+</section>
+</div>
+
+<!-- SECCIÓN CARDS -->
 <div id="cards-section">
     <div class="slider-wrap" data-cursor="light">
         <div class="slider-row row-a" id="rowA"></div>
         <div class="slider-row row-b" id="rowB"></div>
         <div class="slider-row row-c" id="rowC"></div>
     </div>
-    <!-- contact footer cards -->
     <section class="contact" data-cursor="light">
         <h2 data-es="Trabajemos juntos" data-en="Let's work together">Trabajemos juntos</h2>
         <a href="mailto:nicolelucki22@gmail.com" class="contact-email">nicolelucki22@gmail.com</a>
@@ -616,32 +629,26 @@ body { font-family:'Lora',serif; background-color:var(--beige); color:var(--dark
 </div>
 
 <script>
-// ══════════ CURSOR ══════════
-const cursor=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0,menuIsOpen=false;
 function setCursorTheme(t){cursor.className='cursor '+t;ring.className='cursor-ring '+t;}
 function updateCursorTheme(x,y){if(menuIsOpen){setCursorTheme('menu');return;}const el=document.elementFromPoint(x,y);if(!el)return;let n=el;while(n&&n!==document.body){if(n.dataset&&n.dataset.cursor){setCursorTheme(n.dataset.cursor==='light'?'light':'dark');return;}n=n.parentElement;}setCursorTheme('dark');}
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';updateCursorTheme(mx,my);});
 (function animateRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);})();
-document.querySelectorAll('a,button,.menu-btn,.lang-toggle,.card').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='56px';ring.style.height='56px';});el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';});});
+document.querySelectorAll('a,button,.lang-toggle,.card').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='56px';ring.style.height='56px';});el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';});});
 
-// ══════════ MENÚ ══════════
 function toggleMenu(){const b=document.getElementById('menuBtn'),o=document.getElementById('menuOverlay');b.classList.toggle('active');o.classList.toggle('active');menuIsOpen=o.classList.contains('active');document.getElementById('header').classList.toggle('menu-open',menuIsOpen);document.body.style.overflow=menuIsOpen?'hidden':'';setCursorTheme(menuIsOpen?'menu':'dark');}
 
-// ══════════ PÁGINAS ══════════
 function showCards(){
     document.getElementById('main-page').style.display='none';
     document.getElementById('cards-section').classList.add('visible');
     document.body.style.backgroundColor='#2f4153';
     window.scrollTo(0,0);
     renderAllRows();
-    // eliminar completamente el logo flotante
-    if(floatingLogo){ floatingLogo.remove(); floatingLogo=null; }
-    startRect=null; endRect=null;
-    // también ocultar el logo-hero por si acaso
+    if(floatingLogo){floatingLogo.remove();floatingLogo=null;}
+    startRect=null;endRect=null;
     const lh=document.querySelector('.logo-hero');
-    if(lh) lh.style.opacity='0';
-    // header fijo, logo SVG siempre visible
+    if(lh)lh.style.opacity='0';
     const hdr=document.getElementById('header');
     hdr.style.background='rgba(221,216,212,0.95)';
     hdr.style.backdropFilter='blur(10px)';
@@ -655,14 +662,20 @@ function goHome(){
     document.getElementById('main-page').style.display='';
     document.body.style.backgroundColor='';
     window.scrollTo(0,0);
-    document.getElementById('header').style.background='';
-    document.getElementById('header').style.backdropFilter='';
-    document.getElementById('logoSvg').classList.remove('visible');
+    const hdr=document.getElementById('header');
+    hdr.style.background='';
+    hdr.style.backdropFilter='';
+    hdr.classList.remove('cards-mode');
+    const ls=document.getElementById('logoSvg');
+    ls.style.opacity='';
+    ls.style.visibility='';
+    ls.classList.remove('visible');
+    const lh=document.querySelector('.logo-hero');
+    if(lh)lh.style.opacity='1';
     initLogoAnimation();
 }
 document.getElementById('verMasBtn').addEventListener('click',showCards);
 
-// ══════════ MODALES (proyectos destacados) ══════════
 function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden';}
 function closeModal(id){document.getElementById(id).classList.remove('active');document.body.style.overflow='';}
 document.getElementById('sellasCta').addEventListener('click',e=>{e.preventDefault();openModal('sellasModal');});
@@ -676,139 +689,55 @@ document.getElementById('figmaModalClose').addEventListener('click',()=>closeMod
 document.getElementById('figmaModal').addEventListener('click',e=>{if(e.target===document.getElementById('figmaModal'))closeModal('figmaModal');});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){['sellasModal','urbaModal','figmaModal'].forEach(closeModal);closeCardModal();}});
 
-// ══════════ HEADER & LOGO ANIMATION ══════════
 const SCROLL_RANGE=200;
 let floatingLogo=null,startRect=null,endRect=null;
 function measureRects(){const lh=document.querySelector('.logo-hero'),ls=document.getElementById('logoSvg');if(!lh||!ls)return false;ls.style.visibility='hidden';ls.style.opacity='1';endRect=ls.getBoundingClientRect();ls.style.opacity='';ls.style.visibility='';const hr=lh.getBoundingClientRect();startRect={left:hr.left+window.scrollX,top:hr.top+window.scrollY,width:hr.width,height:hr.height};endRect={left:endRect.left,top:endRect.top,width:endRect.width,height:endRect.height};return true;}
 function buildFloatingLogo(){if(floatingLogo)floatingLogo.remove();const lh=document.querySelector('.logo-hero');if(!lh)return;floatingLogo=lh.cloneNode(true);floatingLogo.classList.remove('logo-hero');floatingLogo.style.cssText='position:fixed;pointer-events:none;z-index:101;transform-origin:left top;will-change:transform,opacity;';document.body.appendChild(floatingLogo);}
 function updateLogo(){const lh=document.querySelector('.logo-hero'),ls=document.getElementById('logoSvg');if(!startRect||!endRect||!floatingLogo)return;const p=Math.min(1,Math.max(0,window.scrollY/SCROLL_RANGE)),e=1-Math.pow(1-p,3),hvt=startRect.top-window.scrollY,scale=1+(endRect.height/startRect.height-1)*e,left=startRect.left+(endRect.left-startRect.left)*e,top=hvt+(endRect.top-hvt)*e;if(p>=1){floatingLogo.style.opacity='0';ls.classList.add('visible');lh.style.opacity='0';}else{floatingLogo.style.opacity='1';floatingLogo.style.width=startRect.width+'px';floatingLogo.style.height=startRect.height+'px';floatingLogo.style.left=left+'px';floatingLogo.style.top=top+'px';floatingLogo.style.transform=`scale(${scale})`;ls.classList.remove('visible');lh.style.opacity=p<.05?'1':'0';}}
 function initLogoAnimation(){if(!measureRects())return;buildFloatingLogo();updateLogo();}
-window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);updateLogo();},{passive:true});
+window.addEventListener('scroll',()=>{const hdr=document.getElementById('header');if(hdr.classList.contains('cards-mode'))return;hdr.classList.toggle('scrolled',window.scrollY>50);updateLogo();},{passive:true});
 window.addEventListener('resize',()=>{if(floatingLogo){floatingLogo.remove();floatingLogo=null;}startRect=null;endRect=null;const lh=document.querySelector('.logo-hero');if(lh)lh.style.opacity='1';setTimeout(initLogoAnimation,50);});
 if(document.readyState==='complete')initLogoAnimation();else window.addEventListener('load',initLogoAnimation);
 
-// ══════════ TEXTO ROTATIVO ══════════
 const spans=document.querySelectorAll('.rotating-text span');let cur=0;
 setInterval(()=>{spans[cur].classList.remove('active');cur=(cur+1)%spans.length;spans[cur].classList.add('active');},3000);
 
-// ══════════ CARD FLIP ══════════
 const cardSections=document.querySelectorAll('.cardflip-section');
 function updateFlips(){cardSections.forEach(s=>{const card=s.querySelector('.flip-card'),fill=s.querySelector('.flip-progress-fill'),hint=s.querySelector('.scroll-hint'),rect=s.getBoundingClientRect(),scrollable=s.offsetHeight-window.innerHeight,raw=Math.abs(rect.top)/scrollable,p=Math.min(1,Math.max(0,raw)),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;card.style.transform=`rotateX(${e*180}deg)`;fill.style.height=(p*100)+'%';p>.05?hint.classList.add('hidden'):hint.classList.remove('hidden');});}
 window.addEventListener('scroll',updateFlips,{passive:true});updateFlips();
 
-// ══════════ SERVICIOS REVEAL ══════════
 const items=document.querySelectorAll('.service-item'),pending=new Map();
 const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){const vc=[...items].filter(i=>i.classList.contains('visible')).length;if(pending.has(entry.target))clearTimeout(pending.get(entry.target));const t=setTimeout(()=>{entry.target.classList.add('visible');pending.delete(entry.target);},vc*180);pending.set(entry.target,t);}else{if(pending.has(entry.target)){clearTimeout(pending.get(entry.target));pending.delete(entry.target);}entry.target.classList.remove('visible');}});},{threshold:.18,rootMargin:'0px 0px -60px 0px'});
 items.forEach(i=>obs.observe(i));
 
-// ══════════ TRADUCCIÓN ══════════
 let lang='es';
 function toggleLanguage(){lang=lang==='es'?'en':'es';document.querySelectorAll('.lang-toggle span').forEach(s=>s.classList.toggle('active',s.dataset.lang===lang));document.querySelectorAll('[data-es][data-en]').forEach(el=>el.textContent=el.dataset[lang]);document.querySelectorAll('.lang-es,.lang-en').forEach(el=>el.style.display=el.classList.contains('lang-'+lang)?'':'none');renderAllRows();if(activeCard&&document.getElementById('cardModal').classList.contains('active'))renderCardModal(activeCard);}
 
-// ══════════ DATA & CARDS ══════════
 const cardsData=[
-  {row:'rowA',size:'sm',type:'standard',color:'ca',
-    tag:{es:'Identidad Visual',en:'Visual Identity'},title:{es:'Amigos del Rottweiler',en:'Amigos del Rottweiler'},
-    num:{es:'PROYECTO 04',en:'PROJECT 04'},
-    desc:{es:'Diseño de marca para Amigos del Rottweiler, una comunidad dedicada a la raza. El proyecto incluyó el desarrollo de logo primario y secundario en Adobe Illustrator, construyendo un sistema de identidad visual coherente que refleja la personalidad de la raza: fuerza, lealtad y carácter.',en:'Brand design for Amigos del Rottweiler, a community dedicated to the breed. The project included the development of primary and secondary logos in Adobe Illustrator, building a cohesive visual identity system that reflects the breed\'s personality: strength, loyalty, and character.'},
-    chips:{es:['Adobe Illustrator','Branding','Identidad visual','Logo'],en:['Adobe Illustrator','Branding','Visual Identity','Logo']},
-    cardImg:'https://i.pinimg.com/736x/76/80/f5/7680f5b5d179a0451f8b07781f63cbc5.jpg',deco:'🐕',modalScheme:'scheme-teal'},
-  {row:'rowA',size:'lg',type:'horizontal',cardBg:'bg-light',textScheme:'dark',
-    link:'https://embed.figma.com/proto/SkcZ6PL1X4wY0IfCvFbcO9/Interacci%C3%B3n-II?node-id=730-2654&scaling=scale-down&content-scaling=fixed&page-id=216%3A54&starting-point-node-id=730%3A2654&embed-host=share',
-    tag:{es:'UX/UI',en:'UX/UI'},title:{es:'App MALBA — Diseño UX/UI',en:'MALBA App — UX/UI Design'},
-    subtitle:{es:'Rediseño de experiencia móvil',en:'Mobile experience redesign'},pill:{es:'Digital · 2025',en:'Digital · 2025'},
-    num:{es:'PROYECTO 01',en:'PROJECT 01'},
-    desc:{es:'Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable.',en:'Redesign of the mobile application for the Museum of Latin American Art of Buenos Aires. User research, information architecture, wireframes and navigable prototype.'},
-    chips:{es:['UX Research','UI Design','Prototipo','Arquitectura de info'],en:['UX Research','UI Design','Prototype','Information Architecture']},
-    cardImg:'https://i.pinimg.com/736x/a5/42/15/a542152e3f568b3e17f4860a714cde8b.jpg',deco:'📱',modalScheme:'scheme-teal'},
-  {row:'rowA',size:'sm',type:'standard',color:'ca',
-    link:'https://issuu.com/nicolelucki/docs/nicole_lucki_-_issuu_-_urbavert_04',
-    tag:{es:'Editorial',en:'Editorial'},title:{es:'Libro Arte Efímero',en:'Ephemeral Art Book'},
-    num:{es:'PROYECTO 03',en:'PROJECT 03'},
-    desc:{es:'Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano. Este volumen explora el arte efímero como expresión callejera que desaparece con el tiempo.',en:'Volume 4 of 4 of the URBAVERT collection, a series of books dedicated to urban art. This volume explores ephemeral art as a street expression that fades over time.'},
-    chips:{es:['Diseño editorial','Arte urbano','Sistema de colección','URBAVERT'],en:['Editorial Design','Urban Art','Collection System','URBAVERT']},
-    cardImg:'https://i.pinimg.com/736x/ba/dd/75/badd75eaacd288122df7ed71934488d3.jpg',deco:'📖',modalScheme:'scheme-teal'},
-  {row:'rowB',size:'sm',type:'standard',color:'cb',
-    link:'https://www.behance.net/gallery/239584915/Greek-Tarot-Cards-Illustration',
-    tag:{es:'Ilustración',en:'Illustration'},title:{es:'Tarot mitológico',en:'Mythological Tarot'},
-    num:{es:'PROYECTO 07',en:'PROJECT 07'},
-    desc:{es:'Diseño de un mazo de cartas de tarot que vincula cada arcano mayor con un mito de la mitología griega. Las ilustraciones fueron creadas mediante sellos hechos a mano y luego compuestas digitalmente en Photoshop.',en:'Design of a tarot card deck linking each major arcana to a myth from Greek mythology. Illustrations were created using handmade stamps and then digitally composed in Photoshop.'},
-    chips:{es:['Photoshop','Sellos artesanales','Ilustración','Diseño editorial'],en:['Photoshop','Handmade Stamps','Illustration','Editorial Design']},
-    cardImg:'https://i.pinimg.com/736x/3d/66/a9/3d66a9d257d1b8a636928ff8376b941b.jpg',deco:'🔮',modalScheme:'scheme-blue'},
-  {row:'rowB',size:'sm',type:'standard',color:'cc',
-    link:'https://youtu.be/mWCYdmpb1jY',
-    tag:{es:'UX/UI · Videojuego',en:'UX/UI · Video Game'},title:{es:'Un último trago',en:'One Last Round'},
-    num:{es:'PROYECTO 05',en:'PROJECT 05'},
-    desc:{es:'Diseño de experiencia y sistema visual para "Un último trago", un RPG narrativo donde el jugador encarna a un semidiós castigado a servir bebidas en el inframundo para ayudar a las almas perdidas a trascender.',en:'Experience design and visual system for "One Last Round", a narrative RPG where the player takes on the role of a demigod condemned to serve drinks in the underworld to help lost souls transcend.'},
-    chips:{es:['Figma','Adobe Illustrator','UX/UI','Game Design','Diseño de mecánicas','Interactivo'],en:['Figma','Adobe Illustrator','UX/UI','Game Design','Mechanics Design','Interactive']},
-    cardImg:'https://i.pinimg.com/736x/39/ba/db/39badb2fd500d8098f837b9ed7870ef3.jpg',deco:'🎮',modalScheme:'scheme-teal'},
-  {row:'rowB',size:'lg',type:'horizontal',cardBg:'bg-light',textScheme:'dark',
-    link:'https://www.behance.net/gallery/241349679/El-tiempo-entre-nosotros',
-    tag:{es:'Diseño Audiovisual',en:'Audiovisual Design'},title:{es:'El tiempo entre nosotros',en:'The Time Between Us'},
-    subtitle:{es:'Diseño de comunicación para cortometraje',en:'Communication design for short film'},pill:{es:'Audiovisual · 2025',en:'Audiovisual · 2025'},
-    num:{es:'PROYECTO 06',en:'PROJECT 06'},
-    desc:{es:'Diseño de piezas comunicacionales para el cortometraje estudiantil "El tiempo entre nosotros". El proyecto incluyó el desarrollo de un afiche principal trabajado en Adobe Illustrator y Photoshop.',en:'Communication design for the student short film "The Time Between Us". The project included the development of a main poster crafted in Adobe Illustrator and Photoshop.'},
-    chips:{es:['Adobe Illustrator','Photoshop','Diseño gráfico','Comunicación audiovisual'],en:['Adobe Illustrator','Photoshop','Graphic Design','Audiovisual Communication']},
-    cardImg:'https://i.pinimg.com/736x/b0/bb/c8/b0bbc8702bb5b2668df6445475c5d76c.jpg',deco:'🎬',modalScheme:'scheme-teal'},
-  {row:'rowC',size:'lg',type:'horizontal',cardBg:'bg-light',textScheme:'dark',
-    tag:{es:'Ilustración',en:'Illustration'},title:{es:'Libro Ilustrado — Sellos de Naturaleza',en:'Illustrated Book — Nature Stamps'},
-    subtitle:{es:'Ilustración editorial con sellos artesanales',en:'Editorial illustration with handmade stamps'},pill:{es:'Ilustración · 2025',en:'Illustration · 2025'},
-    num:{es:'PROYECTO 02',en:'PROJECT 02'},
-    desc:{es:'A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano.',en:'Based on the story Cositas sueltas en el último cajón, an editorial illustration proposal was developed using handmade stamps.'},
-    chips:{es:['Ilustración','Sellos artesanales','Editorial','Libro infantil'],en:['Illustration','Handmade Stamps','Editorial','Children\'s Book']},
-    cardImg:'https://i.pinimg.com/736x/8a/bc/46/8abc46a2fa81710d68765c3c34e7db5e.jpg',deco:'📖',modalScheme:'scheme-blue'},
-  {row:'rowC',size:'sm',type:'standard',color:'ca',
-    tag:{es:'Diseño Editorial',en:'Editorial Design'},title:{es:'Lost in Shadow — Tapa de libro',en:'Lost in Shadow — Book Cover'},
-    num:{es:'PROYECTO 08',en:'PROJECT 08'},
-    desc:{es:'Diseño de tapa y contratapa para un libro inexistente inspirado en dos personajes del universo de Percy Jackson. La propuesta apuesta por una estética minimalista donde el verdadero protagonismo recae en el foil plateado y la síntesis visual.',en:'Cover and back cover design for a fictional book inspired by two characters from the Percy Jackson universe. The proposal embraces a minimalist aesthetic where the real star is the silver foil and visual synthesis.'},
-    chips:{es:['Diseño editorial','Ilustración','Adobe Illustrator','Tipografía'],en:['Editorial Design','Illustration','Adobe Illustrator','Typography']},
-    cardImg:'https://i.pinimg.com/736x/0b/f6/de/0bf6de55a4ecc2f21bb5bb645cc91396.jpg',deco:'📚',modalScheme:'scheme-teal'},
-  {row:'rowC',size:'sm',type:'standard',color:'cb',
-    tag:{es:'Identidad Visual',en:'Visual Identity'},title:{es:'Bloom Producciones — Branding',en:'Bloom Productions — Branding'},
-    num:{es:'PROYECTO 09',en:'PROJECT 09'},
-    desc:{es:'Desarrollo de logo e identidad visual para Bloom Producciones, una productora estudiantil audiovisual especializada en comedias románticas. El proyecto buscó traducir la esencia del género —ternura, frescura y emoción— en un sistema de marca coherente y versátil.',en:'Logo and visual identity development for Bloom Productions, a student audiovisual production company specializing in romantic comedies. The project aimed to translate the essence of the genre — warmth, freshness and emotion — into a cohesive and versatile brand system.'},
-    chips:{es:['Adobe Illustrator','Branding','Identidad visual','Logo','Productora audiovisual'],en:['Adobe Illustrator','Branding','Visual Identity','Logo','Film Production']},
-    cardImg:'https://i.pinimg.com/736x/a8/f3/ab/a8f3abe9a50682343b8e0e2f9633793e.jpg',deco:'🌸',modalScheme:'scheme-blue'},
+  {row:'rowA',size:'sm',type:'standard',color:'ca',tag:{es:'Identidad Visual',en:'Visual Identity'},title:{es:'Amigos del Rottweiler',en:'Amigos del Rottweiler'},num:{es:'PROYECTO 04',en:'PROJECT 04'},desc:{es:'Diseño de marca para Amigos del Rottweiler, una comunidad dedicada a la raza. El proyecto incluyó el desarrollo de logo primario y secundario en Adobe Illustrator, construyendo un sistema de identidad visual coherente que refleja la personalidad de la raza: fuerza, lealtad y carácter.',en:'Brand design for Amigos del Rottweiler, a community dedicated to the breed. The project included the development of primary and secondary logos in Adobe Illustrator, building a cohesive visual identity system that reflects the breed\'s personality: strength, loyalty, and character.'},chips:{es:['Adobe Illustrator','Branding','Identidad visual','Logo'],en:['Adobe Illustrator','Branding','Visual Identity','Logo']},cardImg:'https://i.pinimg.com/736x/76/80/f5/7680f5b5d179a0451f8b07781f63cbc5.jpg',deco:'🐕',modalScheme:'scheme-teal'},
+  {row:'rowA',size:'lg',type:'horizontal',cardBg:'bg-light',textScheme:'dark',link:'https://embed.figma.com/proto/SkcZ6PL1X4wY0IfCvFbcO9/Interacci%C3%B3n-II?node-id=730-2654&scaling=scale-down&content-scaling=fixed&page-id=216%3A54&starting-point-node-id=730%3A2654&embed-host=share',tag:{es:'UX/UI',en:'UX/UI'},title:{es:'App MALBA — Diseño UX/UI',en:'MALBA App — UX/UI Design'},subtitle:{es:'Rediseño de experiencia móvil',en:'Mobile experience redesign'},pill:{es:'Digital · 2025',en:'Digital · 2025'},num:{es:'PROYECTO 01',en:'PROJECT 01'},desc:{es:'Rediseño de la aplicación móvil del Museo de Arte Latinoamericano de Buenos Aires. Investigación de usuarios, arquitectura de información, wireframes y prototipo navegable.',en:'Redesign of the mobile application for the Museum of Latin American Art of Buenos Aires. User research, information architecture, wireframes and navigable prototype.'},chips:{es:['UX Research','UI Design','Prototipo','Arquitectura de info'],en:['UX Research','UI Design','Prototype','Information Architecture']},cardImg:'https://i.pinimg.com/736x/a5/42/15/a542152e3f568b3e17f4860a714cde8b.jpg',deco:'📱',modalScheme:'scheme-teal'},
+  {row:'rowA',size:'sm',type:'standard',color:'ca',link:'https://issuu.com/nicolelucki/docs/nicole_lucki_-_issuu_-_urbavert_04',tag:{es:'Editorial',en:'Editorial'},title:{es:'Libro Arte Efímero',en:'Ephemeral Art Book'},num:{es:'PROYECTO 03',en:'PROJECT 03'},desc:{es:'Tomo 4 de 4 de la colección URBAVERT, una serie de libros dedicados al arte urbano. Este volumen explora el arte efímero como expresión callejera que desaparece con el tiempo.',en:'Volume 4 of 4 of the URBAVERT collection, a series of books dedicated to urban art. This volume explores ephemeral art as a street expression that fades over time.'},chips:{es:['Diseño editorial','Arte urbano','Sistema de colección','URBAVERT'],en:['Editorial Design','Urban Art','Collection System','URBAVERT']},cardImg:'https://i.pinimg.com/736x/ba/dd/75/badd75eaacd288122df7ed71934488d3.jpg',deco:'📖',modalScheme:'scheme-teal'},
+  {row:'rowB',size:'sm',type:'standard',color:'cb',link:'https://www.behance.net/gallery/239584915/Greek-Tarot-Cards-Illustration',tag:{es:'Ilustración',en:'Illustration'},title:{es:'Tarot mitológico',en:'Mythological Tarot'},num:{es:'PROYECTO 07',en:'PROJECT 07'},desc:{es:'Diseño de un mazo de cartas de tarot que vincula cada arcano mayor con un mito de la mitología griega. Las ilustraciones fueron creadas mediante sellos hechos a mano y luego compuestas digitalmente en Photoshop.',en:'Design of a tarot card deck linking each major arcana to a myth from Greek mythology. Illustrations were created using handmade stamps and then digitally composed in Photoshop.'},chips:{es:['Photoshop','Sellos artesanales','Ilustración','Diseño editorial'],en:['Photoshop','Handmade Stamps','Illustration','Editorial Design']},cardImg:'https://i.pinimg.com/736x/3d/66/a9/3d66a9d257d1b8a636928ff8376b941b.jpg',deco:'🔮',modalScheme:'scheme-blue'},
+  {row:'rowB',size:'sm',type:'standard',color:'cc',link:'https://youtu.be/mWCYdmpb1jY',tag:{es:'UX/UI · Videojuego',en:'UX/UI · Video Game'},title:{es:'Un último trago',en:'One Last Round'},num:{es:'PROYECTO 05',en:'PROJECT 05'},desc:{es:'Diseño de experiencia y sistema visual para "Un último trago", un RPG narrativo donde el jugador encarna a un semidiós castigado a servir bebidas en el inframundo para ayudar a las almas perdidas a trascender.',en:'Experience design and visual system for "One Last Round", a narrative RPG where the player takes on the role of a demigod condemned to serve drinks in the underworld to help lost souls transcend.'},chips:{es:['Figma','Adobe Illustrator','UX/UI','Game Design','Diseño de mecánicas','Interactivo'],en:['Figma','Adobe Illustrator','UX/UI','Game Design','Mechanics Design','Interactive']},cardImg:'https://i.pinimg.com/736x/39/ba/db/39badb2fd500d8098f837b9ed7870ef3.jpg',deco:'🎮',modalScheme:'scheme-teal'},
+  {row:'rowB',size:'lg',type:'horizontal',cardBg:'bg-light',textScheme:'dark',link:'https://www.behance.net/gallery/241349679/El-tiempo-entre-nosotros',tag:{es:'Diseño Audiovisual',en:'Audiovisual Design'},title:{es:'El tiempo entre nosotros',en:'The Time Between Us'},subtitle:{es:'Diseño de comunicación para cortometraje',en:'Communication design for short film'},pill:{es:'Audiovisual · 2025',en:'Audiovisual · 2025'},num:{es:'PROYECTO 06',en:'PROJECT 06'},desc:{es:'Diseño de piezas comunicacionales para el cortometraje estudiantil "El tiempo entre nosotros". El proyecto incluyó el desarrollo de un afiche principal trabajado en Adobe Illustrator y Photoshop.',en:'Communication design for the student short film "The Time Between Us". The project included the development of a main poster crafted in Adobe Illustrator and Photoshop.'},chips:{es:['Adobe Illustrator','Photoshop','Diseño gráfico','Comunicación audiovisual'],en:['Adobe Illustrator','Photoshop','Graphic Design','Audiovisual Communication']},cardImg:'https://i.pinimg.com/736x/b0/bb/c8/b0bbc8702bb5b2668df6445475c5d76c.jpg',deco:'🎬',modalScheme:'scheme-teal'},
+  {row:'rowC',size:'lg',type:'horizontal',cardBg:'bg-light',textScheme:'dark',tag:{es:'Ilustración',en:'Illustration'},title:{es:'Libro Ilustrado — Sellos de Naturaleza',en:'Illustrated Book — Nature Stamps'},subtitle:{es:'Ilustración editorial con sellos artesanales',en:'Editorial illustration with handmade stamps'},pill:{es:'Ilustración · 2025',en:'Illustration · 2025'},num:{es:'PROYECTO 02',en:'PROJECT 02'},desc:{es:'A partir del cuento Cositas sueltas en el último cajón se desarrolló una propuesta de ilustración editorial utilizando sellos hechos a mano.',en:'Based on the story Cositas sueltas en el último cajón, an editorial illustration proposal was developed using handmade stamps.'},chips:{es:['Ilustración','Sellos artesanales','Editorial','Libro infantil'],en:['Illustration','Handmade Stamps','Editorial','Children\'s Book']},cardImg:'https://i.pinimg.com/736x/8a/bc/46/8abc46a2fa81710d68765c3c34e7db5e.jpg',deco:'📖',modalScheme:'scheme-blue'},
+  {row:'rowC',size:'sm',type:'standard',color:'ca',tag:{es:'Diseño Editorial',en:'Editorial Design'},title:{es:'Lost in Shadow — Tapa de libro',en:'Lost in Shadow — Book Cover'},num:{es:'PROYECTO 08',en:'PROJECT 08'},desc:{es:'Diseño de tapa y contratapa para un libro inexistente inspirado en dos personajes del universo de Percy Jackson. La propuesta apuesta por una estética minimalista donde el verdadero protagonismo recae en el foil plateado y la síntesis visual.',en:'Cover and back cover design for a fictional book inspired by two characters from the Percy Jackson universe. The proposal embraces a minimalist aesthetic where the real star is the silver foil and visual synthesis.'},chips:{es:['Diseño editorial','Ilustración','Adobe Illustrator','Tipografía'],en:['Editorial Design','Illustration','Adobe Illustrator','Typography']},cardImg:'https://i.pinimg.com/736x/0b/f6/de/0bf6de55a4ecc2f21bb5bb645cc91396.jpg',deco:'📚',modalScheme:'scheme-teal'},
+  {row:'rowC',size:'sm',type:'standard',color:'cb',tag:{es:'Identidad Visual',en:'Visual Identity'},title:{es:'Bloom Producciones — Branding',en:'Bloom Productions — Branding'},num:{es:'PROYECTO 09',en:'PROJECT 09'},desc:{es:'Desarrollo de logo e identidad visual para Bloom Producciones, una productora estudiantil audiovisual especializada en comedias románticas. El proyecto buscó traducir la esencia del género —ternura, frescura y emoción— en un sistema de marca coherente y versátil.',en:'Logo and visual identity development for Bloom Productions, a student audiovisual production company specializing in romantic comedies. The project aimed to translate the essence of the genre — warmth, freshness and emotion — into a cohesive and versatile brand system.'},chips:{es:['Adobe Illustrator','Branding','Identidad visual','Logo','Productora audiovisual'],en:['Adobe Illustrator','Branding','Visual Identity','Logo','Film Production']},cardImg:'https://i.pinimg.com/736x/a8/f3/ab/a8f3abe9a50682343b8e0e2f9633793e.jpg',deco:'🌸',modalScheme:'scheme-blue'},
 ];
 
 function t(p,key){return(p[key]&&typeof p[key]==='object')?p[key][lang]:(p[key]||'');}
-
 function cardHTML(p){
-    if(p.type==='horizontal'){const s=p.textScheme,img=p.cardImg?`<img src="${p.cardImg}" alt="${t(p,'title')}" style="width:100%;height:100%;object-fit:cover;display:block;">`:`<div class="ch-img-ph" style="background:${p.placeholderBg||'#ddd'}">${p.deco}</div>`;return `<div class="card card-${p.size} card-horizontal ${p.cardBg||''}"><div class="ch-img">${img}</div><div class="ch-info"><div class="ch-tag ${s}">${t(p,'tag')}</div><div class="ch-title ${s}">${t(p,'title')}</div><div class="ch-sub ${s}">${t(p,'subtitle')}</div><div class="ch-pill ${s}">${t(p,'pill')}</div></div></div>`;}
-    const bg=p.cardImg?`<img class="card-bg" src="${p.cardImg}" alt="${t(p,'title')}">`:`<div class="card-bg-div" style="background:${p.placeholderBg||'#ddd'}">${p.deco}</div>`;
+    if(p.type==='horizontal'){const s=p.textScheme,img=p.cardImg?`<img src="${p.cardImg}" alt="${t(p,'title')}" style="width:100%;height:100%;object-fit:cover;display:block;">`:`<div class="ch-img-ph" style="background:#ddd">${p.deco}</div>`;return `<div class="card card-${p.size} card-horizontal ${p.cardBg||''}"><div class="ch-img">${img}</div><div class="ch-info"><div class="ch-tag ${s}">${t(p,'tag')}</div><div class="ch-title ${s}">${t(p,'title')}</div><div class="ch-sub ${s}">${t(p,'subtitle')||''}</div><div class="ch-pill ${s}">${t(p,'pill')||''}</div></div></div>`;}
+    const bg=p.cardImg?`<img class="card-bg" src="${p.cardImg}" alt="${t(p,'title')}">`:`<div class="card-bg-div" style="background:#ddd">${p.deco}</div>`;
     return `<div class="card card-${p.size} ${p.color||'ca'}">${bg}<div class="card-overlay"></div><div class="card-inner"><div class="card-tag">${t(p,'tag')}</div><div class="${p.size==='lg'?'card-title-lg':'card-title'}">${t(p,'title')}</div></div></div>`;
 }
-
 const rowMap={rowA:[],rowB:[],rowC:[]};
 cardsData.forEach(p=>rowMap[p.row].push(p));
+function renderAllRows(){['rowA','rowB','rowC'].forEach(id=>{const el=document.getElementById(id),items=rowMap[id];if(!el)return;el.innerHTML=[...items,...items,...items,...items].map(cardHTML).join('');el.querySelectorAll('.card').forEach((c,i)=>c.addEventListener('click',()=>openCardModal(items[i%items.length])));});}
 
-function renderAllRows(){
-    ['rowA','rowB','rowC'].forEach(id=>{
-        const el=document.getElementById(id),items=rowMap[id];
-        if(!el)return;
-        el.innerHTML=[...items,...items,...items,...items].map(cardHTML).join('');
-        el.querySelectorAll('.card').forEach((c,i)=>c.addEventListener('click',()=>openCardModal(items[i%items.length])));
-    });
-}
-
-// ══════════ MODAL CARDS ══════════
 let activeCard=null;
-function openCardModal(p){
-    activeCard=p;renderCardModal(p);
-    document.getElementById('cardModal').classList.add('active');
-    const cf=document.getElementById('cardFlipper');
-    cf.style.animation='none';void cf.offsetWidth;cf.style.animation='flipIn .6s cubic-bezier(.23,1,.32,1) forwards';
-}
-function renderCardModal(p){
-    document.getElementById('modalNum').textContent=t(p,'num');
-    document.getElementById('modalTitle').textContent=t(p,'title');
-    document.getElementById('modalDesc').textContent=t(p,'desc');
-    document.getElementById('modalTags').innerHTML=p.chips[lang].map(c=>`<span class="modal-tag">${c}</span>`).join('');
-    const cta=document.getElementById('modalCta');
-    if(p.link){cta.textContent=lang==='es'?'Ver proyecto →':'View project →';cta.href=p.link;cta.target='_blank';cta.rel='noopener noreferrer';cta.style.display='inline-flex';}
-    else{cta.style.display='none';}
-    document.getElementById('flipBackM').className='flip-back-m '+(p.modalScheme||'scheme-teal');
-}
+function openCardModal(p){activeCard=p;renderCardModal(p);document.getElementById('cardModal').classList.add('active');const cf=document.getElementById('cardFlipper');cf.style.animation='none';void cf.offsetWidth;cf.style.animation='flipIn .6s cubic-bezier(.23,1,.32,1) forwards';}
+function renderCardModal(p){document.getElementById('modalNum').textContent=t(p,'num');document.getElementById('modalTitle').textContent=t(p,'title');document.getElementById('modalDesc').textContent=t(p,'desc');document.getElementById('modalTags').innerHTML=p.chips[lang].map(c=>`<span class="modal-tag">${c}</span>`).join('');const cta=document.getElementById('modalCta');if(p.link){cta.textContent=lang==='es'?'Ver proyecto →':'View project →';cta.href=p.link;cta.target='_blank';cta.rel='noopener noreferrer';cta.style.display='inline-flex';}else{cta.style.display='none';}document.getElementById('flipBackM').className='flip-back-m '+(p.modalScheme||'scheme-teal');}
 function closeCardModal(){document.getElementById('cardModal').classList.remove('active');activeCard=null;}
 document.getElementById('cardModalClose').addEventListener('click',closeCardModal);
 document.getElementById('cardModalBlur').addEventListener('click',closeCardModal);
